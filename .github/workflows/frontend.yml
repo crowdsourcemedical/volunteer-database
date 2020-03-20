@@ -1,0 +1,38 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 2
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install yarn
+      run: npm i -g yarn
+    - name: Install dependencies
+      run: yarn
+      working-directory: ./frontend
+    - name: Run tests
+      run: yarn test
+      env:
+        CI: true
+      working-directory: ./frontend
+    - name: Build
+      run: yarn build
+      working-directory: ./frontend

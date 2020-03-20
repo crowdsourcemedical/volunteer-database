@@ -1,6 +1,7 @@
 # This is the official CSM (Crowd source medical) database
 
 ![Django CI](https://github.com/crowdsourcemedical/volunteer-database/workflows/Django%20CI/badge.svg)
+![Node.js CI](https://github.com/crowdsourcemedical/volunteer-database/workflows/Node.js%20CI/badge.svg)
 
 We created this in light of the covid-19 pandemic to allow  volunteers to work together in tackling the shortage of  ventilator equipment.
 

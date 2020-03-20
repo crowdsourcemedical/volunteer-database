@@ -29,6 +29,5 @@ jobs:
         pip install -r requirements.txt
       working-directory: ./backend
     - name: Run Tests
-      run: |
-        python manage.py test
+      run: python manage.py test
       working-directory: ./backend
