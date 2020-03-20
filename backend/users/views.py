@@ -16,11 +16,11 @@ class getUsers(generics.ListAPIView):
         returns a list of all users, if there is a skill defined then only users with that skill will be returned
         """
         # Skill should be retrieved from query string
-        skill = request.GET.get('skill') #if you want to return all, filter should be set to none
+        skill = request.GET.get('skill',None) #if you want to return all, filter should be set to none
         queryset = self.get_queryset()
         serial = UserSerializer(queryset)
         userList = Response(serial.data) #Gets a list of User objects from the serializer
-        if skill == 'none':  #Checks the optional skill filter
+        if skill == None:  #Checks the optional skill filter
             return userList
         else:
             output = []
