@@ -9,12 +9,13 @@ class CustomUser(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['skill']
+    REQUIRED_FIELDS = ['skill','location']
 
     objects = CustomUserManager()
 
     skill = models.CharField(blank=True, max_length=100)
     description = models.CharField(blank=True, max_length=100)
+    location = models.CharField(blank=True, max_lenght=100) 
 
 
     def __str__(self):
