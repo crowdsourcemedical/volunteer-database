@@ -16,7 +16,7 @@ class getUsers(generics.ListAPIView):
         returns a list of all users, if there is a skill defined then only users with that skill will be returned
         """
         # Skill should be retrieved from query string
-        skill = None
+        skill = request.GET.get('skill') #if you want to return all, filter should be set to none
         queryset = self.get_queryset()
         serial = UserSerializer(queryset)
         userList = Response(serial.data) #Gets a list of User objects from the serializer
@@ -33,4 +33,16 @@ class userDetail(generics.RetrieveAPIView):
     """
     Should list a certain's user skills and description. Dont show the name and location for privacy reasons
     """
-    pass
+    
+    queryset = Users.objects.all()
+    serial = UserSerializer
+    
+    def getSpecificUserDetails(self, request):
+        """Searches through the list of users to find one with a specific name"""
+        username = request.GET.get('username') #gets the username to find the user
+        queryset = self.get_queryset()
+        serial = UserSerializer(queryset)
+        userList = Response(serial.data)   #Gets all users from serializer
+        for user in UserList:      #Loops through the users
+            if user.USERNAME_FIELD == username:     #Finds the specified user and returns it
+                return [user.skill, user.description]
