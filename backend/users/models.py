@@ -16,7 +16,7 @@ class CustomUser(AbstractUser):
     skill = models.CharField(blank=True, max_length=100)
     description = models.CharField(blank=True, max_length=100)
     # Should be change to a Location object once that is implemented
-    location = models.CharField(blank=True, max_lenght=100) 
+    location = models.CharField(blank=True, max_length=100) 
 
 
     def __str__(self):

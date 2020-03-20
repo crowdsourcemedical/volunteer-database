@@ -7,7 +7,7 @@ class getUsers(generics.ListAPIView):
     """
     pass
 
-class UserDetail(generics.RetrieveApiView):
+class userDetail(generics.RetrieveAPIView):
     """
     Should list a certain's user skills and description. Dont show the name and location for privacy reasons
     """
