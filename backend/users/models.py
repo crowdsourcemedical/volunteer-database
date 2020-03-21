@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from .managers import CustomUserManager
 
+
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
@@ -17,7 +18,6 @@ class CustomUser(AbstractUser):
     description = models.CharField(blank=True, max_length=100)
     # Should be change to a Location object once that is implemented
     location = models.CharField(blank=True, max_length=100) 
-
 
     def __str__(self):
         return self.email
@@ -34,7 +34,7 @@ class Location():
     #timezone = 
 
     def __str(self):
-            return self.location
+        return self.location
 
     def get_local_time(self):
         """
