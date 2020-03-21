@@ -1,13 +1,17 @@
+from abc import ABC
+
 from rest_framework import serializers
-from users.models import CustomUser
+from .models import CustomUser
 from .managers import CustomUserManager
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'email', 'first_name', 'last_name', 'skill', 'location', 'description']
 
-class RegistrationSerializer(serializers.Serializer):
+
+class RegistrationSerializer(serializers.Serializer, ABC):
     email = serializers.EmailField(required=True)
     password1 = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
