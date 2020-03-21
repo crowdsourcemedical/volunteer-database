@@ -1,4 +1,4 @@
-name: Django CI
+name: Python CI
 
 on:
   push:
@@ -29,5 +29,5 @@ jobs:
         pip install -r requirements.txt
       working-directory: ./backend
     - name: Run Tests
-      run: python manage.py test
+      run: pytest
       working-directory: ./backend
