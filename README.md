@@ -1,17 +1,17 @@
-# This is the official CSM (Crowd source medical) database
+# This is the official CSM (Crowd source medical) Database
 
 ![Django CI](https://github.com/crowdsourcemedical/volunteer-database/workflows/Django%20CI/badge.svg)
 ![Node.js CI](https://github.com/crowdsourcemedical/volunteer-database/workflows/Node.js%20CI/badge.svg)
 
-We created this in light of the covid-19 pandemic to allow  volunteers to work together in tackling the shortage of  ventilator equipment.
+We created this in light of the covid-19 pandemic to allow volunteers to work together in tackling the shortage of ventilator equipment.
 
-Backend is a django rest api with a postgres database, Frontend is react
+Backend is a django rest api with a postgres database, Frontend is react.
 
-We're just getting started so documentation is lacking
+We're just getting started so documentation is lacking.
 
 Reach out to me and join the discord for help!
 
-## Backend setup
+## Backend Setup
 
 This will clone the project, set up a virtual Python environment, and install the dependencies.
 
