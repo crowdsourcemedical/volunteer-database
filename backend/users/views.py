@@ -40,9 +40,9 @@ class userDetail(generics.RetrieveAPIView):
     def getSpecificUserDetails(self, request):
         """Searches through the list of users to find one with a specific name"""
         username = request.GET.get('username') #gets the username to find the user
-        queryset = self.get_queryset()
-        serial = UserSerializer(queryset)
-        userList = Response(serial.data)   #Gets all users from serializer
-        for user in UserList:      #Loops through the users
-            if user.USERNAME_FIELD == username:     #Finds the specified user and returns it
-                return [user.skill, user.description]
+       # queryset = self.get_queryset()      I dont even think we ned to serialize here
+       # serial = UserSerializer(queryset)
+       # userList = Response(serial.data)   #Gets all users from serializer
+        try: #to catch when there isnt a user with the name
+            user = Users.objects.get(USERNAME_FIELD=username)    #Finds the specified user and returns skill and description
+            return [user.skill, user.description]
