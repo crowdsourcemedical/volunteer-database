@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# This is a script to run on Linux, .deb or .rpm based systems for the rapid
+# set up of environments for development and testing the end product.
 
 cd /var/www/
 sudo mkdir cms && chmod -R 777 cms/
