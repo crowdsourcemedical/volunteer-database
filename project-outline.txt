@@ -1,8 +1,8 @@
 What are we doing?
-Were working on a web app that allows volunteers to come together and create medical supplies. For now the main focus seems to be 3D printng parts.
+Were working on a web app that allows volunteers to come together and create medical supplies. For now the main focus seems to be 3D printing parts.
 
 What is the app going to look like?
-There will be 2 user groups. Hospitals and volunteers. If a hospital is running out of parts, say a certain connector, they can fill out a form on our site explaining what they need. A call then goes out to our volunteers, medical experts, mechanical engineers, electrical engineers, CAD desingers etc. They get to work on designing a part that can easily be produced. Once they have a part they move it on to the next phase, people print the actual part and get to work testing it. Once again with medical experts, engineers and everyone who can help. Finally when a part is tested a call goes out to all our 3d printing volunteers who are close to the hospital who requested the part. They print and ship the parts and it all works seemlessly. Hopefully....
+There will be 2 user groups. Hospitals and volunteers. If a hospital is running out of parts, say a certain connector, they can fill out a form on our site explaining what they need. A call then goes out to our volunteers, medical experts, mechanical engineers, electrical engineers, CAD designers etc. They get to work on designing a part that can easily be produced. Once they have a part they move it on to the next phase, people print the actual part and get to work testing it. Once again with medical experts, engineers and everyone who can help. Finally when a part is tested a call goes out to all our 3d printing volunteers who are close to the hospital who requested the part. They print and ship the parts and it all works seamlessly. Hopefully....
 
 We are working with a rest api.
 
@@ -10,13 +10,13 @@ Backend: Django-rest-api
 Frontend: React
 
 Backend:
-We need to create a api that allows volunteers to sign up and be added into a database. It should also let users connect with other users from certain diciplines. For example you(as a software engineer) should be able to find a electrical engineer, cad designer or whatever. The api should also allow hospitals to create requests, and track these requests. What phase is it in, who's working on it, etc.
+We need to create a api that allows volunteers to sign up and be added into a database. It should also let users connect with other users from certain disciplines. For example you(as a software engineer) should be able to find a electrical engineer, cad designer or whatever. The api should also allow hospitals to create requests, and track these requests. What phase is it in, who's working on it, etc.
 
 Frontend: 
 The frontend should look professional as we are trying to partner with various companies for funding and help etc. It should accompany all the functions the backend api provides
 
 Dev-ops: 
-As we are working purely open source it should be easy to get setup and developing. From the initial reddit post we got over 200 volunteers but I suspect this number could skyrocket if we gain traction. The servers shouldnt be doing anything very processing intensive, mainly just updating databases. We would like to partner with hosting providers.
+As we are working purely open source it should be easy to get setup and developing. From the initial reddit post we got over 200 volunteers but I suspect this number could skyrocket if we gain traction. The servers shouldn't be doing anything very processing intensive, mainly just updating databases. We would like to partner with hosting providers.
 
 
 In order to keep track of progress I think we should define a couple stages.
@@ -24,6 +24,6 @@ Stage 1: A app that allows volunteers to sign up and list skills they have
 Stage 2: A app that allows volunteers to connect with each other
 Stage 3: A app that allows hospitals to place requests
 Stage 4: A app that has different phases for requests
-This is all for now but I'll update tommorow. For now we just need to get started on stage 1 :)
+This is all for now but I'll update tomorrow. For now we just need to get started on stage 1 :)
 
-I reconmend each "team" (frontend/backend/devops) creates a trello board or something simmilar and outline basic steps they need to take and assign small tasks to different team members.
+I recommend each "team" (frontend/backend/devops) creates a trello board or something similar and outline basic steps they need to take and assign small tasks to different team members.

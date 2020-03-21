@@ -1,5 +1,5 @@
 1. Add location model to backend/users/models.py
 2. Add endpoint to request all users in backend/users/views.py
-3. Add enpoint to request specific user in backend/users/views.py
+3. Add endpoint to request specific user in backend/users/views.py
 4. Properly setup this repo, add a .gitignore etc
 4. Add documentation
