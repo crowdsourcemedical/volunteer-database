@@ -3,6 +3,7 @@ from . import crud, models, schemas
 from .database import SessionLocal, engine
 from typing import List
 from sqlalchemy.orm import Session
+from .utils import verify_password
 
 models.Base.metadata.create_all(bind=engine)
 CSM_Backend = FastAPI()
@@ -36,6 +37,16 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
+
+@CSM_Backend.post("/users/login")
+def login(web_user: schemas.Login, db: Session = Depends(get_db)):
+    user = crud.get_user_by_email(db, user_email=web_user.email)
+    if user:
+        right_password = verify_password(user.user_hashed_password, web_user.password)
+    else:
+        raise HTTPException(status_code=404, detail="User doesnt exist")
+    return right_password
+
 
 
 @CSM_Backend.get("/")
