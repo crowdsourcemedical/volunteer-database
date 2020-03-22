@@ -22,3 +22,12 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+def update_user(db: Session, db_user: schemas.UserBase, user):
+    print (user)
+    db_user.user_email = "diff@diff.com"
+    db.commit()
+
+    print (db_user)
+
+    return db_user

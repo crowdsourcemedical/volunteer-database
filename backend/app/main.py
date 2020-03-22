@@ -42,4 +42,12 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 async def root():
     return {"message": "This is the root of the API. Please go to site.com/docs to see the documentation"}
 
+@CSM_Backend.put("/users/{user_id}", response_model=schemas.User)
+def edit_user(user_id: int, user: schemas.UserBase, db: Session = Depends(get_db)):
+    db_user = crud.get_user(db, user_id=user_id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    updated_user = crud.update_user(db, db_user, user)
+    return updated_user
+
 # Insert into the DB with something like INSERT INTO users VALUES(1, 'petersteele111@gmail.com', 'Peter', 'Steele', 'petersteele111', '012sdf02501sdf40sdf', 'True', 'True', 'Software Developer', 'Software Developer with 10 Years experience', 'Williamsburg, Michigan', '2020-03-22 12:00:00');
