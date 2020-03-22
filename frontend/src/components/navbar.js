@@ -79,7 +79,7 @@ const NavBar = () => {
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
-			<Appbar
+			<AppBar
 				position="fixed"
 				className={clsx(classes.navBar, {
 					[classes.navBarShift]: isOpen,
@@ -104,7 +104,7 @@ const NavBar = () => {
 						</Typography>
 					</Link>
 				</Toolbar>
-			</Appbar>
+			</AppBar>
 			<Drawer className={classes.drawer} anchor="left" open={isOpen} onClose={toggleDrawer()}>
 				<div className={classes.listSpacer} />
 				<Divider />
