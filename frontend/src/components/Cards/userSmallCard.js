@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from 'prop-types';
 //import API from "../../api";
 import {Menu, MenuItem,  Avatar, Typography, Grid, Divider, Chip} from "@material-ui/core";
@@ -9,10 +9,10 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 
 const UserSmallCard = (props) => {
-  const [userId, setUser] = useState(1);
+  // const [userId, setUser] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null); //Dropdown menu
   const [blockConfirm, setBlockConfirm] = useState(false) //Block User Dialog
-  
+
 /*   async function getUser() {
     try {
       const response = await API.get(`users/1`);
@@ -34,13 +34,13 @@ const UserSmallCard = (props) => {
   const openDropdown = useCallback((event) => setAnchorEl(event.currentTarget), []); //Open the dropdown menu
   const closeDropdown = useCallback(() => setAnchorEl(null), []); //Close dropdown menu
   const blockConfirmOpen = useCallback(() => setBlockConfirm(true), []); //open dialog box
-  
+
   const blockConfirmClose = useCallback(() => {
     setBlockConfirm(false)  //Close Dialog
     setAnchorEl(null) //Close Dropdown
     },
-    [], 
-  ); 
+    [],
+  );
 
   const blockConfirmSend = useCallback(() => {
     setBlockConfirm(false) //Close Dialog
@@ -49,7 +49,7 @@ const UserSmallCard = (props) => {
     },
     [],
   );
-  
+
   return (
     <Grid item style={{ maxWidth: "400px"}}>
       <Card style={{ height: "280px"}}>
@@ -60,7 +60,7 @@ const UserSmallCard = (props) => {
           action={
             <React.Fragment>
               <IconButton onClick={openDropdown}>
-                <MoreVertIcon />                    
+                <MoreVertIcon />
               </IconButton>
               <Menu
                 id="simple-menu"
@@ -89,7 +89,7 @@ const UserSmallCard = (props) => {
                 </DialogActions>
               </Dialog>
             </React.Fragment>
-          }             
+          }
         />
         <CardContent>
           <Typography>
@@ -100,9 +100,9 @@ const UserSmallCard = (props) => {
           <Grid container justify="center">
 	  	{skills}
           </Grid>
-        </CardContent> 
+        </CardContent>
       </Card>
-    </Grid>   
+    </Grid>
   );
 }
 
