@@ -37,5 +37,3 @@ services:
                         POSTGRES_USER: postgres
                         POSTGRES_PASSWORD: dev-password-123
                         POSTGRES_DB: CSM
-                        #ports:
-                        #- 54321:5432
