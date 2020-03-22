@@ -10,6 +10,9 @@ services:
                         - ./frontend:/frontend
                 ports:
                         - 3001:3000
+                depends_on:
+                        - backend 
+
         backend:
                 build:
                         context: ./
@@ -19,3 +22,11 @@ services:
                         - ./backend:/app
                 ports:
                         - 80:80
+                depends_on:
+                        - db
+
+        db:
+                image: postgres
+                restart: always
+                environment:
+                        POSTGRES_PASSWORD: dev-password-123
