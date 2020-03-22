@@ -1,6 +1,5 @@
 import React from 'react';
 import UserSmallCard from '../components/Cards/userSmallCard.js';
-import Navbar from '../components/navbar';
 
 const mockUser = {
 	id: '1',
@@ -13,7 +12,6 @@ const mockUser = {
 const StoryBook = props => {
 	return (
 		<React.Fragment>
-			<Navbar />
 			<h1>User Small Card</h1>
 			<div style={{ display: 'flex', justifyContent: 'center' }}>
 				<UserSmallCard user={mockUser} />
