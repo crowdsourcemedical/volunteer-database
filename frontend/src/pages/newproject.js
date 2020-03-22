@@ -42,8 +42,12 @@ export default class NewProject extends Component {
         alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
     }
-    checkboxesList = [{ "label": "hello", "status": false }, { "label": "hello", "status": false }, { "label": "hello", "status": false }] // pass this to a checkboxsection to output all checkbox labels -> status is if its disabled or enabled
-
+    checkboxesCad = [{ "label": "Cad girl", "status": false }, { "label": "Cad man", "status": false }, { "label": "cad guru", "status": false }] // pass this to a checkboxsection to output all checkbox labels -> status is if its disabled or enabled
+    checkboxesMedical = [{ "label": "Doc", "status": false }, { "label": "Consultant", "status": false }, { "label": "nurse", "status": false }] // pass this to a checkboxsection to output all checkbox labels -> status is if its disabled or enabled
+    checkboxesEng = [{ "label": "Mechanical", "status": false }, { "label": "Structual", "status": false }, { "label": "Engineer", "status": false }] // pass this to a checkboxsection to output all checkbox labels -> status is if its disabled or enabled
+    checkboxesLegal = [{ "label": "Lawyer", "status": false }, { "label": "Barrister", "status": false }, { "label": "paralegal", "status": false }] 
+    checkboxesManu = [{ "label": "Factory worker", "status": false }, { "label": "wielder", "status": false }, { "label": "assembler", "status": false }] 
+    //TODO: ALL THESE NEED TO BE UPDATED WHEN THE REQUIRMENTS ARE CLEAR what people are needed for each section
 
     render() {
         return (
@@ -86,24 +90,24 @@ export default class NewProject extends Component {
                             </Grid>
 
                             <Grid container alignItems="flex-start" item xs={12} lg={8} xl={8}>
-                                <CheckBoxSection right sectionHeader={"Medical Staff advisers"} checkboxes={this.checkboxesList} cb ={this.handleCheckBoxChange} ></CheckBoxSection>
+                                <CheckBoxSection right sectionHeader={"Medical Staff advisers"} checkboxes={this.checkboxesMedical} cb ={this.handleCheckBoxChange} ></CheckBoxSection>
                             </Grid>
                             <Box m={5} />
                             <Grid container alignItems="flex-start" item xs={12} lg={8} xl={8}>
-                                <CheckBoxSection right sectionHeader={"Engineering"} checkboxes={this.checkboxesList} cb ={this.handleCheckBoxChange}></CheckBoxSection>
+                                <CheckBoxSection right sectionHeader={"Engineering"} checkboxes={this.checkboxesEng} cb ={this.handleCheckBoxChange}></CheckBoxSection>
                             </Grid>
                             <Box m={5} />
 
                             <Grid container alignItems="flex-start" item xs={12} lg={8} xl={8}>
-                                <CheckBoxSection right sectionHeader={"CAD professionals"} checkboxes={this.checkboxesList} cb ={this.handleCheckBoxChange} ></CheckBoxSection>
+                                <CheckBoxSection right sectionHeader={"CAD professionals"} checkboxes={this.checkboxesCad} cb ={this.handleCheckBoxChange} ></CheckBoxSection>
                             </Grid>
                             <Box m={2} />
                             <Grid container alignItems="flex-start" item xs={12} lg={8} xl={8}>
-                                <CheckBoxSection sectionHeader={"Legal advisors"} checkboxes={this.checkboxesList} cb ={this.handleCheckBoxChange}></CheckBoxSection>
+                                <CheckBoxSection sectionHeader={"Legal advisors"} checkboxes={this.checkboxesLegal} cb ={this.handleCheckBoxChange}></CheckBoxSection>
                             </Grid>
                             <Box m={2} />
                             <Grid container alignItems="flex-start" item xs={12} lg={8} xl={8}>
-                                <CheckBoxSection sectionHeader={"Manufactures"} checkboxes={this.checkboxesList} cb ={this.handleCheckBoxChange}></CheckBoxSection>
+                                <CheckBoxSection sectionHeader={"Manufactures"} checkboxes={this.checkboxesManu} cb ={this.handleCheckBoxChange}></CheckBoxSection>
                             </Grid>
                             <Button onClick={this.handleSubmit} variant="contained" size="large" color="primary" className={useStyles.margin}>
                                 Submit
