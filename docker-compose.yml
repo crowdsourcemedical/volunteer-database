@@ -10,4 +10,12 @@ services:
                         - ./frontend:/frontend
                 ports:
                         - 3001:3000
-                
+        backend:
+                build:
+                        context: ./
+                        dockerfile: ./backend/Dockerfile                
+                command: /start-reload.sh
+                volumes:
+                        - ./backend:/app
+                ports:
+                        - 80:80
