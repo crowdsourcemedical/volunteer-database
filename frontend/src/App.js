@@ -8,6 +8,7 @@ import AboutPage from './pages/about.js'
 import LoginPage from './pages/login.js'
 import SignupPage from './pages/signup.js'
 import StoryBook from './pages/storybook.js'
+import NewProject from './pages/newproject.js'
 import './App.css';
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
           <Route path="/login" exact component={LoginPage} />
           <Route path="/signup" exact component={SignupPage} />
           <Route path="/storybook" exact component={StoryBook} />
+          <Route path="/newproject" exact component={NewProject} />
+          
+
         </Switch>
       </div>
     </Router>
