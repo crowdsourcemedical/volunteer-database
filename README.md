@@ -19,4 +19,5 @@ docker-compose build
 docker-compose up
 ```
 The frontend should now be accessible at localhost:3001
-The backend is accessible at localhost:80
+
+The backend is accessible at localhost:8000

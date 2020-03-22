@@ -20,8 +20,11 @@ services:
                 command: /start-reload.sh
                 volumes:
                         - ./backend:/app
+                environment:
+                        PORT: 8000
+                        VARIABLE_NAME: CSM_Backend
                 ports:
-                        - 80:80
+                        - 8000:8000
                 depends_on:
                         - db
 

@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
-from app import crud, models, schemas
-from app.database import SessionLocal, engine
+from . import crud, models, schemas
+from .database import SessionLocal, engine
 from typing import List
 from sqlalchemy.orm import Session
 
