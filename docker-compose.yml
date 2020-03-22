@@ -5,7 +5,7 @@ services:
                 build:
                         context: ./
                         dockerfile: ./frontend/Dockerfile
-                command: ./run
+                command: ./frontend/run
                 volumes:
                         - ./frontend:/frontend
                 ports:
@@ -20,13 +20,22 @@ services:
                 command: /start-reload.sh
                 volumes:
                         - ./backend:/app
+                environment:
+                        PORT: 8000
+                        VARIABLE_NAME: CSM_Backend
                 ports:
-                        - 80:80
+                        - 8000:8000
                 depends_on:
                         - db
 
         db:
-                image: postgres
+                build: 
+                        context: ./
+                        dockerfile: ./db/Dockerfile
                 restart: always
                 environment:
+                        POSTGRES_USER: postgres
                         POSTGRES_PASSWORD: dev-password-123
+                        POSTGRES_DB: CSM
+                        #ports:
+                        #- 54321:5432
