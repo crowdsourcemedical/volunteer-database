@@ -16,7 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Link from '@material-ui/core/Link';
 
-import { PAGE_LINKS_LIST, LOGIN_PAGE_LINK } from '../constants.js';
+import { PAGE_LINKS_LIST, LOGIN_PAGE_LINK } from '../constants/navigation';
 
 const drawerWidth = 240;
 
