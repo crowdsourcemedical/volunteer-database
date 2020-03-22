@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cd frontend
+yarn build
+
+yarn
+until yarn run start; do
+	echo "Yarn crashed with exit code $?. Respawning..." >&2
+done
