@@ -8,4 +8,6 @@ services:
                 command: ./run
                 volumes:
                         - ./frontend:/frontend
+                ports:
+                        - 3001:3000
                 

@@ -30,3 +30,4 @@ After the project is cloned run the following commands to get the frontend runni
 docker-compose build
 docker-compose up
 ```
+The frontend should now be accessible at localhost:3001
