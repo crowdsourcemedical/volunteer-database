@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { Menu, MenuItem, Box, Typography, Grid, Paper } from "@material-ui/core";
-import { IconButton, Button, Fab, Divider } from "@material-ui/core";
+import {  Box, Typography, Grid } from "@material-ui/core";
+import { Button,  } from "@material-ui/core";
 
 import CheckBoxSection from '../components/Forms/checkboxSection.js'
 
@@ -40,6 +40,7 @@ export default class NewProject extends Component {
 
     handleSubmit(event) {
         alert('A name was submitted: ' + this.state.value);
+        //TODO: HANDLE submit
         event.preventDefault();
     }
     checkboxesCad = [{ "label": "Cad girl", "status": false }, { "label": "Cad man", "status": false }, { "label": "cad guru", "status": false }] // pass this to a checkboxsection to output all checkbox labels -> status is if its disabled or enabled
