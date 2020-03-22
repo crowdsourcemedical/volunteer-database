@@ -28,7 +28,9 @@ const UserSmallCard = (props) => {
     getUser();
   }, []); */
 
-
+  const skills = props.user.skills.map(skill => (
+  	<Chip label={skill} style={{ margin: "5px"}}/>
+  ))
   const openDropdown = useCallback((event) => setAnchorEl(event.currentTarget), []); //Open the dropdown menu
   const closeDropdown = useCallback(() => setAnchorEl(null), []); //Close dropdown menu
   const blockConfirmOpen = useCallback(() => setBlockConfirm(true), []); //open dialog box
@@ -52,8 +54,8 @@ const UserSmallCard = (props) => {
     <Grid item style={{ maxWidth: "400px"}}>
       <Card style={{ height: "280px"}}>
         <CardHeader
-          title="deranjer"
-          subheader="Looking to Collaborate"
+          title={props.user.name}
+          subheader={props.user.status}
           avatar={<Avatar aria-label="Recipe">D</Avatar>}
           action={
             <React.Fragment>
@@ -91,21 +93,12 @@ const UserSmallCard = (props) => {
         />
         <CardContent>
           <Typography>
-            Experienced 3D Modeler in CAD. 
-            Experienced with Medical Supplies/facemask. 
-            Ready to help.
+	  	{props.user.description}
             </Typography>
           <Typography align="center" variant="h6">Skills</Typography>
           <Divider variant="fullWidth" style={{ margin: "5px"}}/>
           <Grid container justify="center">
-            <Chip label="3d Modeling" style={{ margin: "5px"}}/>
-            <Chip label="Medical Supplies" style={{ margin: "5px"}}/>
-            <Chip label="facemask" style={{ margin: "5px"}}/>
-          </Grid>
-          <Grid container justify="center">
-            <Chip label="more" style={{ margin: "5px"}}/>
-            <Chip label="more2" style={{ margin: "5px"}}/>
-            <Chip label="more3" style={{ margin: "5px"}}/>
+	  	{skills}
           </Grid>
         </CardContent> 
       </Card>
