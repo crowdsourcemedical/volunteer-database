@@ -11,23 +11,12 @@ We're just getting started so documentation is lacking
 
 Reach out to me and join the discord for help!
 
-## Backend setup
-
-This will clone the project, set up a virtual Python environment, and install the dependencies.
-
-```sh
-git clone https://github.com/StanTheMan132/CrowdSourceMedical
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-## Frontend setup
-After the project is cloned run the following commands to get the frontend running
-
-
+## Project setup
+The procces to get setup and start developing is as simple as we could make it.
+Run the following commands
 ```sh
 docker-compose build
 docker-compose up
 ```
 The frontend should now be accessible at localhost:3001
+The backend is accessible at localhost:80
