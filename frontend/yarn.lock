@@ -5117,6 +5117,11 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
+immer@^5.3.6:
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-5.3.6.tgz#51eab8cbbeb13075fe2244250f221598818cac04"
+  integrity sha512-pqWQ6ozVfNOUDjrLfm4Pt7q4Q12cGw2HUZgry4Q5+Myxu9nmHRkWBpI0J4+MK0AxbdFtdMTwEGVl7Vd+vEiK+A==
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -8398,6 +8403,14 @@ public-encrypt@^4.0.0:
     parse-asn1 "^5.0.0"
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
+
+pullstate@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/pullstate/-/pullstate-1.11.0.tgz#8c32f06ae0bba099a191300794eb0ab7814eb99b"
+  integrity sha512-lNOyf+UVndsuM6Z94y6IsXePik4BmoxuaAJG5QoDVBb7F9zO+eutyaIhbgOtCWZNvE14s31/BFPt9xcSZHLKDw==
+  dependencies:
+    fast-deep-equal "^3.1.1"
+    immer "^5.3.6"
 
 pump@^2.0.0:
   version "2.0.1"
