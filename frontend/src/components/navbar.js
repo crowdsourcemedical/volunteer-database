@@ -68,7 +68,7 @@ const NavBar = () => {
 	const classes = useStyles();
 	const [isOpen, setIsOpen] = React.useState(false);
 
-	const toggleDrawer = () => event => {
+	const toggleDrawer = event => {
 		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
 			return;
 		}
@@ -89,7 +89,7 @@ const NavBar = () => {
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
-						onClick={toggleDrawer()}
+						onClick={toggleDrawer}
 						edge="start"
 						className={clsx(classes.menuButton, isOpen && classes.hide)}
 					>
@@ -105,7 +105,7 @@ const NavBar = () => {
 					</Link>
 				</Toolbar>
 			</AppBar>
-			<Drawer className={classes.drawer} anchor="left" open={isOpen} onClose={toggleDrawer()}>
+			<Drawer className={classes.drawer} anchor="left" open={isOpen} onClose={toggleDrawer}>
 				<div className={classes.listSpacer} />
 				<Divider />
 				<List className={classes.list}>
