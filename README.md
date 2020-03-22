@@ -13,6 +13,20 @@ Reach out to me and join the discord for help!
 
 ## Project setup
 The procces to get setup and start developing is as simple as we could make it.
+
+Make sure you have docker and docker-compose installed
+
+## Installing docker
+Docker provides a convienience script for installing docker
+```sh
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+Find instructions to install docker-compose here: https://docs.docker.com/compose/install/
+
+## Running the project
+
 Run the following commands
 ```sh
 docker-compose build
@@ -21,3 +35,5 @@ docker-compose up
 The frontend should now be accessible at localhost:3001
 
 The backend is accessible at localhost:8000
+
+The backend might crash the first time, this is because a bug in the db image. Simply run docker-compose up again and it should work
