@@ -3,7 +3,7 @@ export const HOME_PAGE_LINK = {
 	path: '/',
 };
 export const ABOUT_PAGE_LINK = {
-	name: 'About',
+	name: 'About us',
 	path: '/about',
 };
 export const SEARCH_PAGE_LINK = {
