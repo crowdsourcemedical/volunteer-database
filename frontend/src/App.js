@@ -9,6 +9,7 @@ import SignupPage from './pages/signup.js'
 import SignupVolunteerPage from './pages/signup_volunteer'
 import SignupProjectPage from './pages/signup_project'
 import StoryBook from './pages/storybook.js'
+import NewProject from './pages/newproject.js'
 import './App.css';
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
           <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
           <Route path="/signup/project" exact component={SignupProjectPage} />
           <Route path="/storybook" exact component={StoryBook} />
+          <Route path="/newproject" exact component={NewProject} />
+          
+
         </Switch>
       </div>
     </Router>
