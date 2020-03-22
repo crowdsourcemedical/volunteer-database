@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+        frontend:
+                build:
+                        context: ./
+                        dockerfile: ./frontend/Dockerfile
+                command: ./run
+                volumes:
+                        - ./frontend:/frontend
+                

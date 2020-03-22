@@ -21,3 +21,12 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
+
+## Frontend setup
+After the project is cloned run the following commands to get the frontend running
+
+
+```sh
+docker-compose build
+docker-compose up
+```
