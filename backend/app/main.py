@@ -20,13 +20,6 @@ CSM_Backend.add_middleware(
 )
 
 CSM_Backend.include_router(users.CSM_router)
-def get_db():
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
-
 @CSM_Backend.get("/")
 async def root():
     return {"message": "This is the root of the API. Please go to site.com/docs to see the documentation"}
