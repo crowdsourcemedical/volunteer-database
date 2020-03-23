@@ -14,7 +14,7 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
-    user_hashed_password: str
+    password: str
 
 
 class User(UserBase):
@@ -22,3 +22,7 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+
+class Login(BaseModel):
+    email: str
+    password: str
