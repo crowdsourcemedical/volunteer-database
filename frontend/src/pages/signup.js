@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { MapPin } from "react-feather";
 import {
   InputLabel,
   Select,
@@ -11,6 +12,7 @@ import {
   FormControlLabel,
   makeStyles,
   Typography,
+  InputAdornment,
   Button
 } from "@material-ui/core";
 import { ComputerScienceTypes, MedicalTypes } from "../types/SignupTypes";
@@ -78,13 +80,13 @@ export default class SignupPage extends Component {
       >
         <Grid item xs>
           <FormControlLabel
-            control={<Checkbox name="checkedA" />}
+            control={<Checkbox name="checkedA" color="primary" />}
             label="Frontend Developer"
           />
         </Grid>
         <Grid item xs>
           <FormControlLabel
-            control={<Checkbox name="checkedA" />}
+            control={<Checkbox name="checkedA" color="primary" />}
             label="Frontend Developer"
           />
         </Grid>
@@ -105,7 +107,7 @@ export default class SignupPage extends Component {
           className="signup__gridWrap"
         >
           <Grid item>
-            <Typography variant="h3" fontWeight="fontWeightBold">
+            <Typography variant="h1" fontWeight="fontWeightBold">
               Register to Volunteer
             </Typography>
           </Grid>
@@ -117,8 +119,8 @@ export default class SignupPage extends Component {
               alignItems="flex-start"
             >
               <Grid item xs>
-                <Typography variant="h4">What's your specialty?</Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="h2">What's your specialty?</Typography>
+                <Typography variant="h6">
                   Let us know where you’re best able to help.
                 </Typography>
               </Grid>
@@ -145,10 +147,10 @@ export default class SignupPage extends Component {
               alignItems="flex-start"
             >
               <Grid item xs>
-                <Typography variant="h4">
+                <Typography variant="h2">
                   Tell us a little about yourself
                 </Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="h6">
                   What is your experience and how much time do you have to
                   contribute?
                 </Typography>
@@ -175,8 +177,8 @@ export default class SignupPage extends Component {
               alignItems="flex-start"
             >
               <Grid item xs>
-                <Typography variant="h4">Where are you located?</Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="h2">Where are you located?</Typography>
+                <Typography variant="h6">
                   We’re able to send supplies and help within these regions.
                 </Typography>
               </Grid>
@@ -185,11 +187,29 @@ export default class SignupPage extends Component {
                   className="about-text"
                   placeholder="New York City, NY USA"
                   name="aboutText"
-                  multiline
                   variant="filled"
                   rows="1"
                   value={this.state.loc}
                   onChange={this.handleChange}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          height="24"
+                          width="24"
+                          fill="green"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" fill="white" />
+                        </svg>
+                      </InputAdornment>
+                    )
+                  }}
                 />
               </Grid>
             </Grid>
@@ -202,19 +222,21 @@ export default class SignupPage extends Component {
               alignItems="flex-start"
             >
               <Grid item xs>
-                <Typography variant="h4">Skillset</Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="h2">Skillset</Typography>
+                <Typography variant="h6">
                   We’ll try to connect you with the kind of talent you need and
                   are looking for.
                 </Typography>
               </Grid>
               <Grid item xs>
                 <Container>
-                  <Typography variant="h5">Medical Staff Advisors</Typography>
+                  <Typography variant="h4">Medical Staff Advisors</Typography>
                   {this.renderSkillset(3)}
-                  <Typography variant="h5">Engineering</Typography>
+                  <br />
+                  <Typography variant="h4">Engineering</Typography>
                   {this.renderSkillset(3)}
-                  <Typography variant="h5">Manufacturing</Typography>
+                  <br />
+                  <Typography variant="h4">Manufacturing</Typography>
                   {this.renderSkillset(3)}
                 </Container>
               </Grid>
@@ -222,7 +244,7 @@ export default class SignupPage extends Component {
             <Grid className="submit__wrapper">
               <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 className="submit__button"
               >
                 Submit Application

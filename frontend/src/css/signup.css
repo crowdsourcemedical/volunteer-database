@@ -1,10 +1,11 @@
 .about-text {
   width: 100%;
+  background: #f2f5f7;
 }
 
 .signup__container {
   padding: 10px;
-  margin: 200px;
+  margin: 100px 200px 200px 200px;
 }
 
 .specialty__container {
