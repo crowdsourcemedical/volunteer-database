@@ -11,6 +11,7 @@ import SignupProjectPage from './pages/signup_project';
 import StoryBook from './pages/storybook.js';
 import NewProject from './pages/newproject.js';
 import UserProfile from './components/UserProfile/Profile.component';
+import Profile from './components/Profile/Profile.component';
 import './App.css';
 import './about.css';
 
@@ -34,6 +35,7 @@ function App() {
           <Route path='/storybook' exact component={StoryBook} />
           <Route path='/newproject' exact component={NewProject} />
           <Route path='/userprofile' exact component={UserProfile} />
+          <Route path='/profile' exact component={Profile} />
         </Switch>
       </div>
     </Router>
