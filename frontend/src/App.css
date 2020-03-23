@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+#legal_recomendations{
+  text-decoration: underline;
+  
+}
+#legal_recomendations:hover{
+  cursor: pointer;
+}

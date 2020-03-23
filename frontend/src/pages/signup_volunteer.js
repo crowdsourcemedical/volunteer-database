@@ -97,7 +97,7 @@ const SignupVolunteerPage = (props) => {
 				<Grid container>
 					<Grid item xs={12}>
 						<FormControl>
-							<TextField id="email"  label="Email" type="email" required={true} onChange={(e) => setEmail(e.target.value)} />
+							<TextField id="email" label="Email" type="email" required={true} onChange={(e) => setEmail(e.target.value)} />
 						</FormControl>
 					</Grid>
 					<Grid item xs={12}>
@@ -110,6 +110,7 @@ const SignupVolunteerPage = (props) => {
 							<TextField id="password-confirm" label="Confirm password" type="password" required={true} onChange={(e) => setPassword2(e.target.value)} />
 						</FormControl>
 					</Grid>
+					{/* TODO the styling on these selects should be improved on */}
 					<Grid item xs={12}>
 						<FormControl>
 							<Select id="work-field-general" value={workFieldGeneral} onChange={handleChangeWorkGeneral}>

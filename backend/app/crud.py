@@ -1,6 +1,9 @@
-from sqlalchemy.orm import Session
 from datetime import datetime
+
+from sqlalchemy.orm import Session
+
 from . import models, schemas
+from .utils import hash_password
 
 
 def get_user(db: Session, user_id: int):
@@ -16,7 +19,8 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_user(db: Session, user: schemas.UserCreate):
-    hashedpass = user.user_hashed_password
+    password = user.password
+    hashedpass = hash_password(password)
     db_user = models.User(user_email=user.user_email, user_first=user.user_first, user_last=user.user_last, username=user.username, user_hashed_password=hashedpass, is_active=user.is_active, is_verified=user.is_verified, user_skill=user.user_skill, user_description=user.user_description, user_location=user.user_location, user_last_login=datetime.now())
     db.add(db_user)
     db.commit()

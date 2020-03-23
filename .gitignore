@@ -114,3 +114,6 @@ venv
 
 # VSCode
 .vscode
+
+# Webstorm / JetBrains
+.idea
