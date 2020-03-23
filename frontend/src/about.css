@@ -2,6 +2,8 @@
   position: relative;
   width: 100%;
   height: 820px;
+  text-align: left;
+  margin-bottom: 80px;
 }
 
 .heroAbout {
@@ -68,4 +70,45 @@
 .purpleAboutButton {
   background: #320072;
   border: #320072;
+}
+.aboutInformationWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.aboutTextWrapper {
+  width: 640px;
+}
+.aboutHeader {
+  color: #000000;
+  font-size: 32px;
+  line-height: 160%;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.aboutText {
+  text-align: left;
+  font-size: 18px;
+  line-height: 160%;
+  color: #000000;
+}
+.aboutImage {
+  position: relative;
+  flex-shrink: 1;
+}
+
+.aboutImage::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 10px;
+  right: 10px;
+  z-index: -1;
+  background: #006772;
+}
+.aboutImageF {
 }
