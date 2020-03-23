@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import GooglePlaceAutocomplete from 'material-ui-autocomplete-google-places';
 import {
-	FormControl,
 	InputLabel,
 	Select,
 	MenuItem,
@@ -81,9 +79,6 @@ export default class SignupPage extends Component {
 						{this.state.selectedField === 'computerScience' && ComputerScienceTypes.map((text) => (this.renderSpecialties(text)))}
 	          {this.state.selectedField === 'medical' && MedicalTypes.map((text) => (this.renderSpecialties(text)))}
 					</FormGroup>
-					<GooglePlaceAutocomplete
-					  types={['cities']}
-					/>
 					<TextField
 						className="about-text"
 						label="Tell us about yourself. What is your experience and how much time do you have to contribute?"
