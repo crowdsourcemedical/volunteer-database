@@ -4,7 +4,6 @@ import NavBar from './components/navbar.js';
 import HomePage from './pages/home.js';
 import SearchPage from './pages/search.js';
 import AboutPage from './pages/about.js';
-import LoginPage from './pages/login.js';
 import SignupPage from './pages/signup.js';
 import SignupVolunteerPage from './pages/signup_volunteer';
 import SignupProjectPage from './pages/signup_project';
@@ -24,7 +23,6 @@ function App() {
           <Route path="/" exact component={HomePage} />
           <Route path="/about" exact component={AboutPage} />
           <Route path="/search" exact component={SearchPage} />
-          <Route path="/login" exact component={LoginPage} />
           <Route path="/signup" exact component={SignupPage} />
           <Route
             path="/signup/volunteer"

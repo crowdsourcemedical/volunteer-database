@@ -15,8 +15,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Link from '@material-ui/core/Link';
+import Dialog from '@material-ui/core/Dialog';
 
 import { PAGE_LINKS_LIST, LOGIN_PAGE_LINK } from '../constants/navigation';
+import LoginForm from './Forms/LoginForm'
 
 const navbarHeight = 64;
 const drawerWidth = 240;
@@ -62,12 +64,17 @@ const useStyles = makeStyles(theme => ({
   },
   list: {
     width: drawerWidth,
-  },
+	},
+	backdrop: {
+		background: theme.palette.primary.main,
+		opacity: '0.5 !important',
+	}
 }));
 
 const NavBar = () => {
   const classes = useStyles();
-  const [isOpen, setIsOpen] = React.useState(false);
+	const [isOpen, setIsOpen] = React.useState(false);
+	const [loginIsOpen, setLoginIsOpen] = React.useState(false);
 
   const toggleDrawer = event => {
     if (
@@ -79,6 +86,10 @@ const NavBar = () => {
 
     setIsOpen(!isOpen);
   };
+
+	const toggleLoginDialog = () => {
+		setLoginIsOpen(!loginIsOpen);
+	}
 
   return (
     <div className={classes.root}>
@@ -103,10 +114,13 @@ const NavBar = () => {
             Crowd Source Solutions
           </Typography>
           <Button
-            href={LOGIN_PAGE_LINK.path}
             variant="contained"
             color="primary"
-            className={classes.authLink}
+						className={classes.authLink}
+						onClick={(e) => {
+							e.preventDefault();
+							toggleLoginDialog();
+						}}
           >
             {LOGIN_PAGE_LINK.name}
           </Button>
@@ -129,6 +143,12 @@ const NavBar = () => {
             ))}
         </List>
       </Drawer>
+			<Dialog
+				open={loginIsOpen}
+				onClose={toggleLoginDialog}
+				BackdropProps={{ className: classes.backdrop }}>
+				<LoginForm />
+			</Dialog>
     </div>
   );
 };
