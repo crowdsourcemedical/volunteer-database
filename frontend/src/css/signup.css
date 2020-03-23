@@ -4,6 +4,8 @@
 
 .signup__container {
   padding: 10px;
+  margin: 200px;
+  flex-grow: 1;
 }
 
 .specialty__container {
