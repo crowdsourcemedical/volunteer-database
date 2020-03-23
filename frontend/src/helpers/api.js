@@ -8,7 +8,7 @@ const { BASE_URL } = getEnvVars();
 class Api {
     client = null;
 
-    async request(route, action, body, headers) {
+    async request({ route, payload = {}, action = 'GET', headers = {} }) {
         const requestURL = `${BASE_URL}${route}`
 
         const requestHeaders = {
@@ -19,12 +19,17 @@ class Api {
         return fetch(requestURL, {
             method: action,
             headers: requestHeaders,
-            body: JSON.stringify(body)
+            body: JSON.stringify(payload)
         }).then(res => res.json()).catch(e => e);
     }
 
-    async login(email, password) {
-        const response = await this.request('/users/login', 'POST', { email, password }, null);
+    async login(payload) {
+        const response = await this.request({
+            route: '/users/login',
+            action: 'POST',
+            payload,
+        })
+
         return response;
     }
 }
