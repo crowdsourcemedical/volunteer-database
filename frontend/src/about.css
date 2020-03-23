@@ -1,0 +1,71 @@
+.landingAbout {
+  position: relative;
+  width: 100%;
+  height: 820px;
+}
+
+.heroAbout {
+  position: absolute;
+  background-image: url("./images/hero.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.heroCover {
+  background: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.heroContent {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  text-align: left;
+  color: #06070b;
+}
+
+.heroHeader {
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 160%;
+  margin-bottom: 20px;
+}
+.heroText {
+  font-size: 27px;
+  line-height: 140%;
+  max-width: 45%;
+}
+.heroText > div {
+  margin-bottom: 10px;
+}
+
+.heroButtons {
+  margin-top: 20px;
+  color: white;
+}
+.heroButtons > button {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid;
+  box-sizing: border-box;
+  border-radius: 50px;
+  padding: 8px 20px;
+  margin-right: 10px;
+}
+.greenAboutButton {
+  background: #006772;
+  border: #006772;
+}
+
+.purpleAboutButton {
+  background: #320072;
+  border: #320072;
+}
