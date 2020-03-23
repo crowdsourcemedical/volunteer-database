@@ -27,11 +27,9 @@ const theme = createMuiTheme({
     },
     h5: {
       fontFamily: '"Poppins", sans-serif',
-      fontSize: '1rem',
     },
     h6: {
       fontFamily: '"Poppins", sans-serif',
-      fontSize: '.7rem',
     },
     body1: {
       fontSize: '1.125rem',
