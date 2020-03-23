@@ -1,9 +1,11 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, LargeBinary
+from sqlalchemy import Boolean, Column, Integer, String, DateTime
+
 from .database import Base
 
 
 class User(Base):
     __tablename__ = "users"
+
     user_id = Column(Integer, primary_key=True, index=True)
     user_email = Column(String, unique=True, index=True)
     user_first = Column(String(50))
@@ -16,4 +18,3 @@ class User(Base):
     user_description = Column(String(250))
     user_location = Column(String(50))
     user_last_login = Column(DateTime)
-
