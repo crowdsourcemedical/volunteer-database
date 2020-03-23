@@ -23,9 +23,16 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.refresh(db_user)
     return db_user
 
-def update_user(db: Session, db_user: schemas.UserBase, user):
-    print (user)
-    db_user.user_email = "diff@diff.com"
+def update_user(db: Session, db_user: schemas.UserBase, user: schemas.UserBase):
+    db_user.user_email = user.user_email
+    db_user.user_first = user.user_first
+    db_user.user_last = user.user_last
+    db_user.username = user.username
+    db_user.is_active = user.is_active
+    db_user.is_verified = user.is_verified
+    db_user.user_skill = user.user_skill
+    db_user.user_description = user.user_description
+    db_user.user_location = user.user_location
     db.commit()
 
     print (db_user)
