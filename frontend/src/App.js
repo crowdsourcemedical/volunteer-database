@@ -10,7 +10,7 @@ import SignupProjectPage from './pages/signup_project';
 import StoryBook from './pages/storybook.js';
 import NewProject from './pages/newproject.js';
 import Style from './pages/style.js';
-//import UserProfile from './components/UserProfile/Profile.component';
+import UserProfile from './components/UserProfile/Profile.component';
 import './App.css';
 import './about.css';
 
@@ -28,7 +28,8 @@ function App() {
 					<Route path="/signup/project" exact component={SignupProjectPage} />
 					<Route path="/storybook" exact component={StoryBook} />
 					<Route path="/newproject" exact component={NewProject} />
-         			{/* <Route path='/userprofile' exact component={UserProfile} /> */}
+					<Route path="/style" exact component={Style} />
+ 					<Route path='/userprofile' exact component={UserProfile} />
 				</Switch>
 			</div>
 		</Router>
