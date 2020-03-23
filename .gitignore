@@ -222,3 +222,7 @@ venv
 
 # Webstorm / JetBrains
 .idea
+
+# Pytest
+.pytest_cache
+backend/.coverage
