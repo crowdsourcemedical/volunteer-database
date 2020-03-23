@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 import { getEnvVars } from '../environment';
 const { BASE_URL } = getEnvVars();
 
@@ -16,11 +18,16 @@ class Api {
             ...headers
         };
 
-        return fetch(requestURL, {
+        const options = {
             method: action,
-            headers: requestHeaders,
-            body: JSON.stringify(payload)
-        }).then(res => res.json()).catch(e => e);
+            headers: requestHeaders
+        }
+
+        if (!_.isEmpty(payload)) {
+            options.body = JSON.stringify(payload);
+        }
+
+        return fetch(requestURL, options).then(res => res.json()).catch(e => e);
     }
 
     async login(payload) {
@@ -31,6 +38,34 @@ class Api {
         })
 
         return response;
+    }
+
+    async getUsers() {
+        const response = await this.request({
+            route: '/users',
+            action: 'GET'
+        })
+
+        return response;  
+    }
+
+    async getUser(id) {
+        const response = await this.request({
+            route: `/users/${id}`,
+            action: 'GET'
+        })
+
+        return response;  
+    }
+
+    async createUser(payload) {
+        const response = await this.request({
+            route: `/users`,
+            action: 'POST',
+            payload
+        })
+
+        return response;  
     }
 }
 
