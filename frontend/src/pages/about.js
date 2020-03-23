@@ -1,4 +1,12 @@
 import React, { Component } from "react";
+import {
+  Menu,
+  MenuItem,
+  Box,
+  Typography,
+  Grid,
+  Paper
+} from "@material-ui/core";
 
 import HeroImg from "../images/hero.png";
 import AboutImg from "../images/about.png";
@@ -11,9 +19,9 @@ export default class AboutPage extends Component {
           <div className="heroAbout"></div>
           <div className="heroCover"></div>
           <div className="heroContent">
-            <div className="heroHeader">Do Something Great</div>
+            <Typography className="heroHeader">Do Something Great</Typography>
             <div className="heroText">
-              <div>
+              <Typography>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -21,7 +29,7 @@ export default class AboutPage extends Component {
                 <br />
                 Duis aute irure dolor in reprehenderit in voluptate velit esse
                 cillum dolore eu fugiat nulla pariatur.
-              </div>
+              </Typography>
             </div>
             <div className="heroButtons">
               <button className="greenAboutButton">Submit a Project</button>
@@ -32,9 +40,9 @@ export default class AboutPage extends Component {
 
         <div className="aboutInformationWrapper">
           <div className="aboutTextWrapper">
-            <div className="aboutHeader">Project Information</div>
+            <Typography className="aboutHeader">Project Information</Typography>
             <div className="aboutText">
-              <div>
+              <Typography>
                 Regulated medical devices are the purview of the Food and Drug
                 Administration. Any designer or manufacturer producing items
                 claiming to prevent, diagnose, treat, or cure a medical
@@ -49,7 +57,7 @@ export default class AboutPage extends Component {
                 clear to authorities. When packaging, distrubting, or discussing
                 these produced materials, we recommend using plain boxes
                 wherever possible, including no claims or disclaimers.
-              </div>
+              </Typography>
             </div>
           </div>
           <div className="aboutImage">
