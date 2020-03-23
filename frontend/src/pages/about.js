@@ -29,36 +29,32 @@ export default class AboutPage extends Component {
             </div>
           </div>
         </div>
-        <div>
-          <div>
-            <div>
-              <div>Project Information</div>
+
+        <div className="aboutInformationWrapper">
+          <div className="aboutTextWrapper">
+            <div className="aboutHeader">Project Information</div>
+            <div className="aboutText">
               <div>
-                Est ultricies integer quis auctor elit sed. Nec ultrices dui
-                sapien eget mi proin sed. In pellentesque massa placerat duis.
-                Senectus et netus et malesuada fames ac turpis egestas integer.
-                Eu mi bibendum neque egestas congue quisque egestas. Sed lectus
-                vestibulum mattis ullamcorper velit sed. Turpis cursus in hac
-                habitasse platea dictumst quisque sagittis purus. Habitant morbi
-                tristique senectus et netus et.
+                Regulated medical devices are the purview of the Food and Drug
+                Administration. Any designer or manufacturer producing items
+                claiming to prevent, diagnose, treat, or cure a medical
+                condition are under their jurisdiction and subject to premarket
+                approval. Punishments are wide-ranging but our recommendation is
+                to avoid them altogether.
+                <br />
+                <br />
+                Words like “medical”, “protect”, and “hostpital” are going to
+                put you at risk. Indicating your mask is for a non-medical
+                purpose is not recommended, because the intent of this effort is
+                clear to authorities. When packaging, distrubting, or discussing
+                these produced materials, we recommend using plain boxes
+                wherever possible, including no claims or disclaimers.
               </div>
-              <div>
-                Ut lectus arcu bibendum at varius vel. Ac tincidunt vitae semper
-                quis lectus nulla at. Rutrum tellus pellentesque eu tincidunt
-                tortor aliquam nulla facilisi cras. Lectus urna duis convallis
-                convallis tellus id interdum velit laoreet. Sit amet tellus cras
-                adipiscing enim eu turpis egestas. Placerat vestibulum lectus
-                mauris ultrices eros in. Sagittis orci a scelerisque purus
-                semper eget.
-              </div>
-            </div>
-            <div>
-              <img src={AboutImg}></img>
             </div>
           </div>
-        </div>
-        <div>
-          <div>The Team</div>
+          <div className="aboutImage">
+            <img className="aboutImageF" src={AboutImg}></img>
+          </div>
         </div>
       </>
     );
