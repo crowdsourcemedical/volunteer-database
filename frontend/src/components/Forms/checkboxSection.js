@@ -33,7 +33,7 @@ export default function Checkboxes(props) {
          {props.checkboxes.map((checkbox)=>{
            return(
            <FormControlLabel
-           control={ <Checkbox disabled={checkbox.status} inputProps={{ 'aria-label':  'uncontrolled-checkbox' }} />}
+           control={ <Checkbox disabled={checkbox.status} color="primary" inputProps={{ 'aria-label':  'uncontrolled-checkbox' }} />}
            label={checkbox.label} onChange={props.cb(this)}
 
          />)
