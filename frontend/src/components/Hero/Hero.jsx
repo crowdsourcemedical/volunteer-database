@@ -32,28 +32,28 @@ const useStyles = makeStyles(theme => ({
     marginTop: "50px"
   }
 }));
-export const Hero = props => {
+export const Hero = ({ image, children, primaryButton, secondaryButton }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.wrapper} style={{ backgroundImage: "url(" + props.image + ")" }}>
+    <div className={classes.wrapper} style={{ backgroundImage: "url(" + image + ")" }}>
       <div className={classes.overlay} />
       <Container maxWidth="md" className={classes.content}>
         <div>
-          {props.children}
+          {children}
           <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="left">
-              {props.primaryButton ? (
+              {primaryButton ? (
                 <Grid item>
-                  <Button component={Link} to={props.primaryButton.link} variant="contained" color="primary">
-                    {props.primaryButton.text}
+                  <Button component={Link} to={primaryButton.link} variant="contained" color="primary">
+                    {primaryButton.text}
                   </Button>
                 </Grid>
               ) : null}
-              {props.secondaryButton ? (
+              {secondaryButton ? (
                 <Grid item>
-                  <Button component={Link} to={props.secondaryButton.link} variant="contained" color="secondary">
-                    {props.secondaryButton.text}
+                  <Button component={Link} to={secondaryButton.link} variant="contained" color="secondary">
+                    {secondaryButton.text}
                   </Button>
                 </Grid>
               ) : null}
@@ -65,9 +65,9 @@ export const Hero = props => {
   );
 };
 
-// Hero.propTypes = {
-//   linkOne: PropTypes.string,
-//   linkTwo: PropTypes.string,
-//   image: PropTypes.string,
-//   children: PropTypes.children
-// };
+Hero.propTypes = {
+  image: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  primaryButton: PropTypes.object,
+  secondaryButton: PropTypes.object
+};

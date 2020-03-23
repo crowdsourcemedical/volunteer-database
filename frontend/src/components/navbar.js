@@ -3,9 +3,9 @@ import clsx from "clsx";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -28,7 +28,8 @@ const useStyles = makeStyles(theme => ({
   },
   navBar: {
     height: navbarHeight,
-    background: "#2196F3",
+    color: "#010913",
+    background: "#FFF",
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -46,8 +47,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   authLink: {
-    marginLeft: "auto",
-    color: "inherit"
+    marginLeft: "auto"
   },
   hide: {
     display: "none"
@@ -78,9 +78,9 @@ const NavBar = () => {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <AppBar
         position="sticky"
+        elevation={0}
         className={clsx(classes.navBar, {
           [classes.navBarShift]: isOpen
         })}>
@@ -89,13 +89,11 @@ const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            App Title
+            Crowd Source Solutions
           </Typography>
-          <Link href={LOGIN_PAGE_LINK.path} className={classes.authLink}>
-            <Typography variant="h6" noWrap>
-              {LOGIN_PAGE_LINK.name}
-            </Typography>
-          </Link>
+          <Button href={LOGIN_PAGE_LINK.path} variant="contained" color="primary" className={classes.authLink}>
+            {LOGIN_PAGE_LINK.name}
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer className={classes.drawer} anchor="left" open={isOpen} onClose={toggleDrawer}>

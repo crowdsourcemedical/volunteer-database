@@ -12,7 +12,7 @@ const HomePage = props => {
   return (
     <Grid container spacing={2}>
       <Grid container>
-        <Hero image={HeroImg} primaryButton={{ link: "/newproject", text: "Submit a Project" }} secondaryButton={{ link: "/newproject", text: "Become a Volunteer" }}>
+        <Hero image={HeroImg} primaryButton={{ link: "newproject", text: "Submit a Project" }} secondaryButton={{ link: "signup/volunteer", text: "Become a Volunteer" }}>
           <Typography component="h1" variant="h2" align="left" color="textPrimary" gutterBottom>
             DO SOMETHING GREAT
           </Typography>
