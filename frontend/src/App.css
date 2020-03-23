@@ -1,9 +1,6 @@
-.App {
-  text-align: center;
-}
-
-#legal_recomendations {
-  text-decoration: underline;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 #legal_recomendations:hover {
   cursor: pointer;
