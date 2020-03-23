@@ -198,3 +198,5 @@ function NewProject() {
     </Grid>
   );
 }
+
+export default NewProject;
