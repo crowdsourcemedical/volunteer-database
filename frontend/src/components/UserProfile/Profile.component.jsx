@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 // User Profile Components
 import SideBar from './Sidebar.component';
 import { SubBar } from './Sub-bar.component';
+import CoverImage from './Image-cover.component';
 import Grid from './Grid.component';
 import Tags from './Tags.component';
 
@@ -53,10 +54,11 @@ function ResponsiveDrawer(props) {
       <AppBar position='fixed' className={classes.appBar}></AppBar>
       <SideBar />
       <main className={classes.content}>
+        {/* <CoverImage /> */}
+
         <SubBar />
         <div className={classes.toolbar} />
         <Tags />
-
         <h1 style={{ clear: 'right' }}>Portfolio</h1>
         <Grid />
       </main>
