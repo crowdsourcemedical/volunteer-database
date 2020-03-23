@@ -11,6 +11,7 @@ import SignupProjectPage from './pages/signup_project';
 import StoryBook from './pages/storybook.js';
 import NewProject from './pages/newproject.js';
 import './App.css';
+import "./about.css";
 
 function App() {
 	return (
@@ -31,6 +32,5 @@ function App() {
 			</div>
 		</Router>
 	);
-}
-
+  }
 export default App;

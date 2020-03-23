@@ -1,21 +1,31 @@
 import React, { Component } from "react";
 
+import HeroImg from "../images/hero.png";
+import AboutImg from "../images/about.png";
+
 export default class AboutPage extends Component {
   render() {
     return (
       <>
         <div className="landingAbout">
-          <div>Do Something Great</div>
-          <div>
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+          <div className="heroAbout"></div>
+          <div className="heroCover"></div>
+          <div className="heroContent">
+            <div className="heroHeader">Do Something Great</div>
+            <div className="heroText">
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. <br />
+                <br />
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur.
+              </div>
             </div>
-            <div>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur.
+            <div className="heroButtons">
+              <button className="greenAboutButton">Submit a Project</button>
+              <button className="purpleAboutButton">Become a Volunteer</button>
             </div>
           </div>
         </div>
@@ -42,7 +52,9 @@ export default class AboutPage extends Component {
                 semper eget.
               </div>
             </div>
-            <div>image</div>
+            <div>
+              <img src={AboutImg}></img>
+            </div>
           </div>
         </div>
         <div>
