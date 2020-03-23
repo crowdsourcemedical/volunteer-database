@@ -12,18 +12,11 @@ class Api {
             ...headers
         };
 
-        try {
-            const response = await fetch(requestURL, {
-                method: action,
-                headers: requestHeaders,
-                body: body
-            });
-
-            const json = await response.json();
-            return json;
-        } catch(error) {
-            return error;
-        }
+        return fetch(requestURL, {
+            method: action,
+            headers: requestHeaders,
+            body: body
+        }).then(res => res.json()).catch(e => e);
     }
 
     async login(handle, password) {
