@@ -19,7 +19,7 @@ export default class AboutPage extends Component {
           <div className="heroAbout"></div>
           <div className="heroCover"></div>
           <div className="heroContent">
-            <Typography className="heroHeader">Do Something Great</Typography>
+            <Typography>Do Something Great</Typography>
             <div className="heroText">
               <Typography>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
