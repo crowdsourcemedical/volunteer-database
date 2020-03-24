@@ -1,37 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-
-import React, { Fragment } from "react";
-
-// Single source for colors for easy adjustments
-// NOTE: Some colors are not being used but are part of the Figma
-//    color palette. They have been included at this stage but can be removed
-//    if they are never utilized.
-const colors = {
-  // Primary
-  primary: "#006772",
-  primaryLight: "#049BAB",
-  primaryDark: "#049BAB", // This is active tint for primary button animations
-  // Secondary
-  secondary: "#320072",
-  secondaryLight: "#5906C4",
-  secondaryDark: "#5906C4", // This is active tint for secondary button animations
-  // Tertiary
-  tertiary: "#3E4C5E",
-  // Grays
-  grayDark: "#8D8D8F",
-  grayMedium: "#DADADA",
-  grayLight: "#F2F5F7",
-  // Accent/error,
-  accent: "#AB2346",
-  // Text/font
-  textPrimary: "#06070B",
-  textSecondary: "#828282",
-  // Status/toast
-  error: "#F44336",
-  warning: "#FF9800",
-  info: "#2196F3",
-  success: "#4CAF50"
-};
+import COLORS from './colors'
 
 const theme = createMuiTheme({
   // Fonts
@@ -65,48 +33,48 @@ const theme = createMuiTheme({
     h6: {
       fontFamily: '"Muli", sans-serif',
       fontSize: "1rem",
-      color: colors.textSecondary
+      color: COLORS.textSecondary
     },
     body1: {
       fontSize: "1rem",
-      color: colors.textPrimary
+      color: COLORS.textPrimary
     },
     caption: {
       fontFamily: '"Muli", sans-serif',
       textTransform: "uppercase",
-      color: colors.textSecondary
+      color: COLORS.textSecondary
     }
   },
   // Color Palette
   palette: {
     type: "light",
     primary: {
-      main: colors.primary,
-      light: colors.primaryLight,
-      dark: colors.primaryDark,
+      main: COLORS.primary,
+      light: COLORS.primaryLight,
+      dark: COLORS.primaryDark,
       contrastText: "#FFF"
     },
     secondary: {
-      main: colors.secondary,
-      light: colors.secondaryLight,
-      dark: colors.secondaryDark,
+      main: COLORS.secondary,
+      light: COLORS.secondaryLight,
+      dark: COLORS.secondaryDark,
       contrastText: "#FFF"
     },
     text: {
-      primary: colors.textPrimary,
-      secondary: colors.textSecondary
+      primary: COLORS.textPrimary,
+      secondary: COLORS.textSecondary
     },
     error: {
-      main: colors.error
+      main: COLORS.error
     },
     warning: {
-      main: colors.warning
+      main: COLORS.warning
     },
     info: {
-      main: colors.info
+      main: COLORS.info
     },
     success: {
-      main: colors.success
+      main: COLORS.success
     }
   },
   // Overriding defaults

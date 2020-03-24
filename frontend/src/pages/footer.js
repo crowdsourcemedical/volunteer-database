@@ -3,12 +3,13 @@ import {
     Grid,
     Typography
 } from '@material-ui/core';
+import COLORS from '../styles/colors'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
-      backgroundColor: '#e0e0e0',
+      backgroundColor: COLORS.grayLight,
     }
   }));
 
