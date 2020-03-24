@@ -117,14 +117,15 @@ export default class SignupPage extends Component {
               direction="row"
               justify="space-between"
               alignItems="flex-start"
+              spacing={5}
             >
-              <Grid item xs>
+              <Grid item xs={12} lg={6}>
                 <Typography variant="h2">What's your specialty?</Typography>
                 <Typography variant="h6">
                   Let us know where you’re best able to help.
                 </Typography>
               </Grid>
-              <Grid item xs>
+              <Grid item xs={12} lg={6}>
                 <Select
                   className="field-select"
                   name="selectedField"
@@ -145,8 +146,9 @@ export default class SignupPage extends Component {
               direction="row"
               justify="space-between"
               alignItems="flex-start"
+              spacing={5}
             >
-              <Grid item xs>
+              <Grid item xs={12} lg={6}>
                 <Typography variant="h2">
                   Tell us a little about yourself
                 </Typography>
@@ -155,7 +157,7 @@ export default class SignupPage extends Component {
                   contribute?
                 </Typography>
               </Grid>
-              <Grid item xs>
+              <Grid item xs={12} lg={6}>
                 <TextField
                   className="about-text"
                   placeholder="I’m an ER doctor in Western Massachussetts. We need 20 prints of the Prusa Protective Face Shield - RC2 asap. Print material needs to be sturdy enough to be decontaminated regularly. I’m thinking ABS, PETG, or nylon? Bonus karma if you can also provide the laser cut clear portion - they used 0.5mm thick petg sheet (Covestro VIVAK)."
@@ -163,6 +165,7 @@ export default class SignupPage extends Component {
                   multiline
                   variant="filled"
                   rows="8"
+                  background=" #f2f5f7"
                   value={this.state.aboutText}
                   onChange={this.handleChange}
                 />
@@ -175,18 +178,19 @@ export default class SignupPage extends Component {
               direction="row"
               justify="space-between"
               alignItems="flex-start"
+              spacing={5}
             >
-              <Grid item xs>
+              <Grid item xs={12} lg={6}>
                 <Typography variant="h2">Where are you located?</Typography>
                 <Typography variant="h6">
                   We’re able to send supplies and help within these regions.
                 </Typography>
               </Grid>
-              <Grid item xs>
+              <Grid item xs={12} lg={6}>
                 <TextField
                   className="about-text"
                   placeholder="New York City, NY USA"
-                  name="aboutText"
+                  name="loc"
                   variant="filled"
                   rows="1"
                   value={this.state.loc}
@@ -220,15 +224,16 @@ export default class SignupPage extends Component {
               direction="row"
               justify="space-between"
               alignItems="flex-start"
+              spacing={5}
             >
-              <Grid item xs>
+              <Grid item xs={12} lg={6}>
                 <Typography variant="h2">Skillset</Typography>
                 <Typography variant="h6">
                   We’ll try to connect you with the kind of talent you need and
                   are looking for.
                 </Typography>
               </Grid>
-              <Grid item xs>
+              <Grid item xs={12} lg={6}>
                 <Container>
                   <Typography variant="h4">Medical Staff Advisors</Typography>
                   {this.renderSkillset(3)}
