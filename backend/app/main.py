@@ -79,4 +79,5 @@ async def token_verify(user: models.User = Depends(get_current_user)) -> dict:
 
 @app.get("/")
 async def root():
-    return {"message": "This is the root of the API. Please go to site.com/docs to see the documentation"}
+    """Return a simple welcome message."""
+    return {"message": "This is the root of the API. Please go to /docs to see the documentation"}
