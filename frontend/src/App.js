@@ -7,7 +7,7 @@ import AboutPage from './pages/about.js';
 import SignupPage from './pages/signup.js';
 import SignupVolunteerPage from './pages/signup_volunteer';
 import StoryBook from './pages/storybook.js';
-import NewProject from './pages/newproject.js';
+import ProjectSubmit from './pages/ProjectSubmit.js';
 import Style from './pages/style.js';
 import UserProfile from './components/UserProfile/Profile.component';
 import './App.css';
@@ -25,7 +25,7 @@ function App() {
 					<Route path="/signup" exact component={SignupPage} />
 					<Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
 					<Route path="/storybook" exact component={StoryBook} />
-					<Route path="/newproject" exact component={NewProject} />
+					<Route path="/projects/submit" exact component={ProjectSubmit} />
 					<Route path="/style" exact component={Style} />
  					<Route path='/userprofile' exact component={UserProfile} />
 				</Switch>

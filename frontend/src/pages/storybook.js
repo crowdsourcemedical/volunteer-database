@@ -1,6 +1,6 @@
 import React from 'react';
 import UserSmallCard from '../components/Cards/userSmallCard.js';
-import CheckBoxSection from '../components/Forms/checkboxSection.js';
+import CheckBoxSection from '../components/Forms/Checkboxes.js';
 import { Box } from '@material-ui/core';
 
 const mockUser = {
