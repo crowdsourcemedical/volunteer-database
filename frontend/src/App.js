@@ -27,8 +27,8 @@ function App() {
           <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
           <Route path="/storybook" exact component={StoryBook} />
           <Route path="/newproject" exact component={NewProject} />
-          <Route path="/style" exact component={Style} />
           <Route path="/userprofile" exact component={UserProfile} />
+          <Route path="/style" exact component={Style} />
           <Route path="/project" exact component={Project} />
         </Switch>
       </div>
