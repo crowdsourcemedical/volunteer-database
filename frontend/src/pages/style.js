@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
     margin: '10px',
   },
   code: {
-    // backgroundColor: '#000',
     color: '#888',
   },
 }));
@@ -32,7 +31,7 @@ function Style() {
     <Grid container spacing={2}>
       <Grid container justify="center">
         <Grid item xs={8} lg={4} xl={4}>
-          <Typography variant="h1" noWrap>
+          <Typography variant="h1" noWrap color="textPrimary">
             h1 Heading
           </Typography>
           <Typography variant="h2" noWrap>
@@ -50,9 +49,15 @@ function Style() {
           <Typography variant="h6" noWrap>
             h6 Heading
           </Typography>
+          <Typography variant="body1" noWrap>
+            body1 Text body
+          </Typography>
+          <Typography variant="caption" noWrap>
+            caption Text caption
+          </Typography>
           <pre>
             <code className={classes.code}>
-              {'<Typography variant="h2">h2 Title & body1 Variant</Typography>'}
+              {'<Typography variant="h2">h2 Title</Typography>'}
             </code>
           </pre>
           <Divider />
