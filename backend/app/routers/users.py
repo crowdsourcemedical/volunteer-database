@@ -10,12 +10,14 @@ from ..database import SessionLocal, engine
 
 CSM_router = APIRouter()
 
+
 def get_db():
     try:
         db = SessionLocal()
         yield db
     finally:
         db.close()
+
 
 @CSM_router.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
