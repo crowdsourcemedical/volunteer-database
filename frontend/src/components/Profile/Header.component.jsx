@@ -5,15 +5,23 @@ const useStyles = makeStyles(theme => ({
   grid: {
     display: 'grid',
     gridTemplateAreas: 'title break account',
-    gridTemplateColumns: '1fr 0.2fr 1fr'
+    gridTemplateColumns: '1fr 0.2fr 1fr',
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: '100%',
+      gridTemplateRows: 'auto',
+      gridTemplateAreas: "'title' 'break' 'account'"
+    },
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: '100%',
+      gridTemplateRows: 'auto',
+      gridTemplateAreas: "'title' 'break' 'account'"
+    }
   },
   title: {
-    justifySelf: 'start',
     alignSelf: 'center',
     paddingLeft: '1.5rem'
   },
   account: {
-    justifySelf: 'end',
     paddingRight: '1.5rem',
     '&:hover': {
       cursor: 'pointer'
