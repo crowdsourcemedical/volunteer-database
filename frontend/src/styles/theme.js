@@ -1,5 +1,5 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import COLORS from './colors'
+import { createMuiTheme } from '@material-ui/core/styles';
+import COLORS from './colors';
 
 const theme = createMuiTheme({
   // Fonts
@@ -7,58 +7,58 @@ const theme = createMuiTheme({
     fontFamily: '"Muli", sans-serif',
     h1: {
       fontFamily: '"Poppins", sans-serif',
-      fontSize: "4rem",
-      fontWeight: "bold"
+      fontSize: '4rem',
+      fontWeight: 'bold'
     },
     h2: {
       fontFamily: '"Poppins", sans-serif',
-      fontSize: "2rem",
-      fontWeight: "bold"
+      fontSize: '2rem',
+      fontWeight: 'bold'
     },
     h3: {
       fontFamily: '"Poppins", sans-serif',
-      fontSize: "1.5rem",
-      fontWeight: "bold"
+      fontSize: '1.5rem',
+      fontWeight: 'bold'
     },
     h4: {
       fontFamily: '"Poppins", sans-serif',
-      fontSize: "1.25rem",
-      fontWeight: "bold"
+      fontSize: '1.25rem',
+      fontWeight: 'bold'
     },
     h5: {
       fontFamily: '"Poppins", sans-serif',
-      fontSize: "1rem",
-      fontWeight: "bold"
+      fontSize: '1rem',
+      fontWeight: 'bold'
     },
     h6: {
       fontFamily: '"Muli", sans-serif',
-      fontSize: "1rem",
+      fontSize: '1rem',
       color: COLORS.textSecondary
     },
     body1: {
-      fontSize: "1rem",
+      fontSize: '1rem',
       color: COLORS.textPrimary
     },
     caption: {
       fontFamily: '"Muli", sans-serif',
-      textTransform: "uppercase",
+      textTransform: 'uppercase',
       color: COLORS.textSecondary
     }
   },
   // Color Palette
   palette: {
-    type: "light",
+    type: 'light',
     primary: {
       main: COLORS.primary,
       light: COLORS.primaryLight,
       dark: COLORS.primaryDark,
-      contrastText: "#FFF"
+      contrastText: '#FFF'
     },
     secondary: {
       main: COLORS.secondary,
       light: COLORS.secondaryLight,
       dark: COLORS.secondaryDark,
-      contrastText: "#FFF"
+      contrastText: '#FFF'
     },
     text: {
       primary: COLORS.textPrimary,
@@ -77,21 +77,29 @@ const theme = createMuiTheme({
       main: COLORS.success
     }
   },
+
+  // Custom colors
+  colors: {
+    gray: COLORS.gray,
+    secondaryLight: COLORS.secondaryLightTint,
+    whiteGray: COLORS.grayLight
+  },
+
   // Overriding defaults
   overrides: {
     MuiFilledInput: {
-      root: { backgroundColor: "#f2f5f7" }
+      root: { backgroundColor: '#f2f5f7' }
     },
     MuiButton: {
       root: {
-        padding: "8px 20px",
+        padding: '8px 20px',
         fontFamily: '"Poppins", sans-serif',
-        textTransform: "none",
-        fontStyle: "normal",
-        fontSize: "20px",
-        fontWeight: "bold",
-        letterSpacing: "0px",
-        borderRadius: "50px",
+        textTransform: 'none',
+        fontStyle: 'normal',
+        fontSize: '20px',
+        fontWeight: 'bold',
+        letterSpacing: '0px',
+        borderRadius: '50px',
         border: 0
       }
     }
