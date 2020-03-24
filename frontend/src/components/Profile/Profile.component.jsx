@@ -1,8 +1,12 @@
 import React, { Component, Fragment } from 'react';
 
+// Material UI Components
+import LabelIcon from '@material-ui/icons/Label';
+
 // Profile Components
 import Header from './Header.component.jsx';
 import AccountProfile from './Avatar.component';
+import Body from './Body.component';
 
 class Profile extends Component {
   state = {
@@ -12,7 +16,11 @@ class Profile extends Component {
     avatarURL: 'https://material-ui.com/static/images/avatar/1.jpg',
     description: 'Contributers To 3 Active Projects',
     state: 'New York',
-    country: 'USA'
+    country: 'USA',
+    descriptionTxt:
+      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum, in! Culpa sequi, ipsum, cupiditate illum laboriosam, exercitationem odit adipisci numquam itaque atque animi. Soluta architecto eos ab necessitatibus aperiam voluptatibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum, in! Culpa sequi, ipsum, cupiditate illum laboriosam, exercitationem odit adipisci numquam itaque atque animi. Soluta architecto eos ab necessitatibus aperiam voluptatibus.',
+    labelIcon: <LabelIcon />,
+    label: 'Other Label'
   };
 
   render() {
@@ -23,7 +31,10 @@ class Profile extends Component {
       logo,
       role,
       state,
-      country
+      country,
+      descriptionTxt,
+      labelIcon,
+      label
     } = this.state;
     return (
       <Fragment>
@@ -36,6 +47,7 @@ class Profile extends Component {
           state={state}
           country={country}
         />
+        <Body txt={descriptionTxt} icon={labelIcon} label={label} />
       </Fragment>
     );
   }
