@@ -1,5 +1,5 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime
-
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy.dialects.postgresql import HSTORE
 from .database import Base
 
 
@@ -18,3 +18,12 @@ class User(Base):
     user_description = Column(String(250))
     user_location = Column(String(50))
     user_last_login = Column(DateTime)
+
+class Project(Base):
+    __tablename__ = "project"
+    project_id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.user_id"))
+    project_title = Column(String(100))
+    project_description = Column(String)
+    project_location = Column(String(50))
+    project_skillset = Column(HSTORE)
