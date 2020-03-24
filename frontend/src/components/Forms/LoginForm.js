@@ -62,11 +62,11 @@ const useStyles = makeStyles(theme => ({
 		maxWidth: 316,
 		width: '100%',
 	},
-	login: {
+	loginButton: {
 		backgroundColor: theme.palette.primary.main,
 		borderRadius: 40,
 		maxWidth: 316,
-		width: '100%',
+		width: '100%'
 	},
 	externalLoginButton: {
 		marginBottom: theme.spacing(2),
@@ -81,8 +81,7 @@ const useStyles = makeStyles(theme => ({
 		width: '100%',
 	},
 	forgotPassword: {
-		marginTop: theme.spacing(1),
-		marginBottom: theme.spacing(2),
+		marginBottom: theme.spacing(3),
 		color: theme.palette.primary.main,
 		maxWidth: 316,
 		width: '100%',
@@ -143,13 +142,11 @@ const LoginForm = () => {
 					<TextField label="Email" type="email" variant="filled" className={classes.input} />
 					<TextField label="Password" type="password" variant="filled" className={classes.input} />
 
-					<div className={classes.forgotPassword}>
 						<a href="#" className={classes.forgotPassword}>
 							Forgot password?
 						</a>
-					</div>
 
-					<Button color="primary" size="large" variant="contained" className={classes.login}>
+					<Button color="primary" size="large" variant="contained" className={classes.loginButton}>
 						Login
 					</Button>
 				</Grid>
