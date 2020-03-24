@@ -102,6 +102,7 @@ const NavBar = () => {
 						onClick={toggleDrawer}
 						edge="start"
 						className={clsx(classes.menuButton, isOpen && classes.hide)}
+						id="drawerButton"
 					>
 						<MenuIcon />
 					</IconButton>
