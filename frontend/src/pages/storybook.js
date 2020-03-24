@@ -25,7 +25,7 @@ const StoryBook = props => {
 	return (
 		<div>
 			<React.Fragment>
-				<h1>User Small Card</h1>
+				<h1>User Large Card</h1>
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<UserSmallCard user={mockUser} />
 				</div>
