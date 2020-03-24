@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 		padding: theme.spacing(3),
 	},
 	signUpLink: {
-		color: theme.palette.secondary.main,
+		color: theme.palette.primary.main,
 	},
 	content: {
 		padding: theme.spacing(2),
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 		width: '100%',
 	},
 	login: {
-		backgroundColor: theme.palette.secondary.main,
+		backgroundColor: theme.palette.primary.main,
 		borderRadius: 40,
 		maxWidth: 316,
 		width: '100%',
@@ -93,7 +93,7 @@ const useStyles = makeStyles(theme => ({
 	forgotPassword: {
 		marginTop: theme.spacing(1),
 		marginBottom: theme.spacing(2),
-		color: theme.palette.secondary.main,
+		color: theme.palette.primary.main,
 		maxWidth: 316,
 		width: '100%',
 		display: 'flex',
