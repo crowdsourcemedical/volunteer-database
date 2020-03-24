@@ -36,7 +36,7 @@ export const Hero = ({ image, children, primaryButton, secondaryButton }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.wrapper} style={{ backgroundImage: "url(" + image + ")" }}>
+    <div className={classes.wrapper} style={{ backgroundImage: `url("${image}")` }}>
       <div className={classes.overlay} />
       <Container maxWidth="md" className={classes.content}>
         <div>
@@ -49,14 +49,18 @@ export const Hero = ({ image, children, primaryButton, secondaryButton }) => {
                     {primaryButton.text}
                   </Button>
                 </Grid>
-              ) : null}
+              ) : (
+                <></>
+              )}
               {secondaryButton ? (
                 <Grid item>
                   <Button component={Link} to={secondaryButton.link} variant="contained" color="secondary">
                     {secondaryButton.text}
                   </Button>
                 </Grid>
-              ) : null}
+              ) : (
+                <></>
+              )}
             </Grid>
           </div>
         </div>
