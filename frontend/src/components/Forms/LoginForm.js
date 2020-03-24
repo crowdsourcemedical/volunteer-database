@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Card,
+	Card,
 	Divider,
 	Grid,
 	Typography,
@@ -22,9 +22,19 @@ const useStyles = makeStyles(theme => ({
 	},
 	header: {
 		padding: theme.spacing(3),
+		[theme.breakpoints.down('xs')]: {
+			display: 'flex',
+			flexDirection: 'column',
+			textAlign: 'center'
+		}
+	},
+	headerLogin: {
+		[theme.breakpoints.down('xs')]: {
+			marginBottom: theme.spacing(2)
+		}
 	},
 	signUpLink: {
-		color: theme.palette.primary.main,
+		color: theme.palette.primary.main
 	},
 	content: {
 		padding: theme.spacing(2),
@@ -45,15 +55,8 @@ const useStyles = makeStyles(theme => ({
 		width: '100%',
 		maxWidth: 316,
 	},
-	email: {
+	input: {
 		marginBottom: theme.spacing(4),
-		fontSize: '16px',
-		lineHeight: '20px',
-		maxWidth: 316,
-		width: '100%',
-	},
-	password: {
-		marginBottom: theme.spacing(2),
 		fontSize: '16px',
 		lineHeight: '20px',
 		maxWidth: 316,
@@ -65,22 +68,9 @@ const useStyles = makeStyles(theme => ({
 		maxWidth: 316,
 		width: '100%',
 	},
-	loginGoogle: {
-		marginTop: 0,
+	externalLoginButton: {
 		marginBottom: theme.spacing(2),
-		display: 'flex',
-		justifyContent: 'space-around',
-		border: '1px solid #2196F3',
-		borderRadius: '40px',
-		color: theme.palette.info.main,
-		letterSpacing: 1,
-		maxWidth: 316,
-		width: '100%',
-	},
-	loginFacebook: {
-		margin: '0 auto',
 		marginTop: theme.spacing(2),
-		marginBottom: theme.spacing(2),
 		display: 'flex',
 		justifyContent: 'space-around',
 		border: '1px solid #2196F3',
@@ -98,7 +88,7 @@ const useStyles = makeStyles(theme => ({
 		width: '100%',
 		display: 'flex',
 		justifyContent: 'flex-end',
-	}
+	},
 }));
 
 const LoginForm = () => {
@@ -120,10 +110,9 @@ const LoginForm = () => {
 				alignItems="center"
 				className={classes.header}
 			>
-				<Typography variant="h5" component="h2">
+				<Typography variant="h4" component="h2" className={classes.headerLogin}>
 					Login
 				</Typography>
-
 				<a href="#" className={classes.signUpLink}>
 					Don't have an account? Sign up here
 				</a>
@@ -136,24 +125,23 @@ const LoginForm = () => {
 					alignItems="center"
 					justify="center"
 				>
-					<Button variant="outlined" color="primary" size="large" className={classes.loginGoogle}>
+					<Button variant="outlined" color="primary" size="large" className={classes.externalLoginButton}>
 						<img src={GoogleIcon} alt="Google Logo" />
-						Continue with Google
+						<span>Continue with Google</span>
 					</Button>
 
-					<Button variant="outlined" color="primary" size="large" className={classes.loginFacebook}>
+					<Button variant="outlined" color="primary" size="large" className={classes.externalLoginButton}>
 						<img src={FacebookIcon} alt="Facebook Logo" />
-						Continue with Facebook
+						<span>Continue with Facebook</span>
 					</Button>
 
 					<Divider className={classes.divider} />
-
 					<div className={classes.or}>
 						OR
 					</div>
 
-					<TextField label="Email" type="email" variant="filled" className={classes.email} />
-					<TextField label="Password" type="password" variant="filled" className={classes.password} />
+					<TextField label="Email" type="email" variant="filled" className={classes.input} />
+					<TextField label="Password" type="password" variant="filled" className={classes.input} />
 
 					<div className={classes.forgotPassword}>
 						<a href="#" className={classes.forgotPassword}>
