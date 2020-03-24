@@ -4,6 +4,7 @@ Install cypress
 
 ### cypress install
 
+
 Run cypress
 
-### cypress open
+### yarn run cypress
