@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const description = {
   background: '#F2F5F7',
@@ -7,9 +7,5 @@ const description = {
 };
 
 export default function Description({ txt }) {
-  return (
-    <Fragment>
-      <p style={description}>{txt}</p>
-    </Fragment>
-  );
+  return <p style={description}>{txt}</p>;
 }

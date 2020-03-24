@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Avatar, makeStyles } from '@material-ui/core';
 import PinDropIcon from '@material-ui/icons/PinDrop';
 
