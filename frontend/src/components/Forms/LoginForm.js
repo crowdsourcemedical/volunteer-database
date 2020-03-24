@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	signUpLink: {
 		color: theme.palette.primary.main,
+
 	},
 	content: {
 		padding: theme.spacing(2),
@@ -138,12 +139,17 @@ const LoginForm = () => {
 				>
 					<Button variant="outlined" color="primary" size="large" className={classes.loginGoogle}>
 						<img src={GoogleIcon} alt="Google Logo" />
-						Continue with Google
+						<Typography style={{ fontSize: 14, textTransform: 'upercase' }}>
+							Continue with Google
+						</Typography>
+						
 					</Button>
 
 					<Button variant="outlined" color="primary" size="large" className={classes.loginFacebook}>
 						<img src={FacebookIcon} alt="Facebook Logo" />
-						Continue with Facebook
+						<Typography style={{ fontSize: 14, textTransform: 'upercase' }}>
+							Continue with Facebook
+						</Typography>
 					</Button>
 
 					<Divider className={classes.divider} />
@@ -162,7 +168,9 @@ const LoginForm = () => {
 					</div>
 
 					<Button color="primary" size="large" variant="contained" className={classes.login}>
-						Login
+						<Typography variant="h3">
+							Login
+						</Typography>
 					</Button>
 				</Grid>
 			</CardContent>
