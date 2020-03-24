@@ -53,12 +53,12 @@ Looking at files under `./backend/`:
 ├── requirements.txt      - List of dependencies for pip
 ```
 
-\[1] [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete())
-\[2] [Namespace packaged](https://docs.python.org/3/reference/import.html#namespace-packages)
-\[3] See SQLAlchemy
-\[4] [Routers](https://fastapi.tiangolo.com/tutorial/bigger-applications/)
-\[5] [Pydantic](https://pydantic-docs.helpmanual.io/)
-\[6] [Testing](https://fastapi.tiangolo.com/tutorial/testing/)
+* \[1] [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete())
+* \[2] [Namespace packaged](https://docs.python.org/3/reference/import.html#namespace-packages)
+* \[3] See SQLAlchemy
+* \[4] [Routers](https://fastapi.tiangolo.com/tutorial/bigger-applications/)
+* \[5] [Pydantic](https://pydantic-docs.helpmanual.io/)
+* \[6] [Testing](https://fastapi.tiangolo.com/tutorial/testing/)
 
 ### I want to ...
 
