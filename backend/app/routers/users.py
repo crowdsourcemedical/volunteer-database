@@ -6,16 +6,13 @@ from starlette.middleware.cors import CORSMiddleware
 
 from .. import crud, models, schemas
 from ..utils import verify_password
-from ..database import SessionLocal, engine
+from ..database import SessionLocal, engine, get_db
+
 
 CSM_router = APIRouter()
 
-def get_db():
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
+
+
 
 @CSM_router.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
