@@ -10,6 +10,9 @@ const useStyles = makeStyles(theme => ({
   },
   borderBottom: {
     borderBottom: '1px solid grey'
+  },
+  alignLeft: {
+    textAlign: 'left'
   }
 }));
 
@@ -19,7 +22,7 @@ const ProjectTitle = () => {
     <div className={classes.grid}>
       <div></div>
       <div className={classes.borderBottom}>
-        <h1>Project</h1>
+        <h1 className={classes.alignLeft}>Project</h1>
       </div>
       <div className={classes.borderBottom}></div>
       <div></div>

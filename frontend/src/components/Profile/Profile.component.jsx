@@ -8,6 +8,7 @@ import Header from './Header.component.jsx';
 import AccountProfile from './Avatar.component';
 import Body from './Body.component';
 import ProjectTitle from './Project-title.component';
+import ProjectName from './Project-name.component';
 
 class Profile extends Component {
   state = {
@@ -21,7 +22,9 @@ class Profile extends Component {
     descriptionTxt:
       'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum, in! Culpa sequi, ipsum, cupiditate illum laboriosam, exercitationem odit adipisci numquam itaque atque animi. Soluta architecto eos ab necessitatibus aperiam voluptatibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum, in! Culpa sequi, ipsum, cupiditate illum laboriosam, exercitationem odit adipisci numquam itaque atque animi. Soluta architecto eos ab necessitatibus aperiam voluptatibus.',
     labelIcon: <LabelIcon />,
-    label: 'Other Label'
+    label: 'Other Label',
+    projectImg:
+      'https://material-ui.com/static/images/cards/contemplative-reptile.jpg'
   };
 
   render() {
@@ -35,7 +38,8 @@ class Profile extends Component {
       country,
       descriptionTxt,
       labelIcon,
-      label
+      label,
+      projectImg
     } = this.state;
     return (
       <Fragment>
@@ -50,6 +54,7 @@ class Profile extends Component {
         />
         <Body txt={descriptionTxt} icon={labelIcon} label={label} />
         <ProjectTitle />
+        <ProjectName img={projectImg} />
       </Fragment>
     );
   }
