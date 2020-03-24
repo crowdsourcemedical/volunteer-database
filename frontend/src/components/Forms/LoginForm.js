@@ -158,7 +158,7 @@ const LoginForm = () => {
 						OR
 					</div>
 
-					<TextField label="Email" type="email" variant="filled" className={classes.email} />
+					<TextField label="Email Address" type="email" variant="filled" className={classes.email} />
 					<TextField label="Password" type="password" variant="filled" className={classes.password} />
 
 					<div className={classes.forgotPassword}>
