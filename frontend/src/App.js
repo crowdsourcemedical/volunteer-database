@@ -6,7 +6,7 @@ import SearchPage from './pages/search.js';
 import AboutPage from './pages/about.js';
 import SignupPage from './pages/signup.js';
 import SignupVolunteerPage from './pages/signup_volunteer';
-import NewProject from './pages/newproject.js';
+import ProjectSubmit from './pages/ProjectSubmit.js';
 import Style from './pages/style.js';
 import Project from './pages/project';
 import UserProfile from './components/UserProfile/Profile.component';
@@ -25,7 +25,7 @@ function App() {
 				<Route path="/search" exact component={SearchPage} />
 				<Route path="/signup" exact component={SignupPage} />
 				<Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
-				<Route path="/newproject" exact component={NewProject} />
+				<Route path="/projects/submit" exact component={ProjectSubmit} />
 				<Route path="/userprofile" exact component={UserProfile} />
 				<Route path="/profile" exact component={Profile} />
 				<Route path="/style" exact component={Style} />
