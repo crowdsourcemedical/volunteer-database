@@ -1,6 +1,5 @@
-import React from 'react';
-import clsx from 'clsx';
-
+import React from "react";
+import clsx from "clsx";
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,8 +13,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Link from '@material-ui/core/Link';
+import Dialog from '@material-ui/core/Dialog';
 
 import { PAGE_LINKS_LIST, LOGIN_PAGE_LINK } from '../constants/navigation';
+import LoginForm from './Forms/LoginForm'
 
 const navbarHeight = 64;
 const drawerWidth = 240;
@@ -62,19 +63,28 @@ const useStyles = makeStyles(theme => ({
 	list: {
 		width: drawerWidth,
 	},
+	backdrop: {
+		background: theme.palette.primary.main,
+		opacity: '0.5 !important',
+	}
 }));
 
 const NavBar = () => {
 	const classes = useStyles();
 	const [isOpen, setIsOpen] = React.useState(false);
+	const [loginIsOpen, setLoginIsOpen] = React.useState(false);
 
-	const toggleDrawer = event => {
-		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-			return;
-		}
+  const toggleDrawer = event => {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+      return;
+    }
 
-		setIsOpen(!isOpen);
-	};
+    setIsOpen(!isOpen);
+  };
+
+	const toggleLoginDialog = () => {
+		setLoginIsOpen(!loginIsOpen);
+	}
 
 	return (
 		<div className={classes.root}>
@@ -98,7 +108,13 @@ const NavBar = () => {
 					<Typography variant="h6" noWrap>
 						App Title
 					</Typography>
-					<Link href={LOGIN_PAGE_LINK.path} className={classes.authLink}>
+					<Link
+						className={classes.authLink}
+						onClick={(e) => {
+							e.preventDefault();
+							toggleLoginDialog();
+						}}
+					>
 						<Typography variant="h6" noWrap>
 							{LOGIN_PAGE_LINK.name}
 						</Typography>
@@ -117,6 +133,14 @@ const NavBar = () => {
 						))}
 				</List>
 			</Drawer>
+			<Dialog
+				open={loginIsOpen}
+				onClose={toggleLoginDialog}
+				BackdropProps={{
+					className: classes.backdrop
+				}}>
+				<LoginForm />
+			</Dialog>
 		</div>
 	);
 };
