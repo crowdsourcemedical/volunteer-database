@@ -1,11 +1,10 @@
 .about-text {
   width: 100%;
-  background: #f2f5f7;
 }
 
 .signup__container {
   padding: 10px;
-  margin: 100px 200px 200px 200px;
+  margin: 100px 10% 200px 10%;
 }
 
 .specialty__container {
@@ -16,6 +15,7 @@
 
 .field-select {
   width: 100%;
+  background: #f2f5f7;
 }
 
 .signup__gridWrap > div {
