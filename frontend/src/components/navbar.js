@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -46,9 +46,23 @@ const useStyles = makeStyles(theme => ({
 	menuButton: {
 		marginRight: theme.spacing(2),
 	},
+	toolbar: {
+		height: '100%',
+		'& *:last-child': {
+			marginLeft: 'auto'
+		}
+	},
+	appTitle: {
+		color: '#fafafa'
+	},
 	authLink: {
-		marginLeft: 'auto',
-		color: 'inherit',
+		'& *': {
+			color: '#fafafa'
+		},
+		'&:hover': {
+			cursor: 'pointer',
+			textDecoration: 'none'
+		}
 	},
 	hide: {
 		display: 'none',
@@ -71,8 +85,8 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = () => {
 	const classes = useStyles();
-	const [isOpen, setIsOpen] = React.useState(false);
-	const [loginIsOpen, setLoginIsOpen] = React.useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const [loginIsOpen, setLoginIsOpen] = useState(false);
 
   const toggleDrawer = event => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
@@ -95,17 +109,18 @@ const NavBar = () => {
 					[classes.navBarShift]: isOpen,
 				})}
 			>
-				<Toolbar>
+				<Toolbar className={classes.toolbar}>
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
 						onClick={toggleDrawer}
 						edge="start"
 						className={clsx(classes.menuButton, isOpen && classes.hide)}
+						id="drawerButton"
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
+					<Typography variant="h6" noWrap className={classes.appTitle}>
 						App Title
 					</Typography>
 					<Link
