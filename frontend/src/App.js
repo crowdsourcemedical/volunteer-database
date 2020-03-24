@@ -25,7 +25,6 @@ function App() {
 				<Route path="/search" exact component={SearchPage} />
 				<Route path="/signup" exact component={SignupPage} />
 				<Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
-				<Route path="/storybook" exact component={StoryBook} />
 				<Route path="/newproject" exact component={NewProject} />
 				<Route path="/userprofile" exact component={UserProfile} />
 				<Route path="/profile" exact component={Profile} />
