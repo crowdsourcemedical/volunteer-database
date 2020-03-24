@@ -12,8 +12,6 @@ from ..database import SessionLocal, engine, get_db
 CSM_router = APIRouter()
 
 
-
-
 @CSM_router.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, user_email=user.user_email)
