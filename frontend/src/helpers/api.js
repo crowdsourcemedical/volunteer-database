@@ -1,5 +1,3 @@
-import _ from 'underscore';
-
 import { getEnvVars } from '../environment';
 const { BASE_URL } = getEnvVars();
 
@@ -10,7 +8,7 @@ const { BASE_URL } = getEnvVars();
 class Api {
     client = null;
 
-    async request({ route, payload = {}, action = 'GET', headers = {} }) {
+    async request({ route, payload, action = 'GET', headers = {} }) {
         const requestURL = `${BASE_URL}${route}`
 
         const requestHeaders = {
@@ -23,7 +21,7 @@ class Api {
             headers: requestHeaders
         }
 
-        if (!_.isEmpty(payload)) {
+        if (payload) {
             options.body = JSON.stringify(payload);
         }
 
