@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
 		width: drawerWidth,
 	},
 	backdrop: {
-		background: theme.palette.secondary.main,
+		background: theme.palette.primary.main,
 		opacity: '0.5 !important',
 	}
 }));
