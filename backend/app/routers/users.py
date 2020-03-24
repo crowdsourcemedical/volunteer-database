@@ -1,12 +1,11 @@
 from typing import List
 
-from fastapi import FastAPI, Depends, HTTPException, APIRouter
+from fastapi import Depends, HTTPException, APIRouter
 from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
-
-from .. import crud, models, schemas
+from .. import crud, schemas
 from ..utils import verify_password
-from ..database import SessionLocal, engine, get_db
+from ..database import get_db
 
 
 CSM_router = APIRouter()
