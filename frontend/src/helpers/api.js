@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 import { getEnvVars } from '../environment';
 const { BASE_URL } = getEnvVars();
 

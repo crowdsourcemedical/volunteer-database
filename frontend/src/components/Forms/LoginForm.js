@@ -10,19 +10,25 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import FacebookIcon from "../../images/facebook-icon.svg"
+import GoogleIcon from "../../images/google-icon.svg"
+
 const useStyles = makeStyles(theme => ({
 	root: {
-		maxWidth: 500,
+		maxWidth: '100%',
+		width: 500,
 		margin: '0 auto',
+		overflowY: 'auto'
 	},
 	header: {
 		padding: theme.spacing(3),
 	},
 	signUpLink: {
-		color: theme.palette.primary.main,
+		color: theme.palette.secondary.main,
 	},
 	content: {
-		padding: theme.spacing(4),
+		padding: theme.spacing(2),
+		marginBottom: theme.spacing(2),
 	},
 	or: {
 		backgroundColor: theme.palette.common.white,
@@ -30,25 +36,72 @@ const useStyles = makeStyles(theme => ({
 		width: '100px',
 		fontSize: '16px',
 		color: theme.palette.grey['700'],
+		display: 'flex',
+		justifyContent: 'center',
 	},
 	divider: {
 		marginTop: theme.spacing(4),
 		marginBottom: theme.spacing(4),
+		width: '100%',
+		maxWidth: 316,
 	},
 	email: {
 		marginBottom: theme.spacing(4),
+		fontSize: '16px',
+		lineHeight: '20px',
+		maxWidth: 316,
+		width: '100%',
+	},
+	password: {
+		marginBottom: theme.spacing(2),
+		fontSize: '16px',
+		lineHeight: '20px',
+		maxWidth: 316,
+		width: '100%',
+	},
+	login: {
+		backgroundColor: theme.palette.secondary.main,
+		borderRadius: 40,
+		maxWidth: 316,
+		width: '100%',
+	},
+	loginGoogle: {
+		marginTop: 0,
+		marginBottom: theme.spacing(2),
+		display: 'flex',
+		justifyContent: 'space-around',
+		border: '1px solid #2196F3',
+		borderRadius: '40px',
+		color: theme.palette.info.main,
+		letterSpacing: 1,
+		maxWidth: 316,
+		width: '100%',
 	},
 	loginFacebook: {
-		marginTop: theme.spacing(3),
-		marginBottom: theme.spacing(2),
-	},
-	forgotPassword: {
+		margin: '0 auto',
 		marginTop: theme.spacing(2),
 		marginBottom: theme.spacing(2),
+		display: 'flex',
+		justifyContent: 'space-around',
+		border: '1px solid #2196F3',
+		borderRadius: '40px',
+		color: theme.palette.info.main,
+		letterSpacing: 1,
+		maxWidth: 316,
+		width: '100%',
+	},
+	forgotPassword: {
+		marginTop: theme.spacing(1),
+		marginBottom: theme.spacing(2),
+		color: theme.palette.secondary.main,
+		maxWidth: 316,
+		width: '100%',
+		display: 'flex',
+		justifyContent: 'flex-end',
 	}
 }));
 
-const LoginPage = () => {
+const LoginForm = () => {
 	const classes = useStyles();
 	// const [email, setEmail] = React.useState("");
 	// const [password, setPassword] = React.useState("");
@@ -80,12 +133,16 @@ const LoginPage = () => {
 				<Grid
 					container
 					direction="column"
+					alignItems="center"
+					justify="center"
 				>
-					<Button variant="outlined" color="primary" size="large">
+					<Button variant="outlined" color="primary" size="large" className={classes.loginGoogle}>
+						<img src={GoogleIcon} alt="Google Logo" />
 						Continue with Google
 					</Button>
 
 					<Button variant="outlined" color="primary" size="large" className={classes.loginFacebook}>
+						<img src={FacebookIcon} alt="Facebook Logo" />
 						Continue with Facebook
 					</Button>
 
@@ -96,18 +153,15 @@ const LoginPage = () => {
 					</div>
 
 					<TextField label="Email" type="email" variant="filled" className={classes.email} />
-					<TextField label="Password" type="password" variant="filled" />
+					<TextField label="Password" type="password" variant="filled" className={classes.password} />
 
-					<Grid
-						container
-						justify="flex-end"
-					>
-						<Button variant="text" className={classes.forgotPassword}>
+					<div className={classes.forgotPassword}>
+						<a href="#" className={classes.forgotPassword}>
 							Forgot password?
-						</Button>
-					</Grid>
+						</a>
+					</div>
 
-					<Button color="primary" size="large" variant="contained">
+					<Button color="primary" size="large" variant="contained" className={classes.login}>
 						Login
 					</Button>
 				</Grid>
@@ -116,4 +170,4 @@ const LoginPage = () => {
 	)
 }
 
-export default LoginPage;
+export default LoginForm;
