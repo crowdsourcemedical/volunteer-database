@@ -141,9 +141,9 @@ function ProjectSubmit() {
                     <TextField
                       name="projectDescription"
                       disabled={!form.isValidating && form.isSubmitting}
-                      multiline={true}
+                      multiline
                       rows={8}
-                      fullWidth={true}
+                      fullWidth
                       size="medium"
                       hiddenLabel
                       placeholder="Description"
@@ -173,7 +173,7 @@ function ProjectSubmit() {
                     <TextField
                       name="location"
                       disabled={!form.isValidating && form.isSubmitting}
-                      fullWidth={true}
+                      fullWidth
                       variant="filled"
                       value={field.value}
                       hiddenLabel
