@@ -16,23 +16,26 @@ import './App.css';
 import './about.css';
 
 function App() {
-	return (
-		<Router>
-			<div className="App">
-				<NavBar />
-				<Switch>
-					<Route path="/" exact component={HomePage} />
-					<Route path="/about" exact component={AboutPage} />
-					<Route path="/search" exact component={SearchPage} />
-					<Route path="/signup" exact component={SignupPage} />
-					<Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
-					<Route path="/storybook" exact component={StoryBook} />
-					<Route path="/projects/submit" exact component={ProjectSubmit} />
-					<Route path="/style" exact component={Style} />
- 					<Route path='/userprofile' exact component={UserProfile} />
-				</Switch>
-			</div>
-		</Router>
-	);
-  }
+  return (
+    <Router>
+      <div className="App">
+        <NavBar />
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/about" exact component={AboutPage} />
+          <Route path="/search" exact component={SearchPage} />
+          <Route path="/signup" exact component={SignupPage} />
+          <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
+          <Route path="/storybook" exact component={StoryBook} />
+          <Route path="/newproject" exact component={ProjectSubmit} />
+          <Route path="/userprofile" exact component={UserProfile} />
+          <Route path="/profile" exact component={Profile} />
+          <Route path="/style" exact component={Style} />
+          <Route path="/project" exact component={Project} />
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
 export default App;
