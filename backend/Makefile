@@ -8,7 +8,7 @@ all:
 .PHONY: unit
 unit:
 	@echo Running unit tests ...
-	@docker run -ti --rm -v `pwd`:/app -e ENV_NAME=test crowdsourcemedical_backend pytest -s
+	@docker run -ti --rm -v `pwd`:/app -e ENV_NAME=test crowdsourcemedical_backend pytest -v -s
 
 .PHONY: integration
 integration:
