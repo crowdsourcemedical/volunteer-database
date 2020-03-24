@@ -8,42 +8,42 @@ const theme = createMuiTheme({
     h1: {
       fontFamily: '"Poppins", sans-serif',
       fontSize: '4rem',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h2: {
       fontFamily: '"Poppins", sans-serif',
       fontSize: '2rem',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h3: {
       fontFamily: '"Poppins", sans-serif',
       fontSize: '1.5rem',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h4: {
       fontFamily: '"Poppins", sans-serif',
       fontSize: '1.25rem',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h5: {
       fontFamily: '"Poppins", sans-serif',
       fontSize: '1rem',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h6: {
       fontFamily: '"Muli", sans-serif',
       fontSize: '1rem',
-      color: COLORS.textSecondary
+      color: COLORS.textSecondary,
     },
     body1: {
       fontSize: '1rem',
-      color: COLORS.textPrimary
+      color: COLORS.textPrimary,
     },
     caption: {
       fontFamily: '"Muli", sans-serif',
       textTransform: 'uppercase',
-      color: COLORS.textSecondary
-    }
+      color: COLORS.textSecondary,
+    },
   },
   // Color Palette
   palette: {
@@ -52,43 +52,43 @@ const theme = createMuiTheme({
       main: COLORS.primary,
       light: COLORS.primaryLight,
       dark: COLORS.primaryDark,
-      contrastText: '#FFF'
+      contrastText: '#FFF',
     },
     secondary: {
       main: COLORS.secondary,
       light: COLORS.secondaryLight,
       dark: COLORS.secondaryDark,
-      contrastText: '#FFF'
+      contrastText: '#FFF',
     },
     text: {
       primary: COLORS.textPrimary,
-      secondary: COLORS.textSecondary
+      secondary: COLORS.textSecondary,
     },
     error: {
-      main: COLORS.error
+      main: COLORS.error,
     },
     warning: {
-      main: COLORS.warning
+      main: COLORS.warning,
     },
     info: {
-      main: COLORS.info
+      main: COLORS.info,
     },
     success: {
-      main: COLORS.success
-    }
+      main: COLORS.success,
+    },
   },
 
   // Custom colors
   colors: {
     gray: COLORS.gray,
     secondaryLight: COLORS.secondaryLightTint,
-    whiteGray: COLORS.grayLight
+    whiteGray: COLORS.grayLight,
   },
 
   // Overriding defaults
   overrides: {
     MuiFilledInput: {
-      root: { backgroundColor: '#f2f5f7' }
+      root: { backgroundColor: '#f2f5f7' },
     },
     MuiButton: {
       root: {
@@ -100,14 +100,14 @@ const theme = createMuiTheme({
         fontWeight: 'bold',
         letterSpacing: '0px',
         borderRadius: '50px',
-        border: 0
-      }
-    }
+        border: 0,
+      },
+    },
   },
   props: {
     MuiButton: {
-      disableElevation: true // Disables the box shadows
-    }
-  }
+      disableElevation: true, // Disables the box shadows
+    },
+  },
 });
 export default theme;
