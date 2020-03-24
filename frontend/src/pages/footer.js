@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, createMuiTheme, Box } from '@material-ui/core';
 import COLORS from '../styles/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -14,7 +14,8 @@ const Footer = props => {
   const classes = useStyles();
 
   return (
-    <div style={{ paddingTop: '5rem' }}>
+
+    <Box paddingTop={6}>
       <Grid container className={classes.root} spacing={2}>
         <Grid item xs={12}>
           <Grid container justify='center' spacing={8}>
@@ -37,7 +38,7 @@ const Footer = props => {
           </Grid>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 };
 
