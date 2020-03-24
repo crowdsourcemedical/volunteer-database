@@ -7,6 +7,7 @@ import LabelIcon from '@material-ui/icons/Label';
 import Header from './Header.component.jsx';
 import AccountProfile from './Avatar.component';
 import Body from './Body.component';
+import ProjectTitle from './Project-title.component';
 
 class Profile extends Component {
   state = {
@@ -48,6 +49,7 @@ class Profile extends Component {
           country={country}
         />
         <Body txt={descriptionTxt} icon={labelIcon} label={label} />
+        <ProjectTitle />
       </Fragment>
     );
   }
