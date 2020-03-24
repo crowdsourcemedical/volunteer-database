@@ -16,10 +16,12 @@ JWT_SECRET = "TEST_VALUE_PLEASE_CHANGE"  # TODO need to load this from somewhere
 
 def create_access_token(*, data: models.User, expires_delta: timedelta = None) -> bytes:
     """Create an access token for the user's login.
+
     Args:
         data: the user to create the token for
         expires_delta: optional override for
             the duration of the token
+
     Returns:
         JWT
     """
@@ -34,11 +36,14 @@ def create_access_token(*, data: models.User, expires_delta: timedelta = None) -
 
 def decode_token(token: str, db: Session) -> models.User:
     """Returns the user for the token.
+
     Args:
         token: JWT
         db: database connection
+
     Returns:
-        models.User: user for the token
+        User for the token
+
     Raises:
         Exception if the token couldn't be decoded or didn't match a user
     """

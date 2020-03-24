@@ -8,7 +8,6 @@ from starlette.status import HTTP_400_BAD_REQUEST
 from . import crud, models
 from .auth import create_access_token, decode_token
 from .database import engine, get_db
-# from .routers import users
 
 
 app = FastAPI()
@@ -21,21 +20,14 @@ app.add_middleware(
 )
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="/token")
 
-# app.include_router(users.CSM_router)
-
 models.Base.metadata.create_all(bind=engine)
-
-
-@app.get("/")
-async def root():
-    return {"message": "This is the root of the API. Please go to site.com/docs to see the documentation"}
 
 
 async def get_current_user(
     token: str = Depends(oauth2_schema),
     db: Session = Depends(get_db)
 ) -> models.User:
-    """Get a user for the token that's passed in via HTTP headers.
+    """Get a user for the token that"s passed in via HTTP headers.
 
     This method gets the user's token through a `Depends` and processeses it
     into a `models.User` object (if it's valid).
@@ -53,7 +45,7 @@ async def get_current_user(
     return decode_token(token, db)
 
 
-@app.post('/token')
+@app.post("/token")
 async def login(
     form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db)
@@ -71,9 +63,20 @@ async def login(
     if not user:
         raise HTTPException(
             status_code=HTTP_400_BAD_REQUEST,
-            detail='Incorrect username or password'
+            detail="Incorrect username or password"
         )
     return {
-        'access_token': create_access_token(data=user),
-        'token_type': 'bearer'
+        "access_token": create_access_token(data=user),
+        "token_type": "bearer"
     }
+
+
+@app.get("/token/verify")
+async def token_verify(user: models.User = Depends(get_current_user)) -> dict:
+    """Return the user's information to them."""
+    return user.to_dict()
+
+
+@app.get("/")
+async def root():
+    return {"message": "This is the root of the API. Please go to site.com/docs to see the documentation"}

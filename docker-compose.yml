@@ -11,25 +11,25 @@ services:
                 ports:
                         - 3001:3000
                 depends_on:
-                        - backend 
+                        - backend
 
         backend:
                 build:
                         context: ./
-                        dockerfile: ./backend/Dockerfile                
+                        dockerfile: ./backend/Dockerfile
                 command: /start-reload.sh
                 volumes:
                         - ./backend:/app
                 environment:
                         PORT: 8000
-                        VARIABLE_NAME: CSM_Backend
+                        VARIABLE_NAME: app
                 ports:
                         - 8000:8000
                 depends_on:
                         - db
 
         db:
-                build: 
+                build:
                         context: ./
                         dockerfile: ./db/Dockerfile
                 restart: always

@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from pytest import fixture
 
-from ..main import CSM_Backend
+from ..main import app
 from ..database import Base, engine, SessionLocal
 
 
@@ -19,4 +19,4 @@ def db():
 
 @fixture(scope="function")
 def testclient():
-    return TestClient(CSM_Backend)
+    return TestClient(app)
