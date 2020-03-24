@@ -23,22 +23,19 @@ const handleCheckBoxSelection = () => {
 
 const StoryBook = () => (
   <div>
-    <>
-      <h1>User Large Card</h1>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <UserSmallCard user={mockUser} />
-      </div>
-    </>
-    <Box m={6} />
 
-    <>
-      <h1>CheckBox component</h1>
-      <CheckBoxSection
-        sectionHeader="Staff required"
-        checkboxes={checkboxesListMock}
-        cb={handleCheckBoxSelection}
-      />
-    </>
+    <h1>User Large Card</h1>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <UserSmallCard user={mockUser} />
+    </div>
+
+    <Box m={6} />
+    <h1>CheckBox component</h1>
+    <CheckBoxSection
+      sectionHeader="Staff required"
+      checkboxes={checkboxesListMock}
+      cb={handleCheckBoxSelection}
+    />
   </div>
 );
 

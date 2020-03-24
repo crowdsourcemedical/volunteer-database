@@ -1,31 +1,38 @@
-import React from 'react';
-import { Box, Typography, Grid } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+// import API from "../../api";
+import {
+  Menu, MenuItem, Box, Typography, Grid, Paper,
+} from '@material-ui/core';
+import { IconButton, Button, Fab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import shadows from '@material-ui/core/styles/shadows';
 import { Hero } from '../components/Hero/Hero';
 import AboutImg from '../images/about.png';
 
+// import ProjectSmallCard from "../ProjectComponents/ProjectSmallCard";
+
 import HeroImg from '../images/hero.png';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   image: {
     boxShadow: '-9px 10px 0px 1px #006772',
     width: '100%',
   },
 }));
 
-const HomePage = () => {
+const HomePage = (props) => {
   const classes = useStyles();
   return (
     <Grid container spacing={2}>
       <Grid container>
-        <Hero image={HeroImg} primaryButton={{ link: 'newproject', text: 'Submit a Project' }} secondaryButton={{ link: 'signup/volunteer', text: 'Become a Volunteer' }}>
+        <Hero image={HeroImg} primaryButton={{ link: '/projects/submit', text: 'Submit a Project' }} secondaryButton={{ link: 'signup/volunteer', text: 'Become a Volunteer' }}>
           <Typography component="h1" variant="h2" align="left" color="textPrimary" gutterBottom>
             DO SOMETHING GREAT
           </Typography>
           <Typography variant="h5" align="left" color="textSecondary" paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua ut enim ad.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.
             <br />
             <br />
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -54,7 +61,7 @@ const HomePage = () => {
           <Grid item lg={2} />
           <Grid item lg={5}>
             <div>
-              <img className={classes.image} src={AboutImg} alt="aboutImage" />
+              <img className={classes.image} src={AboutImg} />
             </div>
           </Grid>
         </Grid>
@@ -67,6 +74,7 @@ const HomePage = () => {
 };
 
 HomePage.propTypes = {
+  userID: PropTypes.string,
   // TODO: Add More PropTypes
 };
 

@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Box, Typography, Grid, Button,
 } from '@material-ui/core';
-
 import CheckBoxSection from '../components/Forms/checkboxSection';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
 const checkboxesCad = [
   { label: 'Solid Works', status: false },
   { label: 'Inventor', status: false },
-]; // pass this to a checkboxsection to output all checkbox labels -> status is if its disabled or enabled
+];
+// pass this to a checkboxsection to output all checkbox labels -> status is if its disabled or enabled
 const checkboxesMedical = [
   { label: 'Registered Nurse', status: false },
   { label: 'Physician Assistant', status: false },

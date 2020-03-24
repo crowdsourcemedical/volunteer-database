@@ -6,9 +6,10 @@ import SearchPage from './pages/search';
 import AboutPage from './pages/about';
 import SignupPage from './pages/signup';
 import SignupVolunteerPage from './pages/signup_volunteer';
-import StoryBook from './pages/storybook';
-import NewProject from './pages/newproject';
+// import StoryBook from './pages/storybook';
+// import NewProject from './pages/newproject';
 import Style from './pages/style';
+import ProjectSubmit from './pages/ProjectSubmit';
 import Project from './pages/project';
 import UserProfile from './components/UserProfile/Profile.component';
 import Profile from './components/Profile/Profile.component';
@@ -26,8 +27,7 @@ function App() {
           <Route path="/search" exact component={SearchPage} />
           <Route path="/signup" exact component={SignupPage} />
           <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
-          <Route path="/storybook" exact component={StoryBook} />
-          <Route path="/newproject" exact component={NewProject} />
+          <Route path="/projects/submit" exact component={ProjectSubmit} />
           <Route path="/userprofile" exact component={UserProfile} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/style" exact component={Style} />

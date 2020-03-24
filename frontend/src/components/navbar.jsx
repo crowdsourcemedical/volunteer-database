@@ -81,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.primary.main,
     opacity: '0.5 !important',
   },
+  offset: theme.mixins.toolbar,
 }));
 
 const NavBar = () => {
@@ -136,12 +137,13 @@ const NavBar = () => {
           </Link>
         </Toolbar>
       </AppBar>
+      <div className={classes.offset} />
       <Drawer className={classes.drawer} anchor="left" open={isOpen} onClose={toggleDrawer}>
         <div className={classes.listSpacer} />
         <Divider />
         <List className={classes.list}>
           {PAGE_LINKS_LIST && PAGE_LINKS_LIST.map((link) => (
-            <ListItemLink href={link.path}>
+            <ListItemLink key={link.path} href={link.path}>
               <ListItemText primary={link.name} />
             </ListItemLink>
           ))}
@@ -150,7 +152,9 @@ const NavBar = () => {
       <Dialog
         open={loginIsOpen}
         onClose={toggleLoginDialog}
-        BackdropProps={{ className: classes.backdrop }}
+        BackdropProps={{
+				  className: classes.backdrop,
+        }}
       >
         <LoginForm />
       </Dialog>
