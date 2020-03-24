@@ -46,9 +46,23 @@ const useStyles = makeStyles(theme => ({
 	menuButton: {
 		marginRight: theme.spacing(2),
 	},
+	toolbar: {
+		height: '100%',
+		'& *:last-child': {
+			marginLeft: 'auto'
+		}
+	},
+	appTitle: {
+		color: '#fafafa'
+	},
 	authLink: {
-		marginLeft: 'auto',
-		color: 'inherit',
+		'& *': {
+			color: '#fafafa'
+		},
+		'&:hover': {
+			cursor: 'pointer',
+			textDecoration: 'none'
+		}
 	},
 	hide: {
 		display: 'none',
@@ -95,7 +109,7 @@ const NavBar = () => {
 					[classes.navBarShift]: isOpen,
 				})}
 			>
-				<Toolbar>
+				<Toolbar className={classes.toolbar}>
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
@@ -105,7 +119,7 @@ const NavBar = () => {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
+					<Typography variant="h6" noWrap className={classes.appTitle}>
 						App Title
 					</Typography>
 					<Link
