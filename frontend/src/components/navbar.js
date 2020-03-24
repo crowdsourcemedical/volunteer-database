@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -85,8 +85,8 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = () => {
 	const classes = useStyles();
-	const [isOpen, setIsOpen] = React.useState(false);
-	const [loginIsOpen, setLoginIsOpen] = React.useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const [loginIsOpen, setLoginIsOpen] = useState(false);
 
   const toggleDrawer = event => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
