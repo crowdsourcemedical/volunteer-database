@@ -7,8 +7,8 @@ import SocialBtn from './Social-btn.component';
 const useStyles = makeStyles(theme => ({
   grid: {
     display: 'grid',
-    gridTemplateAreas: 'avatar description break social-btn',
-    gridTemplateColumns: '0.15fr 0.3fr 0.5fr 0.5fr 0.3fr 0.15fr'
+    gridTemplateAreas: 'avatar description break break social-btn',
+    gridTemplateColumns: '0.1fr 0.1fr 0.5fr 0.5fr 0.2fr 0.4fr 0.17fr'
   },
   [theme.breakpoints.down('xs')]: {
     display: 'grid',
@@ -61,7 +61,7 @@ function AccountProfile({
         <Avatar
           src={accountImg}
           className={classes.xl}
-          style={{ float: 'right' }}
+          style={{ float: 'left' }}
         />
       </div>
       <div className={classes.avatarTitle}>
@@ -86,6 +86,7 @@ function AccountProfile({
           {state} {country}
         </p>
       </div>
+      <div></div>
       <div></div>
       <div style={{ textAlign: 'right' }}>
         <SocialBtn />
