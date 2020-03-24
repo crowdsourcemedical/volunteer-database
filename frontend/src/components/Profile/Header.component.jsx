@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   grid: {
     display: 'grid',
     gridTemplateAreas: 'title break break inbox account',
-    gridTemplateColumns: '0.11fr 0.3fr 0.5fr 0.15fr 0.2fr 0.11fr',
+    gridTemplateColumns: '0.09fr 0.3fr 0.5fr 0.15fr 0.2fr 0.09fr',
     [theme.breakpoints.down('xs')]: {
       gridTemplateColumns: '100%',
       gridTemplateRows: 'auto',

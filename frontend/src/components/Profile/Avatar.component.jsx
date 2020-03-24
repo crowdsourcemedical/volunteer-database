@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   grid: {
     display: 'grid',
     gridTemplateAreas: 'avatar description break break social-btn',
-    gridTemplateColumns: '0.1fr 0.1fr 0.5fr 0.5fr 0.2fr 0.4fr 0.17fr'
+    gridTemplateColumns: '0.13fr 0.1fr 0.5fr 0.5fr 0.2fr 0.4fr 0.13fr'
   },
   [theme.breakpoints.down('xs')]: {
     display: 'grid',
@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
   },
   avatarTitle: {
     textAlign: 'left',
-    paddingLeft: '1rem'
+    paddingLeft: '1rem',
+    paddingBottom: '2rem'
   },
   sm: {
     width: theme.spacing(3),
@@ -39,8 +40,8 @@ const useStyles = makeStyles(theme => ({
     height: theme.spacing(7)
   },
   xl: {
-    width: theme.spacing(18),
-    height: theme.spacing(18)
+    width: theme.spacing(15),
+    height: theme.spacing(15)
   }
 }));
 
@@ -65,7 +66,7 @@ function AccountProfile({
         />
       </div>
       <div className={classes.avatarTitle}>
-        <h1>
+        <h1 style={{ margin: '5px' }}>
           {profileName}{' '}
           <span
             style={{ fontSize: '1rem', color: '#C0C0C0', fontFamily: 'italic' }}
@@ -73,17 +74,17 @@ function AccountProfile({
             {role}
           </span>
         </h1>
-        <p>
+        <p style={{ margin: '5px' }}>
           {' '}
           <strong>{description}</strong>
         </p>
 
-        <p>
+        <p style={{ margin: '2px' }}>
           <PinDropIcon
             className={classes.sm}
             style={{ color: '#006772', marginLeft: '-5px' }}
           />
-          {state} {country}
+          {state}, {country}
         </p>
       </div>
       <div></div>
