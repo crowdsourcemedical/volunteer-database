@@ -10,6 +10,18 @@ const useStyles = makeStyles(theme => ({
     gridTemplateAreas: 'avatar description break social-btn',
     gridTemplateColumns: '0.15fr 0.3fr 0.5fr 0.5fr 0.3fr 0.15fr'
   },
+  [theme.breakpoints.down('xs')]: {
+    display: 'grid',
+    gridTemplateColumns: '100%',
+    gridTemplateRows: 'auto',
+    gridTemplateAreas: "'title' 'description' 'break' 'social-btn'"
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'grid',
+    gridTemplateColumns: '100%',
+    gridTemplateRows: 'auto',
+    gridTemplateAreas: "'title' 'description' 'break' 'social-btn'"
+  },
   avatarTitle: {
     textAlign: 'left',
     paddingLeft: '1rem'

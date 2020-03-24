@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
       gridTemplateRows: 'auto',
       gridTemplateAreas: "'title' 'break' 'account'"
     },
+
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '100%',
       gridTemplateRows: 'auto',
