@@ -8,6 +8,7 @@ from starlette.status import HTTP_400_BAD_REQUEST
 from . import crud, models
 from .auth import create_access_token, decode_token
 from .database import engine, get_db
+from .routers import users
 
 
 app = FastAPI()
@@ -19,6 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="/token")
+app.include_router(users.router)
 
 models.Base.metadata.create_all(bind=engine)
 
