@@ -1,6 +1,6 @@
 # This is the official CSM (Crowd source medical) database
 
-![Django CI](https://github.com/crowdsourcemedical/volunteer-database/workflows/Django%20CI/badge.svg)
+![Python CI](https://github.com/crowdsourcemedical/volunteer-database/workflows/Python%20CI/badge.svg)
 ![Node.js CI](https://github.com/crowdsourcemedical/volunteer-database/workflows/Node.js%20CI/badge.svg)
 
 ## The What Now?
