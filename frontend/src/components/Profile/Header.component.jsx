@@ -4,8 +4,8 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
   grid: {
     display: 'grid',
-    gridTemplateAreas: 'title break account',
-    gridTemplateColumns: '1fr 0.2fr 1fr',
+    gridTemplateAreas: 'title break break account',
+    gridTemplateColumns: '0.15fr 0.3fr 0.5fr 0.5fr 0.3fr 0.15fr',
     [theme.breakpoints.down('xs')]: {
       gridTemplateColumns: '100%',
       gridTemplateRows: 'auto',
@@ -18,11 +18,10 @@ const useStyles = makeStyles(theme => ({
     }
   },
   title: {
-    alignSelf: 'center',
-    paddingLeft: '1.5rem'
+    textAlign: 'right'
   },
   account: {
-    paddingRight: '1.5rem',
+    textAlign: 'right',
     '&:hover': {
       cursor: 'pointer'
     }
@@ -40,15 +39,18 @@ function Header({ accountImg, logo }) {
   return (
     <div style={{ lineHeight: '15rem' }}>
       <header className={classes.grid}>
+        <div></div>
         <div className={classes.title}>
           <h3>Crowd Source Solutions</h3>
         </div>
+        <div></div>
         <div></div>
         <div className={classes.account}>
           <h3>
             My Account <img src={accountImg} alt='' className={classes.large} />
           </h3>
         </div>
+        <div></div>
       </header>
     </div>
   );

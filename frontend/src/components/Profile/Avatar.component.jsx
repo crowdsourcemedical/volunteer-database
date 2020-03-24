@@ -2,15 +2,13 @@ import React, { Fragment } from 'react';
 import { Avatar, makeStyles } from '@material-ui/core';
 import PinDropIcon from '@material-ui/icons/PinDrop';
 
+import SocialBtn from './Social-btn.component';
+
 const useStyles = makeStyles(theme => ({
   grid: {
     display: 'grid',
     gridTemplateAreas: 'avatar description break social-btn',
-    gridTemplateColumns: '0.2fr 0.4fr 0.2fr 0.5fr'
-  },
-  avatar: {
-    justifySelf: 'start',
-    paddingLeft: '8rem'
+    gridTemplateColumns: '0.15fr 0.3fr 0.5fr 0.5fr 0.3fr 0.15fr'
   },
   avatarTitle: {
     textAlign: 'left',
@@ -46,8 +44,13 @@ function AccountProfile({
 
   return (
     <div className={classes.grid}>
-      <div className={classes.avatar}>
-        <Avatar src={accountImg} className={classes.xl} />
+      <div></div>
+      <div>
+        <Avatar
+          src={accountImg}
+          className={classes.xl}
+          style={{ float: 'right' }}
+        />
       </div>
       <div className={classes.avatarTitle}>
         <h1>
@@ -72,6 +75,9 @@ function AccountProfile({
         </p>
       </div>
       <div></div>
+      <div style={{ textAlign: 'right' }}>
+        <SocialBtn />
+      </div>
       <div></div>
     </div>
   );
