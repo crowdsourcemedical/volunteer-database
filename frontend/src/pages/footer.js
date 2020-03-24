@@ -32,7 +32,9 @@ const Footer = props => {
                 </Grid>
             </Grid>
             <Grid item xs={12}>
-                <Typography variant="h6">&copy;2020 Crowd Source Medical</Typography>
+                <Grid container justify="center">
+                    <Typography variant="h6">&copy;2020 Crowd Source Medical</Typography>
+                </Grid>
             </Grid>
       </Grid>
     )
