@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles(theme => ({
   wrapper: {
     textAlign: "left",
+    position: 'relative',
     display: "flex",
     alignItems: "center",
     width: "100%",
