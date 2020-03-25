@@ -1,43 +1,113 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import COLORS from './colors';
 
-// The custom theme colors for the website
 const theme = createMuiTheme({
+  // Fonts
+  typography: {
+    fontFamily: '"Muli", sans-serif',
+    h1: {
+      fontFamily: '"Poppins", sans-serif',
+      fontSize: '4rem',
+      fontWeight: 'bold',
+    },
+    h2: {
+      fontFamily: '"Poppins", sans-serif',
+      fontSize: '2rem',
+      fontWeight: 'bold',
+    },
+    h3: {
+      fontFamily: '"Poppins", sans-serif',
+      fontSize: '1.5rem',
+      fontWeight: 'bold',
+    },
+    h4: {
+      fontFamily: '"Poppins", sans-serif',
+      fontSize: '1.25rem',
+      fontWeight: 'bold',
+    },
+    h5: {
+      fontFamily: '"Poppins", sans-serif',
+      fontSize: '1rem',
+      fontWeight: 'bold',
+    },
+    h6: {
+      fontFamily: '"Muli", sans-serif',
+      fontSize: '1rem',
+      color: COLORS.textSecondary,
+    },
+    body1: {
+      fontSize: '1rem',
+      color: COLORS.textPrimary,
+    },
+    caption: {
+      fontFamily: '"Muli", sans-serif',
+      textTransform: 'uppercase',
+      color: COLORS.textSecondary,
+    },
+  },
+  // Color Palette
   palette: {
     type: 'light',
     primary: {
-      main: '#424242',
-      light: '#6D6D6D',
-      dark: '#1B1B1B',
+      main: COLORS.primary,
+      light: COLORS.primaryLight,
+      dark: COLORS.primaryDark,
       contrastText: '#FFF',
     },
     secondary: {
-      main: '#006772',
-      light: '#006772', // No light variation has been set
-      dark: '#006772', // No dark variation has been set
+      main: COLORS.secondary,
+      light: COLORS.secondaryLight,
+      dark: COLORS.secondaryDark,
       contrastText: '#FFF',
     },
+    text: {
+      primary: COLORS.textPrimary,
+      secondary: COLORS.textSecondary,
+    },
     error: {
-      main: '#F44336',
+      main: COLORS.error,
     },
     warning: {
-      main: '#FF9800',
+      main: COLORS.warning,
     },
     info: {
-      main: '#2196F3',
+      main: COLORS.info,
     },
     success: {
-      main: '#4CAF50',
+      main: COLORS.success,
     },
   },
-  // If you want to override globally, with Paper as example:
-  /* overrides: {
-    MuiPaper: {
+
+  // Custom colors
+  colors: {
+    gray: COLORS.gray,
+    secondaryLight: COLORS.secondaryLightTint,
+    whiteGray: COLORS.grayLight,
+  },
+
+  // Overriding defaults
+  overrides: {
+    MuiFilledInput: {
+      root: { backgroundColor: '#f2f5f7' },
+    },
+    MuiButton: {
       root: {
-        padding: '0px 20px',
-        margin: '20px 0',
-        backgroundColor: 'white',
+        padding: '8px 20px',
+        fontFamily: '"Poppins", sans-serif',
+        textTransform: 'none',
+        fontStyle: 'normal',
+        fontSize: '20px',
+        fontWeight: 'bold',
+        letterSpacing: '0px',
+        borderRadius: '50px',
+        border: 0,
       },
     },
-  }, */
+  },
+  props: {
+    MuiButton: {
+      disableElevation: true, // Disables the box shadows
+    },
+  },
 });
 export default theme;
