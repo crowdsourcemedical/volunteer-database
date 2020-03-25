@@ -4,13 +4,7 @@ module.exports = {
     es2020: true,
     jest: true,
   },
-  extends: [
-    'react-app',
-    'airbnb',
-    'airbnb/hooks',
-    'prettier',
-    'prettier/react',
-  ],
+  extends: ['react-app', 'airbnb', 'airbnb/hooks', 'prettier', 'prettier/react'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -25,7 +19,6 @@ module.exports = {
   },
   plugins: [],
   rules: {
-    'linebreak-style': ['error', 'windows'],
     'max-len': ['error', { code: 120, ignoreUrls: true }],
   },
 };
