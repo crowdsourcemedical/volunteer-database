@@ -1,5 +1,6 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime
-
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy.dialects.postgresql import HSTORE
+from sqlalchemy.types import ARRAY
 from .database import Base
 
 
@@ -18,6 +19,7 @@ class User(Base):
     user_description = Column(String(250))
     user_location = Column(String(50))
     user_last_login = Column(DateTime)
+    type = Column(String(50))
 
     def to_dict(self) -> dict:
         """Return a dict of many of this object's values
@@ -38,3 +40,22 @@ class User(Base):
             "user_description": self.user_description,
             "user_location": self.user_location,
         }
+
+    
+
+    __mapper_args__ = {
+        'polymorphic_identity':'users',
+        'polymorphic_on':type
+    }
+
+
+class Volunteer(User):
+    __tablename__ = 'volunteers'
+    id = Column(Integer, ForeignKey('users.user_id'), primary_key=True)
+    volunteer_descriptoin = Column(String(250))
+    volunteer_location = Column(String(50))
+    volunteer_skillset = Column(ARRAY(Integer))
+
+    __mapper_args__ = {
+        'polymorphic_identity':'volunteers'
+    }
