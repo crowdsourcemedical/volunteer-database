@@ -6,6 +6,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../images/crowd-source-logo.svg';
 import LoginForm from './Forms/LoginForm';
+import Searchbar from './Search/MobileSearch';
 
 
 const useStyles = makeStyles(() => ({
@@ -44,7 +45,7 @@ const Footer = () => {
         </Grid>
         <Grid item xs={6}>
           <Hidden smDown>
-            <Paper>Searchbar Goes Here</Paper>
+            <Searchbar />
           </Hidden>
         </Grid>
       </Grid>
