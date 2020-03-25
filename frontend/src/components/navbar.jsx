@@ -95,8 +95,7 @@ const NavBar = () => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
   const [loginIsOpen, setLoginIsOpen] = useState(false);
-  const [avatarURL, setAvatarURL] = useState('https://material-ui.com/static/images/avatar/1.jpg');
-  const [logo, setLogo] = useState('./src/img/crown-source-logo.svg');
+  const avatarURL = 'https://material-ui.com/static/images/avatar/1.jpg';
 
   const toggleDrawer = (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -120,22 +119,22 @@ const NavBar = () => {
         })}
       >
         <Toolbar className={classes.toolbar}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
-              edge="start"
-              className={clsx(classes.menuButton, isOpen && classes.hide)}
-              id="drawerButton"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap className={classes.appTitle}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleDrawer}
+            edge="start"
+            className={clsx(classes.menuButton, isOpen && classes.hide)}
+            id="drawerButton"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap className={classes.appTitle}>
             App Title
           </Typography>
           <Grid
             direction="row"
-            alignItems="center" 
+            alignItems="center"
             justify="flex-end"
             container
           >
@@ -147,25 +146,25 @@ const NavBar = () => {
             <Grid item>
               <Link>
                 <Button
-                    variant='contained'
-                    color='primary'
-                    size='large'
-                    className={classes.button}
-                    startIcon={<InboxIcon />}
-                  >
-                    INBOX
+                  variant='contained'
+                  color='primary'
+                  size='large'
+                  className={classes.button}
+                  startIcon={<InboxIcon />}
+                >
+                  INBOX
                 </Button>
               </Link>
             </Grid>
-           
+
           </Grid>
 
-          
+
           <Link
             className={classes.authLink}
             onClick={(e) => {
-						  e.preventDefault();
-						  toggleLoginDialog();
+              e.preventDefault();
+              toggleLoginDialog();
             }}
           >
             <Typography variant="h6" noWrap>
@@ -190,7 +189,7 @@ const NavBar = () => {
         open={loginIsOpen}
         onClose={toggleLoginDialog}
         BackdropProps={{
-				  className: classes.backdrop,
+          className: classes.backdrop,
         }}
       >
         <LoginForm />
