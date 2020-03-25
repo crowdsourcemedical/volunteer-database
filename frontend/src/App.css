@@ -9,6 +9,7 @@
 .content {
   overflow-y: scroll;
   height: 100%;
+  position: relative;
 }
 
 #legal_recomendations:hover {
