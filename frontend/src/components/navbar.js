@@ -17,6 +17,7 @@ import Dialog from '@material-ui/core/Dialog';
 
 import { PAGE_LINKS_LIST, LOGIN_PAGE_LINK } from '../constants/navigation';
 import LoginForm from './Forms/LoginForm'
+import MobileSearch from './Search/MobileSearch.jsx'
 
 const navbarHeight = 64;
 const drawerWidth = 240;
@@ -63,10 +64,16 @@ const useStyles = makeStyles(theme => ({
 	list: {
 		width: drawerWidth,
 	},
+	subcontainer: {
+		marginLeft: 'auto',
+		display: 'flex',
+		flexFlow: 'row nowrap',
+		alignItems: 'center',
+	},
 	backdrop: {
 		background: theme.palette.primary.main,
 		opacity: '0.5 !important',
-	}
+	},
 }));
 
 const NavBar = () => {
@@ -108,17 +115,20 @@ const NavBar = () => {
 					<Typography variant="h6" noWrap>
 						App Title
 					</Typography>
-					<Link
-						className={classes.authLink}
-						onClick={(e) => {
-							e.preventDefault();
-							toggleLoginDialog();
-						}}
-					>
-						<Typography variant="h6" noWrap>
-							{LOGIN_PAGE_LINK.name}
-						</Typography>
-					</Link>
+					<div className={classes.subcontainer}>
+						<MobileSearch />
+						<Link
+							className={classes.authLink}
+							onClick={(e) => {
+								e.preventDefault();
+								toggleLoginDialog();
+							}}
+						>
+							<Typography variant="h6" noWrap>
+								{LOGIN_PAGE_LINK.name}
+							</Typography>
+						</Link>
+					</div>
 				</Toolbar>
 			</AppBar>
 			<Drawer className={classes.drawer} anchor="left" open={isOpen} onClose={toggleDrawer}>
