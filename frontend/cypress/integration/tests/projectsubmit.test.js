@@ -5,7 +5,7 @@ context('Actions', () => {
         cy.visit('http://localhost:3001/projects/submit');
     });
 
-    it('Test legal recomdations', () => {
+    it('Test legal recommendations', () => {
         cy.get('a:contains("Please read this recommendation from our legal team")').click(); //TODO: update test when the recommendatiosn from our legal team is updated for modal pop up or page navigation
     });
   
