@@ -19,7 +19,7 @@ class User(Base):
     user_location = Column(String(50))
     user_last_login = Column(DateTime)
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         """Return a dict of many of this object's values
         for use in creating the JWT.
 
