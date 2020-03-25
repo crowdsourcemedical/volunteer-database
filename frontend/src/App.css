@@ -1,7 +1,17 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-auto-flow: row;
+  height: 100vh;
+  overflow: hidden;
 }
+
+.content {
+  overflow-y: scroll;
+  height: 100%;
+  position: relative;
+}
+
 #legal_recomendations:hover {
   cursor: pointer;
 }
