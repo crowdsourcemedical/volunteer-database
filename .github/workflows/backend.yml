@@ -31,3 +31,5 @@ jobs:
     - name: Run Tests
       run: pytest
       working-directory: ./backend
+      env:
+        ENV_NAME: test
