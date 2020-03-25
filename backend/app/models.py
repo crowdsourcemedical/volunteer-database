@@ -1,6 +1,8 @@
 from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey
 from .database import Base
 from sqlalchemy.types import ARRAY
+
+
 class User(Base):
     __tablename__ = "users"
     user_id = Column(Integer, primary_key=True, index=True)
@@ -36,6 +38,7 @@ class User(Base):
             "user_location": self.user_location,
         }
 
+
 class Project(Base):
     __tablename__ = "project"
     project_id = Column(Integer, primary_key=True, index=True)
@@ -44,6 +47,7 @@ class Project(Base):
     project_description = Column(String, nullable=False)
     project_location = Column(String(50), nullable=False)
     project_skillset = Column(ARRAY(Integer), ForeignKey("skill.skill_id"))
+
 
 class Skill(Base):
     __tablename__ = "skill"
