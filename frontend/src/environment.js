@@ -1,25 +1,23 @@
 const STAGING = {
-    BASE_URL: `http://localhost:8000`
+  BASE_URL: 'http://localhost:8000',
 };
 
 const PRODUCTION = {
-    BASE_URL: ``
+  BASE_URL: '',
 };
 
 function getEnvVars() {
-    const env = process.env.NODE_ENV;
+  const env = process.env.NODE_ENV;
 
-    if (env === 'development') { 
-        return STAGING;
-    }
-
-    if (env === 'production') {
-        return PRODUCTION;
-    }
-
+  if (env === 'development') {
     return STAGING;
+  }
+
+  if (env === 'production') {
+    return PRODUCTION;
+  }
+
+  return STAGING;
 }
 
-export {
-    getEnvVars
-}
+export default getEnvVars;

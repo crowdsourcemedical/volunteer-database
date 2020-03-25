@@ -1,34 +1,16 @@
-import React, { Component } from "react";
-import { MapPin } from "react-feather";
+import React, { Component } from 'react';
 import {
-  InputLabel,
-  Select,
-  MenuItem,
-  Checkbox,
-  FormGroup,
-  TextField,
-  Grid,
-  Container,
-  FormControlLabel,
-  makeStyles,
-  Typography,
-  InputAdornment,
-  Button
-} from "@material-ui/core";
-import { ComputerScienceTypes, MedicalTypes } from "../types/SignupTypes";
+  Select, MenuItem, Checkbox, Grid, Container, FormControlLabel, Typography, InputAdornment, Button, TextField,
+} from '@material-ui/core';
 
 export default class SignupPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password1: "",
-      password2: "",
-      skill: "",
-      loc: "",
-      selectedField: "medical",
-      selectedSpecialty: "",
-      aboutText: ""
+      loc: '',
+      selectedField: 'medical',
+      selectedSpecialty: '',
+      aboutText: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -44,34 +26,36 @@ export default class SignupPage extends Component {
   handleButtonClick(e) {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   }
+
   handleSubmit(e) {
-    /*Send a api call to the backend. Redirect to different page */
+    /* Send a api call to the backend. Redirect to different page */
+    global.console.log(e);
   }
 
   validate() {
     /* Should check if everything is filled out and passwords match */
-    return "true";
+    return 'true';
   }
 
   renderSpecialties(text) {
     return (
       <FormControlLabel
         key={text}
-        control={
+        control={(
           <Checkbox
             checked={this.state.selectedSpecialty === text}
             onChange={() => this.setState({ selectedSpecialty: text })}
             color="primary"
             name={text}
           />
-        }
+        )}
         label={text}
       />
     );
   }
 
   renderSkillset(rows) {
-    let gridCheckbox = (
+    const gridCheckbox = (
       <Grid
         container
         direction="row"
@@ -132,8 +116,8 @@ export default class SignupPage extends Component {
                   value={this.state.selectedField}
                   onChange={this.handleChange}
                 >
-                  <MenuItem value={"medical"}>Medical</MenuItem>
-                  <MenuItem value={"computerScience"}>
+                  <MenuItem value="medical">Medical</MenuItem>
+                  <MenuItem value="computerScience">
                     Computer Science
                   </MenuItem>
                 </Select>
@@ -212,7 +196,7 @@ export default class SignupPage extends Component {
                           <circle cx="12" cy="10" r="3" fill="white" />
                         </svg>
                       </InputAdornment>
-                    )
+                    ),
                   }}
                 />
               </Grid>

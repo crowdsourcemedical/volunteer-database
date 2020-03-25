@@ -4,29 +4,31 @@
 //    if they are never utilized.
 const COLORS = {
   // Primary
-  primary: "#006772",
-  primaryLight: "#049BAB",
-  primaryDark: "#049BAB", // This is active tint for primary button animations
+  primary: '#006772',
+  primaryLight: '#049BAB',
+  primaryDark: '#049BAB', // This is active tint for primary button animations
   // Secondary
-  secondary: "#320072",
-  secondaryLight: "#5906C4",
-  secondaryDark: "#5906C4", // This is active tint for secondary button animations
+  secondary: '#320072',
+  secondaryLight: '#5906C4',
+  secondaryLightTint: '#33ABB8', // This is the one used in figma designs
+  secondaryDark: '#5906C4', // This is active tint for secondary button animations
   // Tertiary
-  tertiary: "#3E4C5E",
+  tertiary: '#3E4C5E',
   // Grays
-  grayDark: "#8D8D8F",
-  grayMedium: "#DADADA",
-  grayLight: "#F2F5F7",
+  grayDark: '#8D8D8F',
+  grayMedium: '#DADADA',
+  grayLight: '#F2F5F7',
+  gray: '#3E3E3E', // This is the one used in figma designs
   // Accent/error,
-  accent: "#AB2346",
+  accent: '#AB2346',
   // Text/font
-  textPrimary: "#06070B",
-  textSecondary: "#828282",
+  textPrimary: '#06070B',
+  textSecondary: '#828282',
   // Status/toast
-  error: "#F44336",
-  warning: "#FF9800",
-  info: "#2196F3",
-  success: "#4CAF50"
+  error: '#F44336',
+  warning: '#FF9800',
+  info: '#2196F3',
+  success: '#4CAF50',
 };
 
 export default COLORS;
