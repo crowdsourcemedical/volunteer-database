@@ -8,7 +8,7 @@ export const ComputerScienceTypes = [
   'Desktop Developer',
   'Mobile Developer',
   'Graphics Developer',
-]
+];
 
 export const MedicalTypes = [
   'Attending',
@@ -18,5 +18,5 @@ export const MedicalTypes = [
   'Physician Assitant',
   'Nurse Practitioner',
   'Registered Nurse',
-  'Emergency Medical Technician'
-]
+  'Emergency Medical Technician',
+];
