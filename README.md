@@ -57,6 +57,18 @@ The frontend is now be accessible at `localhost:3001`. The backend is now access
 
 The backend might crash the first time, this is because a bug in the db image. Simply run `docker-compose up (-d)` again and it should work.
 
+## Populating the database
+Once the database is setup we will be providing a database dump with some users etc in it. To update the database simply run 
+```sh
+./restore-database base.pgdump
+```
+
+Incase you want to make a snapshot of your db to share run the following
+```sh
+./dump-database
+```
+
+
 ## How to Contribute
 
 ### General
