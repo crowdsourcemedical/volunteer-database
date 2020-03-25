@@ -2,8 +2,8 @@ import React from 'react';
 import {
   Typography,
 } from '@material-ui/core';
-
 import AboutImg from '../images/about.png';
+import '../css/about.css';
 
 const AboutPage = () => (
   <div>
