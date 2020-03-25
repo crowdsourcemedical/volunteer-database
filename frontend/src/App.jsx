@@ -15,24 +15,32 @@ import UserProfile from './components/UserProfile/Profile.component';
 import Profile from './components/Profile/Profile.component';
 import './App.css';
 import './about.css';
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles(theme => ({
+
+}))
 
 function App() {
   return (
     <Router>
       <div className="App">
         <NavBar />
-        <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/about" exact component={AboutPage} />
-          <Route path="/search" exact component={SearchPage} />
-          <Route path="/signup" exact component={SignupPage} />
-          <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
-          <Route path="/projects/submit" exact component={ProjectSubmit} />
-          <Route path="/userprofile" exact component={UserProfile} />
-          <Route path="/profile" exact component={Profile} />
-          <Route path="/style" exact component={Style} />
-          <Route path="/project" exact component={Project} />
-        </Switch>
+
+        <main className="content">
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/about" exact component={AboutPage} />
+            <Route path="/search" exact component={SearchPage} />
+            <Route path="/signup" exact component={SignupPage} />
+            <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
+            <Route path="/projects/submit" exact component={ProjectSubmit} />
+            <Route path="/userprofile" exact component={UserProfile} />
+            <Route path="/profile" exact component={Profile} />
+            <Route path="/style" exact component={Style} />
+            <Route path="/project" exact component={Project} />
+          </Switch>
+        </main>
       </div>
     </Router>
   );
