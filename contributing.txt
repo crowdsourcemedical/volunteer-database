@@ -1,0 +1,11 @@
+Thanks for helping out! 
+
+We just got started so everything is still a bit messy
+
+Need to learn this stack? Check out the django-rest-api documentation and perhaps follow the tutorial
+
+We're working with a virtual env for now. To get started run the command: 'source env/bin/activate'
+
+In the backend folder you can then run python manage.py runserver
+
+check out the todo file to see what we need to get done
