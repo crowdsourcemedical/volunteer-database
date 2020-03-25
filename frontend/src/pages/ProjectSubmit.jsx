@@ -112,7 +112,7 @@ function ProjectSubmit() {
       }}
       onSubmit={handleFormSubmit}
     >
-      <Form class={classes.form} noValidate autoComplete="off">
+      <Form className={classes.form} noValidate autoComplete="off">
         <Grid justify="center" container>
           <Grid item xs={11} sm={11} md={11} lg={9}>
             <Grid container>
