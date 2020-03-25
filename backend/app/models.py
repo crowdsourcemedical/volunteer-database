@@ -1,11 +1,7 @@
 from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey
-from sqlalchemy.dialects.postgresql import HSTORE
 from .database import Base
-
-
 class User(Base):
     __tablename__ = "users"
-
     user_id = Column(Integer, primary_key=True, index=True)
     user_email = Column(String, unique=True, index=True)
     user_first = Column(String(50))
@@ -22,8 +18,13 @@ class User(Base):
 class Project(Base):
     __tablename__ = "project"
     project_id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.user_id"))
-    project_title = Column(String(100))
-    project_description = Column(String)
-    project_location = Column(String(50))
-    project_skillset = Column(HSTORE)
+    user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
+    project_title = Column(String(100), nullable=False)
+    project_description = Column(String, nullable=False)
+    project_location = Column(String(50), nullable=False)
+    project_skillset = Column(Integer, ForeignKey("skill.skill_id"))
+
+class Skill(Base):
+    __tablename__ = "skill"
+    skill_id = Column(Integer, primary_key=True, index=True)
+    skill_name = Column(String(50), nullable=False, unique=True)
