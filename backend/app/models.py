@@ -52,7 +52,7 @@ class User(Base):
 class Volunteer(User):
     __tablename__ = 'volunteers'
     id = Column(Integer, ForeignKey('users.user_id'), primary_key=True)
-    volunteer_descriptoin = Column(String(250))
+    volunteer_description = Column(String(250))
     volunteer_location = Column(String(50))
     volunteer_skillset = Column(ARRAY(Integer))
 
