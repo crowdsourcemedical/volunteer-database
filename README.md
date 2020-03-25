@@ -25,7 +25,7 @@ DevOps: https://trello.com/b/ggGTsmr8/csm-devops
 Onboarding and Team Assignments: https://trello.com/b/lcE3lFLO/csm-onboarding-and-team-assignment
 
 ## The Tech Stack
-Backend: Django Rest API, PostgreSQL
+Backend: FastAPI, PostgreSQL
 
 Frontend: React, Material UI, Cypress (for E2E-testing)
 
