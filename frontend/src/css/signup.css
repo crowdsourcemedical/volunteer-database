@@ -1,0 +1,35 @@
+.about-text {
+  width: 100%;
+}
+
+.signup__container {
+  padding: 10px;
+  margin: 100px 10% 200px 10%;
+}
+
+.specialty__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.field-select {
+  width: 100%;
+  background: #f2f5f7;
+}
+
+.signup__gridWrap > div {
+  margin: 20px;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.submit__wrapper {
+  position: relative;
+}
+
+.submit__button {
+  position: absolute !important;
+  top: 40px;
+  right: 60px;
+}
