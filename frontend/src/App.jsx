@@ -21,18 +21,19 @@ function App() {
     <Router>
       <div className="App">
         <NavBar />
-        <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/about" exact component={AboutPage} />
-          <Route path="/search" exact component={SearchPage} />
-          <Route path="/signup" exact component={SignupPage} />
-          <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
-          <Route path="/projects/submit" exact component={ProjectSubmit} />
-          <Route path="/profile" exact component={Profile} />
-          <Route path="/style" exact component={Style} />
-          <Route path="/project" exact component={Project} />
-        </Switch>
-        <Footer />
+        <main className="content">
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/about" exact component={AboutPage} />
+            <Route path="/search" exact component={SearchPage} />
+            <Route path="/signup" exact component={SignupPage} />
+            <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
+            <Route path="/projects/submit" exact component={ProjectSubmit} />
+            <Route path="/profile" exact component={Profile} />
+            <Route path="/style" exact component={Style} />
+            <Route path="/project" exact component={Project} />
+          </Switch>
+        </main>
       </div>
     </Router>
   );
