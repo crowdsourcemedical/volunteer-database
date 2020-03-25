@@ -6,10 +6,17 @@
   overflow: hidden;
 }
 
-.content {
+.main {
   overflow-y: scroll;
   height: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  height: 100%;
+  padding-bottom: 120px;
 }
 
 #legal_recomendations:hover {
