@@ -1,1 +1,1 @@
-docker exec -ti crowdsourcemedical_db_1 psql -U postgres CSM
+docker exec -ti volunteer-database_db_1 psql -U postgres CSM
