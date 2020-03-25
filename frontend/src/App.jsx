@@ -19,6 +19,7 @@ function App() {
     <Router>
       <div className="App">
         <Header />
+
         <main className="main">
           <div className="content">
             <Switch>
