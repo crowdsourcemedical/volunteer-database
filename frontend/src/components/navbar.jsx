@@ -5,6 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -14,6 +15,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Link from '@material-ui/core/Link';
 import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import InboxIcon from '@material-ui/icons/Inbox';
+import Avatar from '@material-ui/core/Avatar';
 
 import { PAGE_LINKS_LIST, LOGIN_PAGE_LINK } from '../constants/navigation';
 import LoginForm from './Forms/LoginForm';
@@ -26,6 +30,9 @@ const ListItemLink = (props) => <ListItem button component="a" {...props} />;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+  },
+  grow: {
+    flexGrow: 1,
   },
   navBar: {
     height: navbarHeight,
@@ -88,6 +95,8 @@ const NavBar = () => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
   const [loginIsOpen, setLoginIsOpen] = useState(false);
+  const [avatarURL, setAvatarURL] = useState('https://material-ui.com/static/images/avatar/1.jpg');
+  const [logo, setLogo] = useState('./src/img/crown-source-logo.svg');
 
   const toggleDrawer = (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -111,19 +120,47 @@ const NavBar = () => {
         })}
       >
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer}
-            edge="start"
-            className={clsx(classes.menuButton, isOpen && classes.hide)}
-            id="drawerButton"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap className={classes.appTitle}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              edge="start"
+              className={clsx(classes.menuButton, isOpen && classes.hide)}
+              id="drawerButton"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap className={classes.appTitle}>
             App Title
           </Typography>
+          <Grid
+            direction="row"
+            alignItems="center" 
+            justify="flex-end"
+            container
+          >
+            <Grid item>
+              <Link>
+                <Avatar alt='Remy Sharp' src={avatarURL} />
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link>
+                <Button
+                    variant='contained'
+                    color='primary'
+                    size='large'
+                    className={classes.button}
+                    startIcon={<InboxIcon />}
+                  >
+                    INBOX
+                </Button>
+              </Link>
+            </Grid>
+           
+          </Grid>
+
+          
           <Link
             className={classes.authLink}
             onClick={(e) => {

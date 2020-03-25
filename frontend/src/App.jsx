@@ -12,7 +12,7 @@ import Style from './pages/style';
 import ProjectSubmit from './pages/ProjectSubmit';
 import Project from './pages/project';
 import Profile from './components/Profile/Profile.component';
-import Footer from './pages/footer';
+import Footer from './components/footer';
 import './App.css';
 import './about.css';
 
