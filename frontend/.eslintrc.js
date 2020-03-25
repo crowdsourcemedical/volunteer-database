@@ -1,28 +1,31 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
+    es2020: true,
+    jest: true,
   },
   extends: [
-    'plugin:react/recommended',
+    'react-app',
     'airbnb',
+    'airbnb/hooks',
+    'prettier',
+    'prettier/react',
   ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: [],
   rules: {
-    "linebreak-style": ["error", "windows"],
-    "max-len": ["error", { "code": 120, "ignoreUrls": true }]
+    'linebreak-style': ['error', 'windows'],
+    'max-len': ['error', { code: 120, ignoreUrls: true }],
   },
 };

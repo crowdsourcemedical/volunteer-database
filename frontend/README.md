@@ -1,6 +1,57 @@
+## Forcing a Code Style
+
+There is a pre-commit hook that will run [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) in "autofix"
+mode on all of the staged files. If either fails, the commit will be aborted
+and you'll have to manually fix the problems. You can use the following scripts
+to help identifying/fixing the problems before a commit:
+
+### `yarn lint`
+
+Will lint all of the `.js` and `.jsx` files inside the `/src` folder.
+
+### `yarn prettify`
+
+Will format all of the code inside the `/src` folder.
+
+## Linting/Formatting Plugins
+
+In addition to the scripts, you can install ESLint and Prettier plugins for your
+editor/IDE:
+
+### VSCode
+[VSCode ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br />
+[VSCode Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)<br /><br />
+Add the following in the (workspace) `settings.json` to point VSCode ESLint to the right directory:
+```json
+{
+  "eslint.workingDirectories": ["./frontend"]
+}
+```
+Optionally add also the following to enable code lint/format on save:
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  },
+  "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+``` 
+<br />
+<br />
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Available CRA Scripts
 
 In the project directory, you can run:
 
