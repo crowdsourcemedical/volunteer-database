@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Grid, Paper, Typography, Button, Hidden, Dialog,
+  Grid, Typography, Button, Hidden, Dialog,
 } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles';
