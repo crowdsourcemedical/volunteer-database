@@ -15,11 +15,6 @@ import UserProfile from './components/UserProfile/Profile.component';
 import Profile from './components/Profile/Profile.component';
 import './App.css';
 import './about.css';
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles(theme => ({
-
-}))
 
 function App() {
   return (
