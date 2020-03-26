@@ -7,6 +7,8 @@ const { BASE_URL } = getEnvVars();
 // CURRENT API - http://localhost:8000/redoc
 
 class Api {
+  jwt = null;
+
   async request({
     route, payload, action = 'GET', headers = {},
   }) {
@@ -26,16 +28,32 @@ class Api {
       options.body = JSON.stringify(payload);
     }
 
-    return this.fetch(requestURL, options).then((res) => res.json()).catch((e) => e);
+    return fetch(requestURL, options).then((res) => res.json()).catch((e) => e);
+  }
+
+  async verifyToken(payload) {
+    const response = await this.request({
+      route: '/token/verify',
+      action: 'POST',
+      payload,
+      headers: {
+        'Authorization': `Bearer: ${this.jwt}`
+      }
+    });
+
+    return response;
   }
 
   async login(payload) {
     const response = await this.request({
-      route: '/users/login',
+      route: '/token',
       action: 'POST',
       payload,
     });
 
+    // TODO - set jwt in local storage or if this response is success
+
+    this.jwt = response;
     return response;
   }
 
