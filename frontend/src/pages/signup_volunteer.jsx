@@ -1,6 +1,7 @@
-import React from "react";
-import { Formik, Form, Field, FieldArray } from "formik";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Formik, Form, Field, FieldArray } from 'formik';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
   Grid,
@@ -11,24 +12,24 @@ import {
   Button,
   TextField,
   Select,
-  MenuItem
-} from "@material-ui/core";
-import LocationOnRoundedIcon from "@material-ui/icons/LocationOnRounded";
+  MenuItem,
+} from '@material-ui/core';
+import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   heading: {
     marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(8)
+    marginBottom: theme.spacing(8),
   },
   formSection: {
-    marginBottom: theme.spacing(8)
+    marginBottom: theme.spacing(8),
   },
   checkboxSection: {
-    marginBottom: theme.spacing(4)
+    marginBottom: theme.spacing(4),
   },
   form: {
-    marginBottom: theme.spacing(10)
-  }
+    marginBottom: theme.spacing(10),
+  },
 }));
 
 function handleFormSubmit(fields, form) {
@@ -46,72 +47,74 @@ function StaffCheckbox({ staff, arrayHelpers, disabled }) {
           color="primary"
           value={staff.id}
           disabled={disabled}
-          onChange={e =>
-            e.target.checked
-              ? arrayHelpers.push(staff.id)
-              : arrayHelpers.remove(staff.id)
-          }
+          onChange={(e) => (e.target.checked ? arrayHelpers.push(staff.id) : arrayHelpers.remove(staff.id))}
         />
       }
     />
   );
 }
 
+StaffCheckbox.propTypes = {
+  staff: PropTypes.object.isRequired,
+  arrayHelpers: PropTypes.array.isRequired,
+  disabled: PropTypes.bool.isRequired,
+};
+
 function SignUpPage() {
   const classes = useStyles();
 
   const staff = {
     cad: [
-      { label: "Solid Works", id: "solid-works" },
-      { label: "Inventor", id: "inventor" }
+      { label: 'Solid Works', id: 'solid-works' },
+      { label: 'Inventor', id: 'inventor' },
     ],
     medical: [
-      { label: "Registered Nurse", id: "registered-nurse" },
-      { label: "Physician Assistant", id: "physician-assistant" },
-      { label: "Medical Student", id: "medical-student" },
-      { label: "Intern", id: "intern" },
-      { label: "Resident", id: "resident" },
-      { label: "Attending", id: "attending" }
+      { label: 'Registered Nurse', id: 'registered-nurse' },
+      { label: 'Physician Assistant', id: 'physician-assistant' },
+      { label: 'Medical Student', id: 'medical-student' },
+      { label: 'Intern', id: 'intern' },
+      { label: 'Resident', id: 'resident' },
+      { label: 'Attending', id: 'attending' },
     ],
     engineering: [
-      { label: "Mechanical Engineer", id: "mechanical-engineer" },
+      { label: 'Mechanical Engineer', id: 'mechanical-engineer' },
       {
-        label: "Mechanical Engineer with FEA experience",
-        id: "mechanical-engineer-with-fea-experience"
+        label: 'Mechanical Engineer with FEA experience',
+        id: 'mechanical-engineer-with-fea-experience',
       },
-      { label: "Electrical Engineer", id: "electrical-engineer" },
-      { label: "Mechatronics Engineer", id: "mechatronics-engineer" }
+      { label: 'Electrical Engineer', id: 'electrical-engineer' },
+      { label: 'Mechatronics Engineer', id: 'mechatronics-engineer' },
     ],
     legal: [
-      { label: "Lawyer", id: "lawyer" },
-      { label: "Barrister", id: "barrister" },
-      { label: "Paralegal", id: "paralegal" }
+      { label: 'Lawyer', id: 'lawyer' },
+      { label: 'Barrister', id: 'barrister' },
+      { label: 'Paralegal', id: 'paralegal' },
     ],
     manufacturing: [
-      { label: "FDM 3D printer", id: "fdm-3-d-printer" },
-      { label: "SLA 3D printer", id: "sla-3-d-printer" },
-      { label: "SLS Nylon 3D printer", id: "sls-nylon-3-d-printer" },
-      { label: "Machinist", id: "machinist" }
-    ]
+      { label: 'FDM 3D printer', id: 'fdm-3-d-printer' },
+      { label: 'SLA 3D printer', id: 'sla-3-d-printer' },
+      { label: 'SLS Nylon 3D printer', id: 'sls-nylon-3-d-printer' },
+      { label: 'Machinist', id: 'machinist' },
+    ],
   };
 
   const checkboxSections = [
-    { staff: staff.medical, label: "Medical Staff Advisors" },
-    { staff: staff.engineering, label: "Engineering" },
-    { staff: staff.manufacturing, label: "Manufacturing" },
-    { staff: staff.legal, label: "Legal" },
-    { staff: staff.cad, label: "Computer-Aided Design" }
+    { staff: staff.medical, label: 'Medical Staff Advisors' },
+    { staff: staff.engineering, label: 'Engineering' },
+    { staff: staff.manufacturing, label: 'Manufacturing' },
+    { staff: staff.legal, label: 'Legal' },
+    { staff: staff.cad, label: 'Computer-Aided Design' },
   ];
 
-  const disabledStaff = ["lawyer", "electrical-engineer", "intern", "inventor"];
+  const disabledStaff = ['lawyer', 'electrical-engineer', 'intern', 'inventor'];
 
   return (
     <Formik
       initialValues={{
-        userDescription: "",
-        location: "",
-        selectedField: "medical",
-        soughtStaff: []
+        userDescription: '',
+        location: '',
+        selectedField: 'medical',
+        soughtStaff: [],
       }}
       onSubmit={handleFormSubmit}
     >
@@ -145,9 +148,7 @@ function SignUpPage() {
                       onChange={field.onChange}
                     >
                       <MenuItem value="medical">Medical</MenuItem>
-                      <MenuItem value="computerScience">
-                        Computer Science
-                      </MenuItem>
+                      <MenuItem value="computerScience">Computer Science</MenuItem>
                     </Select>
                   )}
                 </Field>
@@ -159,8 +160,7 @@ function SignUpPage() {
                   Tell us a little about yourself
                 </Typography>
                 <Typography gutterBottom variant="body1">
-                  What is your experience and how much time do you have to
-                  contribute?
+                  What is your experience and how much time do you have to contribute?
                 </Typography>
               </Grid>
               <Grid xs={12} sm={12} lg={7} item>
@@ -179,7 +179,7 @@ function SignUpPage() {
                       value={field.value}
                       onChange={field.onChange}
                       InputProps={{
-                        disableUnderline: true
+                        disableUnderline: true,
                       }}
                     />
                   )}
@@ -211,12 +211,9 @@ function SignUpPage() {
                         disableUnderline: true,
                         startAdornment: (
                           <InputAdornment position="start">
-                            <LocationOnRoundedIcon
-                              color="primary"
-                              fontSize="small"
-                            />
+                            <LocationOnRoundedIcon color="primary" fontSize="small" />
                           </InputAdornment>
-                        )
+                        ),
                       }}
                     />
                   )}
@@ -229,31 +226,19 @@ function SignUpPage() {
                   Skillset
                 </Typography>
                 <Typography gutterBottom variant="body1">
-                  We'll try to connect you with the kind of talent you need and
-                  are looking for.
+                  We'll try to connect you with the kind of talent you need and are looking for.
                 </Typography>
               </Grid>
               <Grid xs={12} sm={12} lg={7} item>
                 <FieldArray name="soughtStaff">
-                  {arrayHelpers =>
-                    checkboxSections.map(section => (
-                      <section
-                        className={classes.checkboxSection}
-                        key={section.label}
-                      >
+                  {(arrayHelpers) =>
+                    checkboxSections.map((section) => (
+                      <section className={classes.checkboxSection} key={section.label}>
                         <Typography gutterBottom variant="h5">
                           {section.label}
                         </Typography>
-                        <Grid
-                          item
-                          container
-                          justify="flex-start"
-                          xs={12}
-                          sm={10}
-                          md={8}
-                          lg={10}
-                        >
-                          {section.staff.map(s => (
+                        <Grid item container justify="flex-start" xs={12} sm={10} md={8} lg={10}>
+                          {section.staff.map((s) => (
                             <Grid item xs={6} key={s.id}>
                               <StaffCheckbox
                                 staff={s}
@@ -270,12 +255,7 @@ function SignUpPage() {
               </Grid>
             </Grid>
             <Grid container justify="flex-end">
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                size="medium"
-              >
+              <Button type="submit" color="primary" variant="contained" size="medium">
                 Submit Application
               </Button>
             </Grid>

@@ -18,5 +18,8 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [],
-  rules: {},
+  rules: {
+    'react/forbid-prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
+  },
 };
