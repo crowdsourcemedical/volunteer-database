@@ -37,7 +37,7 @@ class User(Base):
             "user_skill": self.user_skill,
             "user_description": self.user_description,
             "user_location": self.user_location,
-        }
+        }   
 
     __mapper_args__ = {
         'polymorphic_identity': 'users',
@@ -53,6 +53,14 @@ class Volunteer(User):
     volunteer_skillset = Column(ARRAY(Integer))
 
     __mapper_args__ = {
+        'polymorphic_identity':'volunteers'
+    }
+
+class Position(Base):
+    __tablename__ = "position"
+
+    position_id = Column(Integer, primary_key=True, index=True)
+    position_name = Column(String(50))
         'polymorphic_identity': 'volunteers'
     }
 
