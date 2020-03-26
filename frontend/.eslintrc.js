@@ -18,7 +18,5 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [],
-  rules: {
-    'max-len': ['error', { code: 120, ignoreUrls: true }],
-  },
+  rules: {},
 };
