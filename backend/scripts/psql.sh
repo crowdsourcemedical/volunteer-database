@@ -1,1 +1,1 @@
-docker exec -ti volunteer-database_db_1 psql -U postgres CSM
+docker exec -ti css_db psql -U postgres CSS
