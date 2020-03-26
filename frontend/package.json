@@ -12,6 +12,7 @@
     "pullstate": "^1.11.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-dropzone-uploader": "^2.11.0",
     "react-feather": "^2.0.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
@@ -41,17 +42,17 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addons": "^5.3.17",
+    "@storybook/preset-create-react-app": "^2.1.0",
+    "@storybook/react": "^5.3.17",
     "cypress": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.1",
-    "@storybook/addon-actions": "^5.3.17",
-    "@storybook/addon-links": "^5.3.17",
-    "@storybook/addons": "^5.3.17",
-    "@storybook/preset-create-react-app": "^2.1.0",
-    "@storybook/react": "^5.3.17"
+    "eslint-plugin-react-hooks": "^2.5.1"
   }
 }
