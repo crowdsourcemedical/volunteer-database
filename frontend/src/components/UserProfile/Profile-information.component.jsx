@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // None Material UI Components
-import Avatar from './Avatar.component.jsx';
+import Avatar from './Avatar.component';
 
-export const ProfileDescription = ({ classes, description, username }) => (
+const ProfileDescription = ({ classes, description, username }) => (
   <>
     <div className={classes} />
     <Avatar />
@@ -26,3 +26,5 @@ ProfileDescription.propTypes = {
   description: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
 };
+
+export default ProfileDescription;

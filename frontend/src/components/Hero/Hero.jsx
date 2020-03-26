@@ -32,7 +32,8 @@ const useStyles = makeStyles({
     marginTop: '50px',
   },
 });
-export const Hero = ({ image, children, primaryButton, secondaryButton }) => {
+
+const Hero = ({ image, children, primaryButton, secondaryButton }) => {
   const classes = useStyles();
 
   return (
@@ -71,3 +72,5 @@ Hero.propTypes = {
   primaryButton: PropTypes.object.isRequired,
   secondaryButton: PropTypes.object.isRequired,
 };
+
+export default Hero;

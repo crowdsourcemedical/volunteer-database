@@ -4,7 +4,7 @@ import Hidden from '@material-ui/core/Hidden';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ProfileDescription } from './Profile-information.component';
+import ProfileDescription from './Profile-information.component';
 
 const drawerWidth = 240;
 
