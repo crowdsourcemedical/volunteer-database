@@ -1,3 +1,4 @@
+/* eslint class-methods-use-this: off */
 import getEnvVars from '../environment';
 
 const { BASE_URL } = getEnvVars();
@@ -10,19 +11,19 @@ class Api {
   jwt = null;
 
   createFormData(payload) {
-    return Object.keys(payload).map((key) => {
-      return encodeURIComponent(key) + '=' + encodeURIComponent(payload[key]);
-    }).join('&');
+    return Object.keys(payload)
+      .map((key) => {
+        return `${encodeURIComponent(key)}=${encodeURIComponent(payload[key])}`;
+      })
+      .join('&');
   }
 
-  async request({
-    route, payload, action = 'GET', headers = {},
-  }) {
+  async request({ route, payload, action = 'GET', headers = {} }) {
     const requestURL = `${BASE_URL}${route}`;
-    
+
     const options = {
       method: action,
-      headers: headers
+      headers,
     };
 
     if (payload) {
@@ -30,7 +31,9 @@ class Api {
       options.body = route === '/token' ? this.createFormData(payload) : JSON.stringify(payload);
     }
 
-    return fetch(requestURL, options).then((res) => res.json()).catch((e) => e);
+    return fetch(requestURL, options)
+      .then((res) => res.json())
+      .catch((e) => e);
   }
 
   // this is a temporary endpoint to verify jwt token
@@ -39,8 +42,8 @@ class Api {
       route: '/token/verify',
       action: 'GET',
       headers: {
-        Authorization: `Bearer ${this.jwt}`
-      }
+        Authorization: `Bearer ${this.jwt}`,
+      },
     });
 
     return response;
@@ -52,8 +55,8 @@ class Api {
       action: 'POST',
       payload,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-      }
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      },
     });
 
     if (response && response.access_token) {

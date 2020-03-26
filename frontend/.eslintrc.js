@@ -21,6 +21,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'no-shadow': 'off',
+    'no-return-assign': [2, 'except-parens'],
     'react/forbid-prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-fragments': 'off',
