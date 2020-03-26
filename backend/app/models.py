@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Table
+from sqlalchemy import Boolean, Column, Integer, LargeBinary, String, DateTime, ForeignKey, Table
 from sqlalchemy.types import ARRAY
 from .database import Base
 
@@ -15,8 +15,10 @@ class User(Base):
     is_verified = Column(Boolean, default=False)
     user_skill = Column(String(100))
     user_description = Column(String(250))
+    user_profile_picture = Column(LargeBinary)
     user_location = Column(String(50))
     user_last_login = Column(DateTime)
+    is_medical_professional = Column(Boolean, default=False)
     type = Column(String(50))
 
     def to_dict(self) -> dict:
@@ -28,15 +30,9 @@ class User(Base):
         """
         return {
             "user_id": self.user_id,
-            "user_email": self.user_email,
-            "user_first": self.user_first,
-            "user_last": self.user_last,
             "username": self.username,
             "is_active": self.is_active,
             "is_verified": self.is_verified,
-            "user_skill": self.user_skill,
-            "user_description": self.user_description,
-            "user_location": self.user_location,
         }
 
     __mapper_args__ = {

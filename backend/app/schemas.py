@@ -12,7 +12,9 @@ class UserBase(BaseModel):
     is_verified: bool = False
     user_skill: Optional[str] = None
     user_description: Optional[str] = None
+    user_profile_picture: Optional[bytes] = None
     user_location: Optional[str] = None
+    is_medical_professional: Optional[bool] = None
 
 
 class UserCreate(UserBase):
