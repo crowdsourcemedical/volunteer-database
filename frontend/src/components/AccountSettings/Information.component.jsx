@@ -1,20 +1,20 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const ContactInformation = ({ title }) => (
-  <Fragment>
+  <section>
     <h1>{title}</h1>
     <p> We're able to send supplies and help and help within these regions.</p>
-  </Fragment>
+  </section>
 );
 
 const Notification = ({ title }) => (
-  <Fragment>
+  <section>
     <h1>{title}</h1>
     <p>
       We'll try to connect you with the kind of talent you need andare looking
       for.
     </p>
-  </Fragment>
+  </section>
 );
 
 export { ContactInformation, Notification };
