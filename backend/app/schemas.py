@@ -29,3 +29,13 @@ class User(UserBase):
 class Login(BaseModel):
     email: str
     password: str
+
+
+class SkillBase(BaseModel):
+    user_email: str
+    username: str
+    is_active: bool = True
+    is_verified: bool = False
+    user_skill: Optional[str] = None
+    user_description: Optional[str] = None
+    user_location: Optional[str] = None
