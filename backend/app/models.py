@@ -59,11 +59,8 @@ class Volunteer(User):
 
 class Position(Base):
     __tablename__ = "position"
-
     position_id = Column(Integer, primary_key=True, index=True)
     position_name = Column(String(50))
-        'polymorphic_identity': 'volunteers'
-    }
 
 
 class Project(Base):
