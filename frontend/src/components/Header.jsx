@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import {
-  Grid, Typography, Button, Hidden, Dialog,
-} from '@material-ui/core';
+import { Grid, Typography, Button, Hidden, Dialog } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../images/crowd-source-logo.svg';
 import LoginForm from './Forms/LoginForm';
 import Searchbar from './Search/MobileSearch';
 
-
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     backgroundColor: 'white',
-    height: 50,
+    height: 80,
   },
   logo: {
     paddingLeft: 10,

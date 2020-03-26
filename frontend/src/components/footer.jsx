@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Grid,
-  Box,
-  Typography,
-  Link,
-} from '@material-ui/core';
+import { Container, Grid, Box, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import COLORS from '../styles/colors';
 
@@ -12,20 +7,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: COLORS.grayLight,
     textAlign: 'center',
-    paddingTop: theme.spacing(8),
-    paddingRight: theme.spacing(1),
-    paddingBottom: theme.spacing(8),
-    paddingLeft: theme.spacing(1),
+    height: '120px',
   },
-  content: {
-    marginRight: 'auto',
-    marginBottom: theme.spacing(6),
-    marginLeft: 'auto',
-    maxWidth: '500px',
+  linkText: {
+    textAlign: 'center',
+    fontSize: '20px',
+    color: '#000',
+    margin: '0 70px',
   },
-  copy: {
-    marginRight: theme.spacing(1),
-    marginLeft: theme.spacing(1),
+  footerItemContainer: {
+    height: '50%',
   },
 }));
 
@@ -33,57 +24,36 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Box
-      className={classes.root}
-    >
+    <Grid container direction="column" className={classes.root}>
       <Grid
         container
-        justify="space-around"
-        className={classes.content}
+        justify="center"
+        alignItems="center"
+        className={classes.footerItemContainer}
       >
-        <Link
-          href="#"
-        >
-          <Typography
-            variant="h5"
-          >
-            How it Works
-          </Typography>
+        <Link className={classes.linkText} href="#">
+          How it Works
         </Link>
-
-        <Link
-          href="#"
-        >
-          <Typography
-            variant="h5"
-          >
-            Legal
-          </Typography>
+        <Link className={classes.linkText} href="#">
+          Legal
         </Link>
-
-        <Link
-          href="#"
-        >
-          <Typography
-            variant="h5"
-          >
-            Get Involved
-          </Typography>
+        <Link className={classes.linkText} href="#">
+          Get Involved
         </Link>
       </Grid>
-
-      <Typography
-        variant="h6"
+      <Grid
+        container
+        justify="center"
+        alignItems="center"
+        className={classes.footerItemContainer}
       >
-        Crowd Source Medical
-        <span
-          className={classes.copy}
-        >
-          &copy;
-        </span>
-        { new Date().getFullYear() }
-      </Typography>
-    </Box>
+        <Typography variant="body1">
+          <span>&copy;</span>
+          {new Date().getFullYear()}
+          {' Crowd Source Medical'}
+        </Typography>
+      </Grid>
+    </Grid>
   );
 };
 

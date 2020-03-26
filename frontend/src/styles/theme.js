@@ -9,11 +9,13 @@ const theme = createMuiTheme({
       fontFamily: '"Poppins", sans-serif',
       fontSize: '4rem',
       fontWeight: 'bold',
+      marginBottom: '25px',
     },
     h2: {
       fontFamily: '"Poppins", sans-serif',
       fontSize: '2rem',
       fontWeight: 'bold',
+      marginBottom: '25px',
     },
     h3: {
       fontFamily: '"Poppins", sans-serif',
