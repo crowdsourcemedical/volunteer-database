@@ -19,8 +19,17 @@ module.exports = {
   },
   plugins: [],
   rules: {
+    'no-console': 'off',
+    'no-shadow': 'off',
     'react/forbid-prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-fragments': 'off',
+    'react/no-unescaped-entities': 'off',
+    'react/no-array-index-key': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/alt-text': 'off',
+    'jsx-a11y/heading-has-content': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
 };
