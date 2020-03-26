@@ -1,144 +1,293 @@
-import React, { useState } from 'react';
+import React from "react";
+import { Formik, Form, Field, FieldArray } from "formik";
+import { makeStyles } from "@material-ui/core/styles";
 import {
-  Button,
-  CircularProgress,
-  FormControl,
-  FormHelperText,
+  Typography,
   Grid,
-  Icon,
-  MenuItem,
-  Select,
+  Link,
+  FormControlLabel,
+  Checkbox,
+  InputAdornment,
+  Button,
   TextField,
-} from '@material-ui/core';
+  Select,
+  MenuItem
+} from "@material-ui/core";
+import LocationOnRoundedIcon from "@material-ui/icons/LocationOnRounded";
+import 'react-dropzone-uploader/dist/styles.css' //Might need to edit css to make nicer
+import Dropzone from 'react-dropzone-uploader'
 
-const workInFields = [
-  {
-    name: 'Medical',
-    specifics: [
-      'Attending',
-      'Resident',
-      'Intern',
-      'Medical Student',
-      'Physician Assistant',
-      'Nurse Practitioner',
-      'Registered Nurse',
-      'Emergency Medical Technician',
-    ],
+const useStyles = makeStyles(theme => ({
+  heading: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(8)
   },
-  {
-    name: 'Computer Science',
-    specifics: [
-      'Front-end Developer (AKA Client-Side Developer)',
-      'Back-end Developer (AKA Service-side Developer)',
-      'Full-stack Developer',
-      'Middle-Tier Developer',
-      'Web Developer',
-      'Desktop Developer',
-      'Mobile Developer',
-      'Graphics Developer',
-    ],
+  formSection: {
+    marginBottom: theme.spacing(8)
   },
-];
+  checkboxSection: {
+    marginBottom: theme.spacing(4)
+  },
+  form: {
+    marginBottom: theme.spacing(10)
+  }
+}));
 
-const SignupVolunteerPage = (props) => {
-  const [email, setEmail] = useState('');
-  const [password1, setPassword1] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [workFieldGeneral, setWorkFieldGeneral] = useState(workInFields[0].name);
-  const [workFieldSpecific, setWorkFieldSpecific] = useState(workInFields[0].specifics[0]);
-  // TODO attempt to autofill this from the user's browser's location
-  const [location, setLocation] = useState('');
-  const [moreInformation, setMoreInformation] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+function handleFormSubmit(fields, form) {
+  console.log(fields);
+  form.setSubmitting(false);
+}
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    // TODO this is where the HTTP POST should be sent, waited for, and then some sort of navigation should occur
+function StaffCheckbox({ staff, arrayHelpers, disabled }) {
+  return (
+    <FormControlLabel
+      key={staff.id}
+      label={staff.label}
+      control={
+        <Checkbox
+          color="primary"
+          value={staff.id}
+          disabled={disabled}
+          onChange={e =>
+            e.target.checked
+              ? arrayHelpers.push(staff.id)
+              : arrayHelpers.remove(staff.id)
+          }
+        />
+      }
+    />
+  );
+}
+
+function SignUpVolunteerPage() {
+  const classes = useStyles();
+
+  const staff = {
+    cad: [
+      { label: "Solid Works", id: "solid-works" },
+      { label: "Inventor", id: "inventor" }
+    ],
+    medical: [
+      { label: "Registered Nurse", id: "registered-nurse" },
+      { label: "Physician Assistant", id: "physician-assistant" },
+      { label: "Medical Student", id: "medical-student" },
+      { label: "Intern", id: "intern" },
+      { label: "Resident", id: "resident" },
+      { label: "Attending", id: "attending" }
+    ],
+    engineering: [
+      { label: "Mechanical Engineer", id: "mechanical-engineer" },
+      {
+        label: "Mechanical Engineer with FEA experience",
+        id: "mechanical-engineer-with-fea-experience"
+      },
+      { label: "Electrical Engineer", id: "electrical-engineer" },
+      { label: "Mechatronics Engineer", id: "mechatronics-engineer" }
+    ],
+    legal: [
+      { label: "Lawyer", id: "lawyer" },
+      { label: "Barrister", id: "barrister" },
+      { label: "Paralegal", id: "paralegal" }
+    ],
+    manufacturing: [
+      { label: "FDM 3D printer", id: "fdm-3-d-printer" },
+      { label: "SLA 3D printer", id: "sla-3-d-printer" },
+      { label: "SLS Nylon 3D printer", id: "sls-nylon-3-d-printer" },
+      { label: "Machinist", id: "machinist" }
+    ]
   };
 
-  /*
-In terms of raw validation,
-- The form inputs are marked required, so we don't need to validate that they're not empty.
-- The email input is marked with the email type, so we don't need to validate that it's a valid
-  email (and that's next to impossible anyway).
-- We _do_ need to check that the passwords are equal.
-In terms of UX,
-- Everything should be checked so the user knows when they can click the submit button.
-*/
-  const isReady = () => email !== '' && password1 !== '' && password2 !== '' && workFieldGeneral !== ''
-  && workFieldSpecific !== '' && location !== '' && moreInformation !== '' && password1 === password2;
+  const checkboxSections = [
+    { staff: staff.medical, label: "Medical Staff Advisors" },
+    { staff: staff.engineering, label: "Engineering" },
+    { staff: staff.manufacturing, label: "Manufacturing" },
+    { staff: staff.legal, label: "Legal" },
+    { staff: staff.cad, label: "Computer-Aided Design" }
+  ];
 
-  /*
-* This is a separate method so that behavior can ran that sets the specific work field to the first
-* option of the newly-selected general work field. This prevents users from seeing a specific field
-* from one general field when they've selected a different one.
-*/
-  const handleChangeWorkGeneral = (e) => {
-    const newVal = e.target.value;
-    setWorkFieldGeneral(newVal);
-    setWorkFieldSpecific(workInFields.filter((field) => newVal === field.name)[0].specifics[0]);
-  };
 
-  const getFieldSpecificOptions = workInFields.filter((field) => workFieldGeneral === field.name)[0].specifics;
+  const disabledStaff = ["lawyer", "electrical-engineer", "intern", "inventor"];
 
   return (
-    <div>
-      <h2>Register an account</h2>
-      <form onSubmit={handleSubmit}>
-        <Grid container>
-          <Grid item xs={12}>
-            <FormControl>
-              <TextField id="email" label="Email" type="email" required onChange={(e) => setEmail(e.target.value)} />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl>
-              <TextField id="password" label="Password" type="password" required onChange={(e) => setPassword1(e.target.value)} />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl>
-              <TextField id="password-confirm" label="Confirm password" type="password" required onChange={(e) => setPassword2(e.target.value)} />
-            </FormControl>
-          </Grid>
-          {/* TODO the styling on these selects should be improved on */}
-          <Grid item xs={12}>
-            <FormControl>
-              <Select id="work-field-general" value={workFieldGeneral} onChange={handleChangeWorkGeneral}>
-                { workInFields.map((field) => <MenuItem value={field.name} key={field.name}>{field.name}</MenuItem>) }
-              </Select>
-              <FormHelperText>I work in the field of ...</FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl>
-              <Select id="work-field-specific" value={getFieldSpecificOptions[0]} onChange={(e) => setWorkFieldSpecific(e.target.value)}>
-                { getFieldSpecificOptions.map((spec) => <MenuItem value={spec} key={spec}>{spec}</MenuItem>) }
-              </Select>
-              <FormHelperText>And that is, specifically ...</FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl>
-              <TextField id="location" label="I live in ..." required onChange={(e) => setLocation(e.target.value)} />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField id="more-information" label="Tell us more about yourself" multiline rows="4" required onChange={(e) => setMoreInformation(e.target.value)} />
-          </Grid>
-          <Grid item xs={12}>
-            <Button id="submit" type="submit" variant="contained" color="primary" style={{ marginTop: '1rem' }} endIcon={<Icon>send</Icon>} disabled={!isReady() || isLoading}>
-              Submit
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            { isLoading && <CircularProgress style={{ marginTop: '2rem' }} /> }
+    <Formik
+      initialValues={{
+        userDescription: "",
+        location: "",
+        selectedField: "medical",
+        soughtStaff: [],
+        profileImage: []
+      }}
+      onSubmit={handleFormSubmit}
+    >
+      <Form class={classes.form} noValidate autoComplete="off">
+        <Grid justify="center" container>
+          <Grid item xs={11} sm={11} md={11} lg={9}>
+            <Grid container>
+              <Grid item>
+                <Typography className={classes.heading} variant="h2">
+                  Volunteer Signup
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid className={classes.formSection} container spacing={3}>
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  What's your specialty?
+                </Typography>
+                <Typography gutterBottom variant="body1">
+                  Let us know where you're best able to help
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="selectedField">
+                  {({ field, form }) => (
+                    <Select
+                      fullWidth
+                      disabled={!form.isValidating && form.isSubmitting}
+                      name="selectedField"
+                      value={field.value}
+                      onChange={field.onChange}
+                    >
+                      <MenuItem value="medical">Medical</MenuItem>
+                      <MenuItem value="computerScience">
+                        Computer Science
+                      </MenuItem>
+                    </Select>
+                  )}
+                </Field>
+              </Grid>
+            </Grid>
+            <Grid className={classes.formSection} container spacing={3}>
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  Tell us a little about yourself
+                </Typography>
+                <Typography gutterBottom variant="body1">
+                  What is your experience and how much time do you have to
+                  contribute?
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="userDescription">
+                  {({ field, form }) => (
+                    <TextField
+                      name="userDescription"
+                      disabled={!form.isValidating && form.isSubmitting}
+                      multiline
+                      rows={8}
+                      fullWidth
+                      size="medium"
+                      hiddenLabel
+                      placeholder="I’m an ER doctor in Western Massachussetts. We need 20 prints of the Prusa Protective Face Shield - RC2 asap. Print material needs to be sturdy enough to be decontaminated regularly. I’m thinking ABS, PETG, or nylon? Bonus karma if you can also provide the laser cut clear portion - they used 0.5mm thick petg sheet (Covestro VIVAK)."
+                      variant="filled"
+                      value={field.value}
+                      onChange={field.onChange}
+                      InputProps={{
+                        disableUnderline: true
+                      }}
+                    />
+                  )}
+                </Field>
+              </Grid>
+            </Grid>
+            <Grid className={classes.formSection} container spacing={3}>
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  Where are you located?
+                </Typography>
+                <Typography gutterBottom variant="body1">
+                  We're able to send supplies and help within these regions.
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="location">
+                  {({ field, form }) => (
+                    <TextField
+                      name="location"
+                      disabled={!form.isValidating && form.isSubmitting}
+                      fullWidth
+                      variant="filled"
+                      value={field.value}
+                      hiddenLabel
+                      placeholder="New York City, NY USA"
+                      onChange={field.onChange}
+                      InputProps={{
+                        disableUnderline: true,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <LocationOnRoundedIcon
+                              color="primary"
+                              fontSize="small"
+                            />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                  )}
+                </Field>
+              </Grid>
+            </Grid>
+            <Grid className={classes.formSection} container spacing={3}>
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  Skillset
+                </Typography>
+                <Typography gutterBottom variant="body1">
+                  We'll try to connect you with the kind of talent you need and
+                  are looking for.
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <FieldArray name="soughtStaff">
+                  {arrayHelpers =>
+                    checkboxSections.map(section => (
+                      <section
+                        className={classes.checkboxSection}
+                        key={section.label}
+                      >
+                        <Typography gutterBottom variant="h5">
+                          {section.label}
+                        </Typography>
+                        <Grid
+                          item
+                          container
+                          justify="flex-start"
+                          xs={12}
+                          sm={10}
+                          md={8}
+                          lg={10}
+                        >
+                          {section.staff.map(s => (
+                            <Grid item xs={6} key={s.id}>
+                              <StaffCheckbox
+                                staff={s}
+                                arrayHelpers={arrayHelpers}
+                                disabled={disabledStaff.includes(s.id)}
+                              />
+                            </Grid>
+                          ))}
+                        </Grid>
+                      </section>
+                    ))
+                  }
+                </FieldArray>
+              </Grid>
+            </Grid>
+            <Grid container justify="flex-end">
+              <Button
+                type="submit"
+                color="primary"
+                variant="contained"
+                size="medium"
+              >
+                Submit Application
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
-      </form>
-    </div>
+      </Form>
+    </Formik>
   );
-};
+}
 
-export default SignupVolunteerPage;
+export default SignUpVolunteerPage;

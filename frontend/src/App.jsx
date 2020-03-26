@@ -4,8 +4,9 @@ import Header from './components/Header';
 import HomePage from './pages/home';
 import SearchPage from './pages/search';
 import AboutPage from './pages/about';
-import SignupPage from './pages/signup';
-import SignupVolunteerPage from './pages/signup_volunteer';
+import SignupPage from './pages/signup_volunteer';
+import SignupVolunteerPage from './pages/signup_volunteer_mb';
+import AccountCreationPage from './pages/account_creation';
 import Style from './pages/style';
 import ProjectSubmit from './pages/ProjectSubmit';
 import Project from './pages/project';
@@ -20,6 +21,7 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={HomePage} />
+          <Route path="/profile/new" exact component={AccountCreationPage} />
           <Route path="/about" exact component={AboutPage} />
           <Route path="/search" exact component={SearchPage} />
           <Route path="/signup" exact component={SignupPage} />
