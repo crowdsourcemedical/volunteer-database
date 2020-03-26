@@ -11,7 +11,7 @@ Will lint all of the `.js` and `.jsx` files inside the `/src` folder.
 
 ### `yarn prettify`
 
-Will format all of the code inside the `/src` folder.
+Will format all of the code inside the `/src` folder. If you want to change a rule or set a certain style, talk to the leads first so if there is a major change it's being communicated properly.
 
 ## Linting/Formatting Plugins
 
