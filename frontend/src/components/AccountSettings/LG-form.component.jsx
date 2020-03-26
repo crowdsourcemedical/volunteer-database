@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Checkbox, FormControlLabel, TextField } from '@material-ui/core';
-import { ContactInformation, Notification } from './Information.component';
+import { ContactInformation } from './Information.component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
