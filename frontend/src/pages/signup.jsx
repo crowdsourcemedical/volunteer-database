@@ -14,6 +14,8 @@ import {
   MenuItem
 } from "@material-ui/core";
 import LocationOnRoundedIcon from "@material-ui/icons/LocationOnRounded";
+import 'react-dropzone-uploader/dist/styles.css' //Might need to edit css to make nicer
+import Dropzone from 'react-dropzone-uploader'
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -56,6 +58,8 @@ function StaffCheckbox({ staff, arrayHelpers, disabled }) {
     />
   );
 }
+
+
 
 function SignUpPage() {
   const classes = useStyles();
@@ -103,7 +107,21 @@ function SignUpPage() {
     { staff: staff.cad, label: "Computer-Aided Design" }
   ];
 
+
   const disabledStaff = ["lawyer", "electrical-engineer", "intern", "inventor"];
+
+  const getUploadParams = () => {
+    return { url: '' } //URL to upload the photo to
+  }
+
+  const handleChangeStatus = ({ meta, remove }, status) => {
+    if (status === 'headers_received') {
+      //toast(`${meta.name} uploaded!`)
+      remove()
+    } else if (status === 'aborted') {
+      //toast(`${meta.name}, upload failed...`)
+    }
+  }
 
   return (
     <Formik
@@ -111,7 +129,8 @@ function SignUpPage() {
         userDescription: "",
         location: "",
         selectedField: "medical",
-        soughtStaff: []
+        soughtStaff: [],
+        profileImage: []
       }}
       onSubmit={handleFormSubmit}
     >
@@ -121,11 +140,69 @@ function SignUpPage() {
             <Grid container>
               <Grid item>
                 <Typography className={classes.heading} variant="h2">
-                  Register to Volunteer
+                  Account Setup
                 </Typography>
               </Grid>
             </Grid>
             <Grid className={classes.formSection} container spacing={3}>
+            <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  Profile Picture
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+
+                <Dropzone
+                    getUploadParams={getUploadParams}
+                    onChangeStatus={handleChangeStatus}
+                    accept="image/*"
+                    maxSize={1000}
+                    maxFiles={1}
+                    multiple={false}
+                    canCancel={false}
+                    inputContent="Upload Profile Pic"
+                    styles={{
+                      dropzone: { width: 400, height: 100 },
+                      dropzoneActive: { borderColor: 'green' },
+                    }}
+                  />
+
+              </Grid>
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  I am here to
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="userPurpose">
+                {({ field, form }) => (
+                  <React.Fragment>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        value={staff.id}
+                        //onChange={}
+                      />
+                    }
+                    label="Create a Project"
+                  />
+                  <FormControlLabel
+                  control={
+                    <Checkbox
+                      color="primary"
+                      value={staff.id}
+                      //onChange={}
+                    />
+                    }
+                    label="Volunteer"
+                  />    
+                  </React.Fragment>
+                )}
+
+                </Field>
+
+              </Grid>
               <Grid xs={12} sm={12} lg={5} item>
                 <Typography gutterBottom variant="h3">
                   What's your specialty?
