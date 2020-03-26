@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     '& > *': {
       marginTop: theme.spacing(3),
-      margin: theme.spacing(1),
+      marginLeft: theme.spacing(7),
     },
     label: {
       margin: 8,
@@ -25,8 +25,9 @@ export default function XSFormField() {
   return (
     <form className={classes.root} noValidate autoComplete='off'>
       <Grid container spacing={3}>
-        <ContactInformation title='Contact Information' />
         <Grid item xs={12}>
+          <h1>Account Settings</h1>
+          <ContactInformation title='Contact Information' />
           <TextField
             id='standard-full-width'
             label='First Name'
@@ -81,7 +82,7 @@ export default function XSFormField() {
             labelPlacement='end'
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <Button
             variant='contained'
             size='large'
@@ -92,7 +93,7 @@ export default function XSFormField() {
             Delete Account
           </Button>
         </Grid>
-        <Grid item xs={12} style={{ float: 'right' }}>
+        <Grid item xs={6} style={{ float: 'right' }}>
           <Button
             variant='contained'
             size='large'
