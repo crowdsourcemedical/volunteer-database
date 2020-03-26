@@ -1,39 +1,45 @@
 version: '3.3'
 
 services:
-        frontend:
-                build:
-                        context: ./
-                        dockerfile: ./frontend/Dockerfile
-                command: ./frontend/run
-                volumes:
-                        - ./frontend:/frontend
-                ports:
-                        - 3001:3000
-                depends_on:
-                        - backend 
+    frontend:
+        build:
+            context: ./
+            dockerfile: ./frontend/Dockerfile
+        image: css_frontend
+        container_name: css_frontend
+        command: ./frontend/run
+        volumes:
+            - ./frontend:/frontend
+        ports:
+            - 3001:3000
+        depends_on:
+            - backend
 
-        backend:
-                build:
-                        context: ./
-                        dockerfile: ./backend/Dockerfile                
-                command: /start-reload.sh
-                volumes:
-                        - ./backend:/app
-                environment:
-                        PORT: 8000
-                        VARIABLE_NAME: CSM_Backend
-                ports:
-                        - 8000:8000
-                depends_on:
-                        - db
+    backend:
+        build:
+            context: ./
+            dockerfile: ./backend/Dockerfile
+        image: css_backend
+        container_name: css_backend
+        command: /start-reload.sh
+        volumes:
+            - ./backend:/app
+        environment:
+            PORT: 8000
+            VARIABLE_NAME: app
+        ports:
+            - 8000:8000
+        depends_on:
+            - db
 
-        db:
-                build: 
-                        context: ./
-                        dockerfile: ./db/Dockerfile
-                restart: always
-                environment:
-                        POSTGRES_USER: postgres
-                        POSTGRES_PASSWORD: dev-password-123
-                        POSTGRES_DB: CSM
+    db:
+        build:
+            context: ./
+            dockerfile: ./db/Dockerfile
+        image: css_db
+        container_name: css_db
+        restart: always
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: dev-password-123
+            POSTGRES_DB: CSM
