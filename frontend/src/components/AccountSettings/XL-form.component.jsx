@@ -18,24 +18,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LGFormField() {
+export default function XLFormField() {
   const classes = useStyles();
 
   return (
     <form className={classes.root} noValidate autoComplete='off'>
       <Grid container spacing={3}>
         {/* Headline */}
-        <Grid item lg={2} />
+        <Grid item xl={2} />
 
-        <Grid item lg={3}>
+        <Grid item xl={3}>
           <h1>Account Settings</h1>
           <ContactInformation title='Contact Information' />
         </Grid>
 
-        <Grid item lg={1} />
+        <Grid item xl={1} />
         {/* First Name Form Field */}
 
-        <Grid item lg={2} style={{ alignSelf: 'flex-end' }}>
+        <Grid item xl={2} style={{ alignSelf: 'flex-end' }}>
           <TextField
             id='standard-full-width'
             label='First Name'
@@ -46,7 +46,7 @@ export default function LGFormField() {
             }}
           />
         </Grid>
-        <Grid item lg={2} style={{ alignSelf: 'flex-end' }}>
+        <Grid item xl={2} style={{ alignSelf: 'flex-end' }}>
           <TextField
             id='standard-full-width'
             label='Last Name'
@@ -59,10 +59,10 @@ export default function LGFormField() {
         </Grid>
 
         {/* Email Address Form Field */}
-        <Grid item lg={2} />
-        <Grid item lg={6} />
+        <Grid item xl={2} />
+        <Grid item xl={6} />
 
-        <Grid item lg={4}>
+        <Grid item xl={4}>
           <TextField
             id='standard-full-width'
             label='Email Address'
@@ -75,27 +75,27 @@ export default function LGFormField() {
             }}
           />
         </Grid>
-        <Grid item lg={2} />
+        <Grid item xl={2} />
 
         {/* Contact Information */}
-        <Grid item lg={2} />
-        <Grid item lg={3} style={{ alignSelf: 'flex-end' }}>
+        <Grid item xl={2} />
+        <Grid item xl={3} style={{ alignSelf: 'flex-end' }}>
           <h2 style={{ margin: '0' }}>Contact Information</h2>
         </Grid>
-        <Grid item lg={1} />
-        <Grid item lg={4} style={{ alignSelf: 'flex-end' }}>
+        <Grid item xl={1} />
+        <Grid item xl={4} style={{ alignSelf: 'flex-end' }}>
           <h2 style={{ margin: '0' }}>Emails</h2>
         </Grid>
-        <Grid item lg={2} />
+        <Grid item xl={2} />
         {/* Check Box */}
-        <Grid item lg={2} />
-        <Grid item lg={4} style={{ alignSelf: 'flex-end' }}>
+        <Grid item xl={2} />
+        <Grid item xl={4} style={{ alignSelf: 'flex-end' }}>
           <p style={{ margin: '0' }}>
             We'll try to connect you with the kind of talent you need andare
             looking for.
           </p>
         </Grid>
-        <Grid item lg={2}>
+        <Grid item xl={2}>
           <FormControlLabel
             value='end'
             control={<Checkbox color='primary' />}
@@ -103,7 +103,7 @@ export default function LGFormField() {
             labelPlacement='end'
           />
         </Grid>
-        <Grid item lg={2}>
+        <Grid item xl={2}>
           <FormControlLabel
             value='end'
             control={<Checkbox color='primary' />}
@@ -111,11 +111,11 @@ export default function LGFormField() {
             labelPlacement='end'
           />
         </Grid>
-        <Grid item lg={2} />
+        <Grid item xl={2} />
 
         {/* Buttons */}
-        <Grid item lg={6} />
-        <Grid item lg={2}>
+        <Grid item xl={6} />
+        <Grid item xl={2}>
           <Button
             variant='contained'
             size='medium'
@@ -126,7 +126,7 @@ export default function LGFormField() {
             Delete Account
           </Button>
         </Grid>
-        <Grid item lg={2}>
+        <Grid item xl={2}>
           <Button
             variant='contained'
             size='medium'
@@ -136,7 +136,7 @@ export default function LGFormField() {
             Save Settings
           </Button>
         </Grid>
-        <Grid item lg={2} />
+        <Grid item xl={2} />
       </Grid>
     </form>
   );

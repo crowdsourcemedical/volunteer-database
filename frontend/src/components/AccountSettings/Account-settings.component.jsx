@@ -4,10 +4,11 @@ import Grid from '@material-ui/core/Grid';
 
 // Account Settings Components
 import { Hidden } from '@material-ui/core';
-import XSFormField from './XS-form.component';
+import XLFormField from './XL-form.component';
 import LGFormField from './LG-form.component';
 import MDFormField from './MD-form.component';
 import SMFormField from './SM-form.component';
+import XSFormField from './XS-form.component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +33,9 @@ export default function AccountSettings() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
+        <Hidden only={['xs', 'sm', 'md', 'lg']}>
+          <XLFormField />
+        </Hidden>
         <Hidden only={['xs', 'sm', 'md', 'xl']}>
           <LGFormField />
         </Hidden>
