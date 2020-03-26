@@ -8,7 +8,9 @@ import { ContactInformation, Notification } from './Information.component';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    '& > *': {},
+    '& > *': {
+      marginTop: theme.spacing(3),
+    },
     label: {
       margin: 8,
       color: '#A1A1A1',
