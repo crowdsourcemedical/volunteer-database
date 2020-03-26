@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core';
 import Description from './Description.component';
 import Tags from './Tags.component';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   grid: {
     display: 'grid',
     gridTemplateAreas: '. description tags .',
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   borderTop: {
     borderTop: '1px solid grey',
   },
-}));
+});
 
 function Body({ txt, icon, label }) {
   const classes = useStyles();

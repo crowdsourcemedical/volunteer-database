@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 // User Profile Components
 import SideBar from './Sidebar.component';
 import { SubBar } from './Sub-bar.component';
-import CoverImage from './Image-cover.component';
 import Grid from './Grid.component';
 import Tags from './Tags.component';
 
@@ -45,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ResponsiveDrawer(props) {
+function ResponsiveDrawer() {
   const classes = useStyles();
 
   return (

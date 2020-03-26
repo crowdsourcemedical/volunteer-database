@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   wrapper: {
     textAlign: 'left',
     display: 'flex',
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   heroButtons: {
     marginTop: '50px',
   },
-}));
+});
 export const Hero = ({ image, children, primaryButton, secondaryButton }) => {
   const classes = useStyles();
 
