@@ -1,12 +1,10 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey
-from sqlalchemy.dialects.postgresql import HSTORE
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Table
 from sqlalchemy.types import ARRAY
 from .database import Base
 
 
 class User(Base):
     __tablename__ = "users"
-
     user_id = Column(Integer, primary_key=True, index=True)
     user_email = Column(String, unique=True, index=True)
     user_first = Column(String(50))
@@ -39,11 +37,11 @@ class User(Base):
             "user_skill": self.user_skill,
             "user_description": self.user_description,
             "user_location": self.user_location,
-        }   
+        }
 
     __mapper_args__ = {
-        'polymorphic_identity':'users',
-        'polymorphic_on':type
+        'polymorphic_identity': 'users',
+        'polymorphic_on': type
     }
 
 
@@ -55,11 +53,31 @@ class Volunteer(User):
     volunteer_skillset = Column(ARRAY(Integer))
 
     __mapper_args__ = {
-        'polymorphic_identity':'volunteers'
+        'polymorphic_identity': 'volunteers'
     }
+
 
 class Position(Base):
     __tablename__ = "position"
-
     position_id = Column(Integer, primary_key=True, index=True)
     position_name = Column(String(50))
+
+
+class Project(Base):
+    __tablename__ = "project"
+    project_id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
+    project_title = Column(String(100), nullable=False)
+    project_description = Column(String, nullable=False)
+    project_location = Column(String(50), nullable=False)
+
+
+class Skill(Base):
+    __tablename__ = "skill"
+    skill_id = Column(Integer, primary_key=True, index=True)
+    skill_name = Column(String(50), nullable=False, unique=True)
+
+
+association_table = Table('requiredskills', Base.metadata,
+                          Column('skill_id', Integer, ForeignKey('skill.skill_id')),
+                          Column('project_id', Integer, ForeignKey('project.project_id')))
