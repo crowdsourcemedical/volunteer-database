@@ -14,8 +14,6 @@ import {
   MenuItem
 } from "@material-ui/core";
 import LocationOnRoundedIcon from "@material-ui/icons/LocationOnRounded";
-import 'react-dropzone-uploader/dist/styles.css' //Might need to edit css to make nicer
-import Dropzone from 'react-dropzone-uploader'
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -59,7 +57,7 @@ function StaffCheckbox({ staff, arrayHelpers, disabled }) {
   );
 }
 
-function SignUpVolunteerPage() {
+function SignUpPage() {
   const classes = useStyles();
 
   const staff = {
@@ -105,7 +103,6 @@ function SignUpVolunteerPage() {
     { staff: staff.cad, label: "Computer-Aided Design" }
   ];
 
-
   const disabledStaff = ["lawyer", "electrical-engineer", "intern", "inventor"];
 
   return (
@@ -114,8 +111,7 @@ function SignUpVolunteerPage() {
         userDescription: "",
         location: "",
         selectedField: "medical",
-        soughtStaff: [],
-        profileImage: []
+        soughtStaff: []
       }}
       onSubmit={handleFormSubmit}
     >
@@ -125,7 +121,7 @@ function SignUpVolunteerPage() {
             <Grid container>
               <Grid item>
                 <Typography className={classes.heading} variant="h2">
-                  Volunteer Signup
+                  Register to Volunteer
                 </Typography>
               </Grid>
             </Grid>
@@ -290,4 +286,4 @@ function SignUpVolunteerPage() {
   );
 }
 
-export default SignUpVolunteerPage;
+export default SignUpPage;

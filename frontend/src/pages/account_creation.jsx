@@ -55,10 +55,9 @@ function AccountCreationPage() {
   return (
     <Formik
       initialValues={{
-        userDescription: "",
-        location: "",
-        selectedField: "medical",
-        soughtStaff: [],
+        email: "",
+        userName: "",
+        password: "",
         profileImage: []
       }}
       onSubmit={handleFormSubmit}
@@ -95,6 +94,45 @@ function AccountCreationPage() {
                       dropzoneActive: { borderColor: 'green' },
                     }}
                   />
+
+              </Grid>
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  Username
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="userName">
+                {({ field, form }) => (
+                  <TextField
+                    //disabled={!form.isValidating && form.isSubmitting}
+                    //disabled={false}
+                    //id="username"
+                    label="Username"
+                    //value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
+
+                </Field>
+
+              </Grid>
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  Password
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="password">
+                {({ field, form }) => (
+                  <TextField
+                    id="password"
+                    label="Password"
+                    value={field.value}
+                  />
+                )}
+
+                </Field>
 
               </Grid>
               <Grid xs={12} sm={12} lg={5} item>
