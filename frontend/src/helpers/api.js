@@ -9,35 +9,37 @@ const { BASE_URL } = getEnvVars();
 class Api {
   jwt = null;
 
+  createFormData(payload) {
+    return Object.keys(payload).map((key) => {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(payload[key]);
+    }).join('&');
+  }
+
   async request({
     route, payload, action = 'GET', headers = {},
   }) {
     const requestURL = `${BASE_URL}${route}`;
-
-    const requestHeaders = {
-      'Content-Type': 'application/json',
-      ...headers,
-    };
-
+    
     const options = {
       method: action,
-      headers: requestHeaders,
+      headers: headers
     };
 
     if (payload) {
-      options.body = JSON.stringify(payload);
+      // the /token route requires FormData in payload
+      options.body = route === '/token' ? this.createFormData(payload) : JSON.stringify(payload);
     }
 
     return fetch(requestURL, options).then((res) => res.json()).catch((e) => e);
   }
 
-  async verifyToken(payload) {
+  // this is a temporary endpoint to verify jwt token
+  async verifyToken() {
     const response = await this.request({
       route: '/token/verify',
-      action: 'POST',
-      payload,
+      action: 'GET',
       headers: {
-        'Authorization': `Bearer: ${this.jwt}`
+        Authorization: `Bearer ${this.jwt}`
       }
     });
 
@@ -49,11 +51,15 @@ class Api {
       route: '/token',
       action: 'POST',
       payload,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      }
     });
 
-    // TODO - set jwt in local storage or if this response is success
+    if (response && response.access_token) {
+      this.jwt = response.access_token;
+    }
 
-    this.jwt = response;
     return response;
   }
 
