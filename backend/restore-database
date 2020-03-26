@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+DB_NAME='CSS'
+
+if [ "$1" = "" ]
+then
+    echo "Usage: $0 <pgdump file>"
+    exit 1
+fi
+
+FILE=$1
+DIR="$(pwd)/$(dirname $FILE)"
+
+docker-compose stop backend
+docker-compose start db
+docker-compose exec -e PGPASSWORD='dev-password-123'  db /bin/sh -c "dropdb -h db -U postgres $DB_NAME"
+docker-compose exec -e PGPASSWORD='dev-password-123' db /bin/sh -c "createdb -h db -U postgres -O postgres $DB_NAME"
+# Run because exec does not allow mounts
+docker-compose run -e PGPASSWORD='dev-password-123' -v "$DIR:/dump_to_restore" db /bin/sh -c "pg_restore -h db -U postgres -d $DB_NAME /dump_to_restore/$(basename $FILE)"
+
+docker-compose up -d backend db

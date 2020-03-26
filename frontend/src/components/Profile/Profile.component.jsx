@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 // Material UI Components
 import LabelIcon from '@material-ui/icons/Label';
 
 // Profile Components
-//import Header from './Header.component.jsx';
+import Header from './Header.component.jsx';
 import AccountProfile from './Avatar.component';
 import Body from './Body.component';
 import ProjectTitle from './Project-title.component';
@@ -46,7 +46,7 @@ class Profile extends Component {
     } = this.state;
     return (
       <>
-        {/* <Header accountImg={avatarURL} logo={logo} /> */}
+        <Header accountImg={avatarURL} logo={logo} />
         <AccountProfile
           accountImg={avatarURL}
           profileName={profileName}

@@ -22,6 +22,6 @@ module.exports = {
     'react',
   ],
   rules: {
-    "linebreak-style": ["error", "windows", "unix"]
+    "max-len": ["error", { "code": 120, "ignoreUrls": true }]
   },
 };
