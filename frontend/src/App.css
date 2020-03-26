@@ -1,7 +1,10 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-auto-flow: row;
 }
+
+
 #legal_recomendations:hover {
   cursor: pointer;
 }
