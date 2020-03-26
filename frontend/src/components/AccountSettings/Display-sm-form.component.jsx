@@ -8,8 +8,10 @@ import { ContactInformation, Notification } from './Information.component';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    '& > *': {
-      margin: theme.spacing(6),
+    '& > *': {},
+    label: {
+      margin: 8,
+      color: '#A1A1A1',
     },
   },
 }));
@@ -20,52 +22,53 @@ export default function XSFormField() {
   return (
     <form className={classes.root} noValidate autoComplete='off'>
       <Grid container spacing={3}>
-        {/* Title */}
-        <Grid item lg={2} />
-        <Grid item lg={4}>
-          <h1>Account Setting</h1>
-        </Grid>
-        <Grid item lg={4} />
-        <Grid item lg={2} />
-
-        {/* Contact Information Row */}
-        <Grid item lg={2} />
-        <Grid item lg={3}>
+        {/* Head line */}
+        <Grid item sm={2} />
+        <Grid item sm={8}>
+          <h1>Account Settings</h1>
           <ContactInformation title='Contact Information' />
         </Grid>
+        <Grid item sm={2} />
 
-        <Grid item lg={1} />
-        <Grid item lg={2} style={{ alignSelf: 'center' }}>
+        {/* First Name Text Field  */}
+        <Grid item sm={2} />
+        <Grid item sm={8}>
           <TextField
             id='standard-full-width'
             label='First Name'
+            className={classes.label}
+            fullWidth
             placeholder='John'
             InputLabelProps={{
               shrink: true,
             }}
           />
         </Grid>
+        <Grid item sm={2} />
 
-        <Grid item lg={2} style={{ alignSelf: 'center' }}>
+        {/* Last Name Text Field  */}
+        <Grid item sm={2} />
+        <Grid item sm={8}>
           <TextField
             id='standard-full-width'
             label='Last Name'
+            className={classes.label}
+            fullWidth
             placeholder='Doe'
             InputLabelProps={{
               shrink: true,
             }}
           />
         </Grid>
-        <Grid item lg={2} />
+        <Grid item sm={2} />
 
-        {/* Email Row */}
-
-        <Grid item lg={2} />
-        <Grid item lg={4} />
-        <Grid item lg={4}>
+        {/* Email Text Field */}
+        <Grid item sm={2} />
+        <Grid item sm={8}>
           <TextField
             id='standard-full-width'
             label='Email Address'
+            className={classes.label}
             fullWidth
             placeholder='Doe'
             margin='normal'
@@ -74,31 +77,19 @@ export default function XSFormField() {
             }}
           />
         </Grid>
-        <Grid item lg={2} />
+        <Grid item sm={2} />
 
-        {/* Notification & Email Title Row */}
-
-        <Grid item lg={2} />
-        <Grid item lg={3}>
-          <h2 style={{ margin: '0' }}>Notification Presence</h2>
+        {/* Contact Information */}
+        <Grid item sm={2} />
+        <Grid item sm={8}>
+          <Notification title='Contact Information' />
+          <h2>Email</h2>
         </Grid>
-        <Grid item lg={1} />
-        <Grid item lg={4}>
-          <h2 style={{ margin: '0' }}>Email</h2>
-        </Grid>
-        <Grid item lg={2} />
+        <Grid item sm={2} />
 
-        {/* Paragraph and CheckBox row */}
-        <Grid item lg={2} />
-        <Grid lg={3} style={{ alignSelf: 'center' }}>
-          <p style={{ margin: '0', paddingLeft: '12px' }}>
-            We'll try to connect you with the kind of talent you need andare
-            looking for.
-          </p>
-        </Grid>
-        <Grid item lg={1} />
-
-        <Grid item lg={2}>
+        {/* Check Box */}
+        <Grid item sm={2} />
+        <Grid item sm={4}>
           <FormControlLabel
             value='end'
             control={<Checkbox color='primary' />}
@@ -106,7 +97,7 @@ export default function XSFormField() {
             labelPlacement='end'
           />
         </Grid>
-        <Grid item lg={2}>
+        <Grid item sm={4}>
           <FormControlLabel
             value='end'
             control={<Checkbox color='primary' />}
@@ -114,33 +105,33 @@ export default function XSFormField() {
             labelPlacement='end'
           />
         </Grid>
-        {/* Button Row */}
+        <Grid item sm={2} />
 
-        <Grid item lg={6} />
+        {/* Buttons  */}
+        <Grid item sm={2} />
 
-        <Grid item lg={2}>
+        <Grid item sm={4}>
           <Button
             variant='contained'
             size='large'
             color='default'
             className={classes.margin}
-            style={{ float: 'right', color: '#AB2346' }}
+            style={{ color: '#AB2346' }}
           >
             Delete Account
           </Button>
         </Grid>
-        <Grid item lg={2}>
+        <Grid item sm={4} style={{ float: 'right' }}>
           <Button
             variant='contained'
             size='large'
             color='primary'
             className={classes.margin}
-            style={{ float: 'right' }}
           >
             Save Settings
           </Button>
         </Grid>
-        <Grid item lg={2} />
+        <Grid item sm={2} />
       </Grid>
     </form>
   );

@@ -30,7 +30,7 @@ export default function AccountSettings() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Hidden only='xs'>
+        <Hidden only={['xs', 'md', 'lg', 'xl']}>
           <SMFormField />
         </Hidden>
         <Hidden smUp mdUp lgUp xlUp>
