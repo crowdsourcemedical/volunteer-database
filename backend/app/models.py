@@ -1,6 +1,7 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Table
 from sqlalchemy.types import ARRAY
 from .database import Base
+
 
 class User(Base):
     __tablename__ = "users"
@@ -38,11 +39,9 @@ class User(Base):
             "user_location": self.user_location,
         }
 
-    
-
     __mapper_args__ = {
-        'polymorphic_identity':'users',
-        'polymorphic_on':type
+        'polymorphic_identity': 'users',
+        'polymorphic_on': type
     }
 
 
@@ -54,7 +53,7 @@ class Volunteer(User):
     volunteer_skillset = Column(ARRAY(Integer))
 
     __mapper_args__ = {
-        'polymorphic_identity':'volunteers'
+        'polymorphic_identity': 'volunteers'
     }
 
 
@@ -65,10 +64,14 @@ class Project(Base):
     project_title = Column(String(100), nullable=False)
     project_description = Column(String, nullable=False)
     project_location = Column(String(50), nullable=False)
-    project_skillset = Column(ARRAY(Integer), ForeignKey("skill.skill_id"))
 
 
 class Skill(Base):
     __tablename__ = "skill"
     skill_id = Column(Integer, primary_key=True, index=True)
     skill_name = Column(String(50), nullable=False, unique=True)
+
+
+association_table = Table('requiredskills', Base.metadata,
+                          Column('skill_id', Integer, ForeignKey('skill.skill_id')),
+                          Column('project_id', Integer, ForeignKey('project.project_id')))
