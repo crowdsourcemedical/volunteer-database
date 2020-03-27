@@ -41,11 +41,11 @@ async def login(
     Returns:
         The generated OAuth token information
     """
-    user = crud.check_user(db, form_data.username, form_data.password)
+    user = crud.check_user(db, form_data.username, form_data.password)  # Shadows name user from outer scope
     if not user:
         raise HTTPException(
             status_code=HTTP_400_BAD_REQUEST,
-            detail="Incorrect username or password"
+            detail="Incorrect email or password"
         )
     return {
         "access_token": create_access_token(data=user),
@@ -54,7 +54,7 @@ async def login(
 
 
 @app.get("/token/verify")
-async def token_verify(user: models.User = Depends(get_current_user)) -> dict:
+async def token_verify(user: models.User = Depends(get_current_user)) -> dict:  # Shadows name user from outer scope
     """Return the user's information to them."""
     return user.to_dict_for_jwt()
 
