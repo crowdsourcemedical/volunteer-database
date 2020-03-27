@@ -19,10 +19,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.include_router(position.router)
-app.include_router(project.router)
-app.include_router(skill.router)
-app.include_router(user.router)
+app.include_router(position.router, prefix="/positions")
+app.include_router(project.router, prefix="/projects")
+app.include_router(skill.router, prefix="/skills")
+app.include_router(user.router, prefix="/users")
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -40,6 +40,9 @@ async def login(
 
     Returns:
         The generated OAuth token information
+
+    Warnings:
+        Need rate limiting on this endpoint.
     """
     user = crud.check_user(db, form_data.username, form_data.password)
     if not user:
