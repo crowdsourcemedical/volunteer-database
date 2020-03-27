@@ -1,10 +1,11 @@
 from sqlalchemy import Boolean, Column, Integer, LargeBinary, String, DateTime, ForeignKey, Table
 from sqlalchemy.types import ARRAY
 from .database import Base
+from sqlalchemy.orm import relationship
 
 
 class User(Base):
-    __tablename__ = "users"
+    __tablename__ = "user"
     user_id = Column(Integer, primary_key=True, index=True)
     user_email = Column(String, unique=True, index=True)
     user_first = Column(String(50))
@@ -19,7 +20,10 @@ class User(Base):
     user_location = Column(String(50))
     user_last_login = Column(DateTime)
     is_medical_professional = Column(Boolean, default=False)
-    type = Column(String(50))
+    is_volunteer = Column(Boolean, default = False)
+
+    skills = relationship("Skill", 'user_skills')
+    projects = relationship('Project', secondary='volunteer_project')
 
     def to_dict(self) -> dict:
         """Return a dict of many of this object's values
@@ -35,23 +39,6 @@ class User(Base):
             "is_verified": self.is_verified,
         }
 
-    __mapper_args__ = {
-        'polymorphic_identity': 'users',
-        'polymorphic_on': type
-    }
-
-
-class Volunteer(User):
-    __tablename__ = 'volunteers'
-    id = Column(Integer, ForeignKey('users.user_id'), primary_key=True)
-    volunteer_description = Column(String(250))
-    volunteer_location = Column(String(50))
-    volunteer_skillset = Column(ARRAY(Integer))
-
-    __mapper_args__ = {
-        'polymorphic_identity': 'volunteers'
-    }
-
 
 class Position(Base):
     __tablename__ = "position"
@@ -62,18 +49,53 @@ class Position(Base):
 class Project(Base):
     __tablename__ = "project"
     project_id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("user.user_id"), nullable=False)
     project_title = Column(String(100), nullable=False)
     project_description = Column(String, nullable=False)
     project_location = Column(String(50), nullable=False)
 
+    skills = relationship('Skill', secondary='project_skills')
+    users = relationship(User, secondary='volunteer_project')
 
 class Skill(Base):
     __tablename__ = "skill"
     skill_id = Column(Integer, primary_key=True, index=True)
     skill_name = Column(String(50), nullable=False, unique=True)
+    category = Column(String(50))
+
+    users = relationship(User, secondary='user_skills')
+    projects = relationship(Project, secondary='project_skills')
 
 
-association_table = Table('requiredskills', Base.metadata,
-                          Column('skill_id', Integer, ForeignKey('skill.skill_id')),
-                          Column('project_id', Integer, ForeignKey('project.project_id')))
+class VolunteerProject(Base):
+    __tablename__ = "volunteer_project"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.user_id'), nullable=False)
+    position_id = Column(Integer, ForeignKey('position.position_id'), nullable=False)
+    project_id = Column(Integer, ForeignKey('project.project_id'), nullable=False)
+
+class UserSkills(Base):
+    __tablename__ = "user_skills"
+    id = Column(Integer, primary_key = True)
+    skill_id = Column(Integer, ForeignKey('skill.skill_id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.user_id'), nullable=False)
+
+class ProjectSkills(Base):
+    __tablename__ = "project_skills"
+    id = Column(Integer, primary_key = True)
+    skill_id = Column(Integer, ForeignKey('skill.skill_id'), nullable=False)
+    project_id = Column(Integer, ForeignKey('project.project_id'), nullable=False)
+
+
+# association_table = Table('project_skills', Base.metadata,
+#                           Column('skill_id', Integer, ForeignKey('skill.skill_id')),
+#                           Column('project_id', Integer, ForeignKey('project.project_id')))
+
+# association_table = Table('user_skills', Base.metatdata,
+#                         Column('user_id', Integer, ForeignKey('user.user_id')),
+#                         Column('skill_id', Integer, ForeignKey('skill.user_id')))
+                        
+# association_table = Table('user_skills', Base.metatdata,
+#                         Column('user_id', Integer, ForeignKey('user.user_id')),
+#                         Column('skill_id', Integer, ForeignKey('skill.user_id')))
+                        
