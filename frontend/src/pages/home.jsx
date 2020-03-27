@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography, Grid, Button, Box } from '@material-ui/core';
-import '../css/about.css';
 import { makeStyles } from '@material-ui/core/styles';
 import HeroImg from '../images/hero-edit-opacity.png';
 import AboutImg from '../images/about.png';

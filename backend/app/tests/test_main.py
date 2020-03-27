@@ -22,7 +22,7 @@ def test_login_and_verify(db, unsaved_user, testclient):
     })
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 10
+    assert len(data) == 4
     assert data["user_id"] == 1
 
 
