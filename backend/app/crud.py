@@ -1,27 +1,10 @@
 from datetime import datetime
 from typing import List, Optional
 
-from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from . import models, schemas
-
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-
-def hash_password(password: str) -> bytes:
-    """Hash a password, making it safe for storage."""
-    return pwd_context.hash(password)
-
-
-def verify_password(stored_password: bytes, password: str) -> bool:
-    """Check if the stored password matches the hash of the password to check."""
-    try:
-        return pwd_context.verify(password, stored_password)
-    except Exception as e:
-        print(f'Exception checking password: {e}')
-        return False
+from .auth import hash_password, verify_password
 
 
 def get_user(db: Session, user_id: int) -> models.User:
