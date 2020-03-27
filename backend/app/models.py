@@ -27,7 +27,7 @@ class User(Base):
     skills = relationship("Skill", "user_skill")
     projects = relationship("Project", secondary="volunteer_project")
 
-    def to_dict(self) -> dict:
+    def to_dict_for_jwt(self) -> dict:
         """Return a dict of many of this object's values
         for use in creating the JWT.
 

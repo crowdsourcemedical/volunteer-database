@@ -46,7 +46,7 @@ def create_access_token(*, data: models.User, expires_delta: timedelta = None) -
     Returns:
         JWT
     """
-    to_encode = data.to_dict()
+    to_encode = data.to_dict_for_jwt()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:

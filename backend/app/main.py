@@ -53,7 +53,7 @@ async def login(
 @app.get("/token/verify")
 async def token_verify(user: models.User = Depends(get_current_user)) -> dict:
     """Return the user's information to them."""
-    return user.to_dict()
+    return user.to_dict_for_jwt()
 
 
 @app.get("/")
