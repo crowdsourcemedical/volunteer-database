@@ -21,7 +21,7 @@ class User(Base):
     is_medical_professional = Column(Boolean, default=False)
     is_volunteer = Column(Boolean, default=False)
 
-    skills = relationship("Skill", 'user_skills')
+    skills = relationship("Skill", 'user_skill')
     projects = relationship('Project', secondary='volunteer_project')
 
     def to_dict(self) -> dict:
@@ -53,7 +53,7 @@ class Project(Base):
     project_description = Column(String, nullable=False)
     project_location = Column(String(50), nullable=False)
 
-    skills = relationship('Skill', secondary='project_skills')
+    skills = relationship('Skill', secondary='project_skill')
     users = relationship(User, secondary='volunteer_project')
 
 
@@ -63,8 +63,8 @@ class Skill(Base):
     skill_name = Column(String(50), nullable=False, unique=True)
     category = Column(String(50))
 
-    users = relationship(User, secondary='user_skills')
-    projects = relationship(Project, secondary='project_skills')
+    users = relationship(User, secondary='user_skill')
+    projects = relationship(Project, secondary='project_skill')
 
 
 class VolunteerProject(Base):
@@ -78,14 +78,14 @@ class VolunteerProject(Base):
 
 
 class UserSkills(Base):
-    __tablename__ = "user_skills"
+    __tablename__ = "user_skill"
     id = Column(Integer, primary_key=True)
     skill_id = Column(Integer, ForeignKey('skill.skill_id'), nullable=False)
     user_id = Column(Integer, ForeignKey('user.user_id'), nullable=False)
 
 
 class ProjectSkills(Base):
-    __tablename__ = "project_skills"
+    __tablename__ = "project_skill"
     id = Column(Integer, primary_key=True)
     skill_id = Column(Integer, ForeignKey('skill.skill_id'), nullable=False)
     project_id = Column(Integer, ForeignKey(
