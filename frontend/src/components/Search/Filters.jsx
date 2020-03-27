@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from "@material-ui/core";
+import { Typography } from '@material-ui/core';
 
-import PeopleFilters from "./PeopleFilters";
-import ProjectFilters from "./ProjectFilters";
+import PeopleFilters from './PeopleFilters';
+import ProjectFilters from './ProjectFilters';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.overrides.MuiFilledInput.root.backgroundColor,
     marginLeft: theme.spacing(2),
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#f2f2f2',
     padding: theme.spacing(2),
     color: '#000',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
   },
   divider: {
     height: 37,
@@ -23,11 +23,11 @@ const useStyles = makeStyles(theme => ({
   },
   typography: {
     fontSize: '12px !important',
-  }
-}))
+  },
+}));
 
 const Filters = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -45,7 +45,7 @@ const Filters = () => {
         <ProjectFilters />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Filters;

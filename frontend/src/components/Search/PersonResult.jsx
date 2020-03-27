@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Grid } from "@material-ui/core/"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography, Grid } from '@material-ui/core/';
 import { MapPin } from 'react-feather';
 
-import theme from "../../styles/theme";
+import theme from '../../styles/theme';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     margin: 'auto',
@@ -62,21 +62,14 @@ const useStyles = makeStyles(theme => ({
   locationIcon: {
     color: theme.palette.primary.main,
     marginRight: theme.spacing(1),
-  }
+  },
 }));
 
 const PersonResult = ({ name, jobTitle, description, location, imgSrc }) => {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      alignItems="center"
-      alignContent="center"
-      justify="center"
-      spacing={1}
-      className={classes.root}
-    >
+    <Grid container alignItems="center" alignContent="center" justify="center" spacing={1} className={classes.root}>
       <Grid item xs={3}>
         <div className={classes.imgContainer}>
           <img src={imgSrc} className={classes.img} />
@@ -85,9 +78,7 @@ const PersonResult = ({ name, jobTitle, description, location, imgSrc }) => {
       <Grid item xs={9} className={classes.infoContainer}>
         <div className={classes.heading}>
           <div className={classes.name}>
-            <Typography variant="h5">
-              {name}
-            </Typography>
+            <Typography variant="h5">{name}</Typography>
           </div>
           <div className={classes.jobTitle}>
             <Typography variant="h6" className={classes.jobTitleText}>
@@ -96,27 +87,23 @@ const PersonResult = ({ name, jobTitle, description, location, imgSrc }) => {
           </div>
         </div>
         <div className={classes.description}>
-          <Typography className={classes.descriptionText}>
-            {description}
-          </Typography>
+          <Typography className={classes.descriptionText}>{description}</Typography>
         </div>
         <div className={classes.location}>
           <MapPin size={14} className={classes.locationIcon} fill={theme.palette.primary.main} strokeWidth={2} />
-          <Typography>
-            {location}
-          </Typography>
+          <Typography>{location}</Typography>
         </div>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
 PersonResult.propTypes = {
   name: PropTypes.string.isRequired,
   jobTitle: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
-  imgSrc: PropTypes.any,
-}
+  imgSrc: PropTypes.string.isRequired,
+};
 
 export default PersonResult;

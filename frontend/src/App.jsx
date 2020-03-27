@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/home';
-import HomePage2 from './pages/home2'
+import HomePage2 from './pages/home2';
 import SearchPage from './pages/search';
 import AboutPage from './pages/about';
 import SignupPage from './pages/signup_volunteer';
@@ -13,7 +13,6 @@ import ProjectSubmit from './pages/ProjectSubmit';
 import Project from './pages/project';
 import Profile from './components/Profile/Profile.component';
 import Footer from './components/footer';
-import AccountSettings from './components/AccountSettings/Account-settings.component';
 import './App.css';
 
 function App() {

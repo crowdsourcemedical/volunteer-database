@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 import UserSmallCard from '../components/Cards/userSmallCard';
-import CheckBoxSection from '../components/Forms/checkboxSection';
+import CheckBoxSection from '../components/Forms/checkboxSection'; // eslint-disable-line
 
 const mockUser = {
   id: '1',
@@ -23,7 +23,6 @@ const handleCheckBoxSelection = () => {
 
 const StoryBook = () => (
   <div>
-
     <h1>User Large Card</h1>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <UserSmallCard user={mockUser} />
@@ -31,11 +30,7 @@ const StoryBook = () => (
 
     <Box m={6} />
     <h1>CheckBox component</h1>
-    <CheckBoxSection
-      sectionHeader="Staff required"
-      checkboxes={checkboxesListMock}
-      cb={handleCheckBoxSelection}
-    />
+    <CheckBoxSection sectionHeader="Staff required" checkboxes={checkboxesListMock} cb={handleCheckBoxSelection} />
   </div>
 );
 
