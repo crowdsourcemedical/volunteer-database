@@ -61,7 +61,7 @@ class Project(Base):
     project_location = Column(String(50), nullable=False)
     project_is_active = Column(Boolean, default=True)
     project_created_on = Column(DateTime)
-    project_is_complete = Column(Boolean)
+    project_is_complete = Column(Boolean, default=False)
     project_last_active = Column(DateTime)
     project_last_modified = Column(DateTime)
     project_quantity = Column(Integer, default=0)
