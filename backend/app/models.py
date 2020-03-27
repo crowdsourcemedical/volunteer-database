@@ -1,5 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, LargeBinary, String, DateTime, ForeignKey, Table
-from sqlalchemy.types import ARRAY
+from sqlalchemy import Boolean, Column, Integer, LargeBinary, String, DateTime, ForeignKey
 from .database import Base
 from sqlalchemy.orm import relationship
 
@@ -20,7 +19,7 @@ class User(Base):
     user_location = Column(String(50))
     user_last_login = Column(DateTime)
     is_medical_professional = Column(Boolean, default=False)
-    is_volunteer = Column(Boolean, default = False)
+    is_volunteer = Column(Boolean, default=False)
 
     skills = relationship("Skill", 'user_skills')
     projects = relationship('Project', secondary='volunteer_project')
@@ -57,6 +56,7 @@ class Project(Base):
     skills = relationship('Skill', secondary='project_skills')
     users = relationship(User, secondary='volunteer_project')
 
+
 class Skill(Base):
     __tablename__ = "skill"
     skill_id = Column(Integer, primary_key=True, index=True)
@@ -71,31 +71,22 @@ class VolunteerProject(Base):
     __tablename__ = "volunteer_project"
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.user_id'), nullable=False)
-    position_id = Column(Integer, ForeignKey('position.position_id'), nullable=False)
-    project_id = Column(Integer, ForeignKey('project.project_id'), nullable=False)
+    position_id = Column(Integer, ForeignKey(
+        'position.position_id'), nullable=False)
+    project_id = Column(Integer, ForeignKey(
+        'project.project_id'), nullable=False)
+
 
 class UserSkills(Base):
     __tablename__ = "user_skills"
-    id = Column(Integer, primary_key = True)
+    id = Column(Integer, primary_key=True)
     skill_id = Column(Integer, ForeignKey('skill.skill_id'), nullable=False)
     user_id = Column(Integer, ForeignKey('user.user_id'), nullable=False)
 
+
 class ProjectSkills(Base):
     __tablename__ = "project_skills"
-    id = Column(Integer, primary_key = True)
+    id = Column(Integer, primary_key=True)
     skill_id = Column(Integer, ForeignKey('skill.skill_id'), nullable=False)
-    project_id = Column(Integer, ForeignKey('project.project_id'), nullable=False)
-
-
-# association_table = Table('project_skills', Base.metadata,
-#                           Column('skill_id', Integer, ForeignKey('skill.skill_id')),
-#                           Column('project_id', Integer, ForeignKey('project.project_id')))
-
-# association_table = Table('user_skills', Base.metatdata,
-#                         Column('user_id', Integer, ForeignKey('user.user_id')),
-#                         Column('skill_id', Integer, ForeignKey('skill.user_id')))
-                        
-# association_table = Table('user_skills', Base.metatdata,
-#                         Column('user_id', Integer, ForeignKey('user.user_id')),
-#                         Column('skill_id', Integer, ForeignKey('skill.user_id')))
-                        
+    project_id = Column(Integer, ForeignKey(
+        'project.project_id'), nullable=False)
