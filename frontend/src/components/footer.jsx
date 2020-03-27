@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Grid,
-  Box,
-  Typography,
-  Link,
-} from '@material-ui/core';
+import { Grid, Box, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import COLORS from '../styles/colors';
 
@@ -33,55 +28,25 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Box
-      className={classes.root}
-    >
-      <Grid
-        container
-        justify="space-around"
-        className={classes.content}
-      >
-        <Link
-          href="#"
-        >
-          <Typography
-            variant="h5"
-          >
-            How it Works
-          </Typography>
+    <Box className={classes.root}>
+      <Grid container justify="space-around" className={classes.content}>
+        <Link href="#">
+          <Typography variant="h5">How it Works</Typography>
         </Link>
 
-        <Link
-          href="#"
-        >
-          <Typography
-            variant="h5"
-          >
-            Legal
-          </Typography>
+        <Link href="#">
+          <Typography variant="h5">Legal</Typography>
         </Link>
 
-        <Link
-          href="#"
-        >
-          <Typography
-            variant="h5"
-          >
-            Get Involved
-          </Typography>
+        <Link href="#">
+          <Typography variant="h5">Get Involved</Typography>
         </Link>
       </Grid>
 
-      <Typography
-        variant="h6"
-      >
+      <Typography variant="h6">
         Crowd Source Medical
-        <span
-          className={classes.copy}
-        >
-          &copy;
-        </span>
-        { new Date().getFullYear() }
+        <span className={classes.copy}>&copy;</span>
+        {new Date().getFullYear()}
       </Typography>
     </Box>
   );

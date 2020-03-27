@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Chip from '@material-ui/core/Chip';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -11,9 +11,9 @@ const useStyles = makeStyles(theme => ({
     margin: '1em 0px',
     float: 'right',
     '& > *': {
-      margin: theme.spacing(0.5)
-    }
-  }
+      margin: theme.spacing(0.5),
+    },
+  },
 }));
 
 export default function SmallChips() {
@@ -25,62 +25,13 @@ export default function SmallChips() {
 
   return (
     <div className={classes.root}>
-      <Chip
-        size='medium'
-        label='Clickable Link'
-        component='a'
-        href='#chip'
-        clickable
-        onClick={handleClick}
-      />
-      <Chip
-        size='medium'
-        label='Clickable Link'
-        component='a'
-        href='#chip'
-        clickable
-        onClick={handleClick}
-      />
-      <Chip
-        size='medium'
-        label='Clickable Link'
-        component='a'
-        href='#chip'
-        clickable
-        onClick={handleClick}
-      />
-      <Chip
-        size='medium'
-        label='Clickable Link'
-        component='a'
-        href='#chip'
-        clickable
-        onClick={handleClick}
-      />
-      <Chip
-        size='medium'
-        label='Clickable Link'
-        component='a'
-        href='#chip'
-        clickable
-        onClick={handleClick}
-      />
-      <Chip
-        size='medium'
-        label='Clickable Link'
-        component='a'
-        href='#chip'
-        clickable
-        onClick={handleClick}
-      />
-      <Chip
-        size='medium'
-        label='Clickable Link'
-        component='a'
-        href='#chip'
-        clickable
-        onClick={handleClick}
-      />
+      <Chip size="medium" label="Clickable Link" component="a" href="#chip" clickable onClick={handleClick} />
+      <Chip size="medium" label="Clickable Link" component="a" href="#chip" clickable onClick={handleClick} />
+      <Chip size="medium" label="Clickable Link" component="a" href="#chip" clickable onClick={handleClick} />
+      <Chip size="medium" label="Clickable Link" component="a" href="#chip" clickable onClick={handleClick} />
+      <Chip size="medium" label="Clickable Link" component="a" href="#chip" clickable onClick={handleClick} />
+      <Chip size="medium" label="Clickable Link" component="a" href="#chip" clickable onClick={handleClick} />
+      <Chip size="medium" label="Clickable Link" component="a" href="#chip" clickable onClick={handleClick} />
     </div>
   );
 }

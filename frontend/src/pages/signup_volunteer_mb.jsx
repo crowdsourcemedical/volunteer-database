@@ -40,7 +40,7 @@ const workInFields = [
   },
 ];
 
-const SignupVolunteerPage = (props) => {
+const SignupVolunteerPage = () => {
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
@@ -66,14 +66,21 @@ In terms of raw validation,
 In terms of UX,
 - Everything should be checked so the user knows when they can click the submit button.
 */
-  const isReady = () => email !== '' && password1 !== '' && password2 !== '' && workFieldGeneral !== ''
-  && workFieldSpecific !== '' && location !== '' && moreInformation !== '' && password1 === password2;
+  const isReady = () =>
+    email !== '' &&
+    password1 !== '' &&
+    password2 !== '' &&
+    workFieldGeneral !== '' &&
+    workFieldSpecific !== '' &&
+    location !== '' &&
+    moreInformation !== '' &&
+    password1 === password2;
 
   /*
-* This is a separate method so that behavior can ran that sets the specific work field to the first
-* option of the newly-selected general work field. This prevents users from seeing a specific field
-* from one general field when they've selected a different one.
-*/
+   * This is a separate method so that behavior can ran that sets the specific work field to the first
+   * option of the newly-selected general work field. This prevents users from seeing a specific field
+   * from one general field when they've selected a different one.
+   */
   const handleChangeWorkGeneral = (e) => {
     const newVal = e.target.value;
     setWorkFieldGeneral(newVal);
@@ -94,27 +101,51 @@ In terms of UX,
           </Grid>
           <Grid item xs={12}>
             <FormControl>
-              <TextField id="password" label="Password" type="password" required onChange={(e) => setPassword1(e.target.value)} />
+              <TextField
+                id="password"
+                label="Password"
+                type="password"
+                required
+                onChange={(e) => setPassword1(e.target.value)}
+              />
             </FormControl>
           </Grid>
           <Grid item xs={12}>
             <FormControl>
-              <TextField id="password-confirm" label="Confirm password" type="password" required onChange={(e) => setPassword2(e.target.value)} />
+              <TextField
+                id="password-confirm"
+                label="Confirm password"
+                type="password"
+                required
+                onChange={(e) => setPassword2(e.target.value)}
+              />
             </FormControl>
           </Grid>
           {/* TODO the styling on these selects should be improved on */}
           <Grid item xs={12}>
             <FormControl>
               <Select id="work-field-general" value={workFieldGeneral} onChange={handleChangeWorkGeneral}>
-                { workInFields.map((field) => <MenuItem value={field.name} key={field.name}>{field.name}</MenuItem>) }
+                {workInFields.map((field) => (
+                  <MenuItem value={field.name} key={field.name}>
+                    {field.name}
+                  </MenuItem>
+                ))}
               </Select>
               <FormHelperText>I work in the field of ...</FormHelperText>
             </FormControl>
           </Grid>
           <Grid item xs={12}>
             <FormControl>
-              <Select id="work-field-specific" value={getFieldSpecificOptions[0]} onChange={(e) => setWorkFieldSpecific(e.target.value)}>
-                { getFieldSpecificOptions.map((spec) => <MenuItem value={spec} key={spec}>{spec}</MenuItem>) }
+              <Select
+                id="work-field-specific"
+                value={getFieldSpecificOptions[0]}
+                onChange={(e) => setWorkFieldSpecific(e.target.value)}
+              >
+                {getFieldSpecificOptions.map((spec) => (
+                  <MenuItem value={spec} key={spec}>
+                    {spec}
+                  </MenuItem>
+                ))}
               </Select>
               <FormHelperText>And that is, specifically ...</FormHelperText>
             </FormControl>
@@ -125,15 +156,30 @@ In terms of UX,
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <TextField id="more-information" label="Tell us more about yourself" multiline rows="4" required onChange={(e) => setMoreInformation(e.target.value)} />
+            <TextField
+              id="more-information"
+              label="Tell us more about yourself"
+              multiline
+              rows="4"
+              required
+              onChange={(e) => setMoreInformation(e.target.value)}
+            />
           </Grid>
           <Grid item xs={12}>
-            <Button id="submit" type="submit" variant="contained" color="primary" style={{ marginTop: '1rem' }} endIcon={<Icon>send</Icon>} disabled={!isReady() || isLoading}>
+            <Button
+              id="submit"
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{ marginTop: '1rem' }}
+              endIcon={<Icon>send</Icon>}
+              disabled={!isReady() || isLoading}
+            >
               Submit
             </Button>
           </Grid>
           <Grid item xs={12}>
-            { isLoading && <CircularProgress style={{ marginTop: '2rem' }} /> }
+            {isLoading && <CircularProgress style={{ marginTop: '2rem' }} />}
           </Grid>
         </Grid>
       </form>
