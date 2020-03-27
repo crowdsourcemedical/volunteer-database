@@ -15,7 +15,7 @@ from .database import get_db
 
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_MINUTES = 30
-JWT_SECRET = JWT.get_jwt_key() # Added openssl rand 256 | base64
+JWT_SECRET = JWT.get_jwt_key()  # Added openssl rand 256 | base64
 
 
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="/token")
