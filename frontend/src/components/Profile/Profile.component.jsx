@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 // Material UI Components
 import LabelIcon from '@material-ui/icons/Label';
 
 // Profile Components
-//import Header from './Header.component.jsx';
+import Header from './Header.component';
 import AccountProfile from './Avatar.component';
 import Body from './Body.component';
 import ProjectTitle from './Project-title.component';
@@ -25,8 +25,7 @@ class Profile extends Component {
         'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum, in! Culpa sequi, ipsum, cupiditate illum laboriosam, exercitationem odit adipisci numquam itaque atque animi. Soluta architecto eos ab necessitatibus aperiam voluptatibus. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum, in! Culpa sequi, ipsum, cupiditate illum laboriosam, exercitationem odit adipisci numquam itaque atque animi. Soluta architecto eos ab necessitatibus aperiam voluptatibus.',
       labelIcon: <LabelIcon />,
       label: 'Other Label',
-      projectImg:
-        'https://material-ui.com/static/images/cards/contemplative-reptile.jpg',
+      projectImg: 'https://material-ui.com/static/images/cards/contemplative-reptile.jpg',
     };
   }
 
@@ -46,7 +45,7 @@ class Profile extends Component {
     } = this.state;
     return (
       <>
-        {/* <Header accountImg={avatarURL} logo={logo} /> */}
+        <Header accountImg={avatarURL} logo={logo} />
         <AccountProfile
           accountImg={avatarURL}
           profileName={profileName}

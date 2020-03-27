@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Card,
-  Divider,
-  Grid,
-  Typography,
-  CardContent,
-  Button,
-  TextField,
-} from '@material-ui/core';
+import { Card, Divider, Grid, Typography, CardContent, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import FacebookIcon from '../../images/facebook-icon.svg';
@@ -102,13 +94,7 @@ const LoginForm = () => {
 
   return (
     <Card className={classes.root} elevation={4}>
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-        className={classes.header}
-      >
+      <Grid container direction="row" justify="space-between" alignItems="center" className={classes.header}>
         <Typography variant="h4" component="h2" className={classes.headerLogin}>
           Login
         </Typography>
@@ -118,12 +104,7 @@ const LoginForm = () => {
       </Grid>
 
       <CardContent className={classes.content}>
-        <Grid
-          container
-          direction="column"
-          alignItems="center"
-          justify="center"
-        >
+        <Grid container direction="column" alignItems="center" justify="center">
           <Button variant="outlined" color="primary" size="large" className={classes.externalLoginButton}>
             <img src={GoogleIcon} alt="Google Logo" />
             <span>Continue with Google</span>
@@ -135,9 +116,7 @@ const LoginForm = () => {
           </Button>
 
           <Divider className={classes.divider} />
-          <div className={classes.or}>
-            OR
-          </div>
+          <div className={classes.or}>OR</div>
 
           <TextField label="Email" type="email" variant="filled" className={classes.input} />
           <TextField label="Password" type="password" variant="filled" className={classes.input} />

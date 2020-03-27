@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+DB_NAME="CSS"
+
+DUMPFILE=$DB_NAME-$(date +"%Y-%m-%d-%H-%M").pgdump
+
+
+docker-compose run -v "$(pwd)/:/root" -e PGPASSWORD='dev-password-123'  db /bin/sh -c "pg_dump -h db -U postgres -Fc $DB_NAME > /root/$DUMPFILE"
+
+echo "Dump created: $DUMPFILE"

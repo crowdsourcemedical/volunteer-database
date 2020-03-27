@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // None Material UI Components
-import Avatar from './Avatar.component.jsx';
+import Avatar from './Avatar.component';
 
-export const ProfileDescription = ({ classes, description, username }) => (
-  <Fragment>
+const ProfileDescription = ({ classes, description, username }) => (
+  <>
     <div className={classes} />
     <Avatar />
 
@@ -14,8 +15,16 @@ export const ProfileDescription = ({ classes, description, username }) => (
     <h5>Description</h5>
     <p>
       {description}
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni beatae
-      velit hic autem veniam, commodi nulla cum laboriosam! Expedita, aliquid!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni beatae velit hic autem veniam, commodi nulla cum
+      laboriosam! Expedita, aliquid!
     </p>
-  </Fragment>
+  </>
 );
+
+ProfileDescription.propTypes = {
+  classes: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+};
+
+export default ProfileDescription;

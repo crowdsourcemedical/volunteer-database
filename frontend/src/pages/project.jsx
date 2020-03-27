@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-  Grid, Typography, Divider, Hidden, Button,
-} from '@material-ui/core';
+import { Grid, Typography, Divider, Hidden, Button } from '@material-ui/core';
 import { MapPin, Bookmark } from 'react-feather';
 
 import { makeStyles } from '@material-ui/core/styles';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {

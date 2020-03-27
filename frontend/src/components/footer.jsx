@@ -1,15 +1,26 @@
 import React from 'react';
-import {
-  Grid,
-  Typography,
-} from '@material-ui/core';
+import { Grid, Box, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import COLORS from '../styles/colors';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     backgroundColor: COLORS.grayLight,
+    textAlign: 'center',
+    paddingTop: theme.spacing(8),
+    paddingRight: theme.spacing(1),
+    paddingBottom: theme.spacing(8),
+    paddingLeft: theme.spacing(1),
+  },
+  content: {
+    marginRight: 'auto',
+    marginBottom: theme.spacing(6),
+    marginLeft: 'auto',
+    maxWidth: '500px',
+  },
+  copy: {
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1),
   },
 }));
 
@@ -17,27 +28,27 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root} spacing={2}>
-      <Grid item xs={12}>
-        <Grid container justify="center" spacing={8}>
-          <Grid item key="howItWorks">
-            <Typography variant="h5">How it Works</Typography>
-          </Grid>
-          <Grid item key="legal">
-            <Typography variant="h5">Legal</Typography>
-          </Grid>
-          <Grid item key="getInvolved">
-            <Typography variant="h5">Get Involved</Typography>
-          </Grid>
+    <Box className={classes.root}>
+      <Grid container justify="space-around" className={classes.content}>
+        <Link href="#">
+          <Typography variant="h5">How it Works</Typography>
+        </Link>
 
-        </Grid>
+        <Link href="#">
+          <Typography variant="h5">Legal</Typography>
+        </Link>
+
+        <Link href="#">
+          <Typography variant="h5">Get Involved</Typography>
+        </Link>
       </Grid>
-      <Grid item xs={12}>
-        <Grid container justify="center">
-          <Typography variant="h6">&copy;2020 Crowd Source Medical</Typography>
-        </Grid>
-      </Grid>
-    </Grid>
+
+      <Typography variant="h6">
+        Crowd Source Medical
+        <span className={classes.copy}>&copy;</span>
+        {new Date().getFullYear()}
+      </Typography>
+    </Box>
   );
 };
 

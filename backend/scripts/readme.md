@@ -10,9 +10,16 @@ The database should be built inside a docker container when you run `docker-comp
 * The script contains the following:
     
     ```
-    docker exec -ti ${db_name} psql -U ${db_user} ${db_name}
+    docker exec -ti ${docker_container_name} psql -U ${db_user} ${db_name}
     ```
 
     * `${db_user}` = *postgres*
-    * `${db_name}` = *CMS*
-    * `${db_name}` = this is dependent on the db docker container's name, **unfortunately this is dependent on the folder this repo is cloned into**. Chances are it is *volunteer-database_db_1* but if you did a `git clone .` it will be different. In this case use `${parent_folder}_db_1`.
+    * `${db_name}` = *CSS*
+    * `${docker_container_name}` = *css_db*
+
+> Note if `psql` doesn't work try rebuilding docker containers with `scripts/docker-rebuild`
+
+## Pytest:
+
+If you have make installed, run `make all` from the *backend* directory
+If you are on a Window host, run `pytest.bat`
