@@ -9,13 +9,14 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from starlette.status import HTTP_401_UNAUTHORIZED
 
-from . import crud, models
+from . import crud, models, JWT
 from .database import get_db
 
 
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_MINUTES = 30
-JWT_SECRET = "TEST_VALUE_PLEASE_CHANGE"  # TODO need to load this from somewhere
+JWT_SECRET = JWT.get_jwt_key() # Added openssl rand 256 | base64
+
 
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="/token")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -92,7 +93,7 @@ async def get_current_user(
 ) -> models.User:
     """Get a user for the token that"s passed in via HTTP headers.
 
-    This method gets the user's token through a `Depends` and processeses it
+    This method gets the user's token through a `Depends` and processes it
     into a `models.User` object (if it's valid).
 
     Args:

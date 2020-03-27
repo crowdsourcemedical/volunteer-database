@@ -39,6 +39,7 @@ class User(Base):
             "user_id": self.user_id,
             "is_active": self.user_is_active,
             "is_verified": self.user_is_verified,
+            "is_volunteer": self.user_is_volunteer
         }
 
 
