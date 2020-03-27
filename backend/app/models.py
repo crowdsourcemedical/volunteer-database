@@ -12,17 +12,18 @@ class User(Base):
     user_email = Column(String, unique=True, index=True)
     user_first = Column(String(50))
     user_last = Column(String(50))
-    username = Column(String(50), unique=True, index=True)
     user_hashed_password = Column(String)
-    is_active = Column(Boolean, default=True)
-    is_verified = Column(Boolean, default=False)
-    user_skill = Column(String(100))
+    user_location = Column(String(50))
     user_description = Column(String(250))
     user_profile_picture = Column(LargeBinary)
-    user_location = Column(String(50))
+    user_is_active = Column(Boolean, default=True)
+    user_is_admin = Column(Boolean, default=False)
     user_last_login = Column(DateTime)
-    is_medical_professional = Column(Boolean, default=False)
-    is_volunteer = Column(Boolean, default=False)
+    user_is_medical_professional = Column(Boolean, default=False)
+    user_is_verified = Column(Boolean, default=False)
+    user_registered_date = Column(DateTime)
+    user_skill = Column(String(100))
+    user_is_volunteer = Column(Boolean, default=False)
 
     skills = relationship("Skill", "user_skill")
     projects = relationship("Project", secondary="volunteer_project")
@@ -36,9 +37,8 @@ class User(Base):
         """
         return {
             "user_id": self.user_id,
-            "username": self.username,
-            "is_active": self.is_active,
-            "is_verified": self.is_verified,
+            "is_active": self.user_is_active,
+            "is_verified": self.user_is_verified,
         }
 
 
@@ -59,6 +59,12 @@ class Project(Base):
     project_title = Column(String(100), nullable=False)
     project_description = Column(String, nullable=False)
     project_location = Column(String(50), nullable=False)
+    project_is_active = Column(Boolean, default=True)
+    project_created_on = Column(DateTime)
+    project_is_complete = Column(Boolean)
+    project_last_active = Column(DateTime)
+    project_last_modified = Column(DateTime)
+    project_quantity = Column(Integer, default=0)
 
     skills = relationship("Skill", secondary="project_skill")
     users = relationship(User, secondary="volunteer_project")
