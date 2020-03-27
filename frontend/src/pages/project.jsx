@@ -3,14 +3,13 @@ import {
   Grid, Typography, Divider, Hidden, Button,
 } from '@material-ui/core';
 import { MapPin, Bookmark } from 'react-feather';
-
 import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(3),
-    margin: '100px auto',
+    padding: theme.spacing(2),
+    margin: '0 auto',
     '& > *': {
       margin: theme.spacing(2, 0),
     },
@@ -48,9 +47,8 @@ const useStyles = makeStyles((theme) => ({
   },
   chips: {
     display: 'flex',
-    padding: theme.spacing(1, 2),
-    marginRight: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+    padding: theme.spacing(0.5, 1.5),
+    margin: theme.spacing(0, 1, 1, 0),
     borderRadius: '4px',
     backgroundColor: theme.colors.whiteGray,
   },
@@ -81,11 +79,12 @@ const Project = () => {
       'Registered Nurse',
       'Registered Nurse',
       'Registered Nurse',
-      'Registered Nurse',
-      'Registered Nurse',
-      'Registered Nurse',
-      'Registered Nurse',
-      'Registered Nurse',
+      'Other tag',
+      'Frontend Engineer',
+      'Something Different',
+      'Job Title',
+      'Another Job Title',
+      'Engineer',
     ],
   };
 
@@ -98,7 +97,14 @@ const Project = () => {
           {/* <img src="" alt="Profile Picture"/> */}
 
           <Grid item>
-            <Typography variant="h2">{project.name}</Typography>
+            {/* Project Header */}
+            <Hidden xsDown>
+              <Typography variant="h2">{project.name}</Typography>
+            </Hidden>
+            {/* Project Header (mobile) */}
+            <Hidden smUp>
+              <Typography variant="h4">{project.name}</Typography>
+            </Hidden>
             <Typography variant="body1">{`Needs ${project.contibutersNeeded} more contributers`}</Typography>
             <div className={classes.locContainer}>
               <MapPin className={classes.mapPin} />
