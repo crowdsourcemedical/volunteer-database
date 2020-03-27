@@ -135,7 +135,7 @@ const MobileSearch = () => {
                 placeholder="Search..."
                 inputProps={{ 'aria-label': 'Search...' }}
                 variant="fill"
-                inputRef={(input) => searchInputRef = input}
+                inputRef={(input) => (searchInputRef = input)}
                 onSelect={onSelect}
                 value={inputText}
                 onChange={onInputChange}

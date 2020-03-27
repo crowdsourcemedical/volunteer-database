@@ -8,7 +8,7 @@
 
 .heroAbout {
   position: absolute;
-  background-image: url("../images/hero-edit.png");
+  background-image: url('../images/hero-edit.png');
   background-size: cover;
   background-repeat: no-repeat;
   top: 0;
@@ -101,7 +101,7 @@
 }
 
 .aboutImage::before {
-  content: "";
+  content: '';
   position: absolute;
   height: 100%;
   width: 100%;

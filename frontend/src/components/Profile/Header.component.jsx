@@ -1,16 +1,17 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
+import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InboxIcon from '@material-ui/icons/Inbox';
 import Avatar from '@material-ui/core/Avatar';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     '& > *': {
-      margin: theme.spacing(1)
-    }
+      margin: theme.spacing(1),
+    },
   },
   grid: {
     display: 'grid',
@@ -19,30 +20,30 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       gridTemplateColumns: '100%',
       gridTemplateRows: 'auto',
-      gridTemplateAreas: "'title' 'break' 'account'"
+      gridTemplateAreas: "'title' 'break' 'account'",
     },
 
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '100%',
       gridTemplateRows: 'auto',
-      gridTemplateAreas: "'title' 'break' 'account'"
-    }
+      gridTemplateAreas: "'title' 'break' 'account'",
+    },
   },
   title: {
-    textAlign: 'left'
+    textAlign: 'left',
   },
   account: {
     textAlign: 'right',
     '&:hover': {
-      cursor: 'pointer'
-    }
+      cursor: 'pointer',
+    },
   },
   large: {
     width: theme.spacing(7),
     height: theme.spacing(7),
     borderRadius: '2rem',
     marginTop: theme.spacing(13.5),
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(1),
   },
   button: {
     background: '#bdbdbd',
@@ -51,28 +52,28 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '10rem',
     margin: theme.spacing(1),
     '&:hover': {
-      background: '#e0e0e0'
-    }
-  }
+      background: '#e0e0e0',
+    },
+  },
 }));
 
-function Header({ accountImg, logo }) {
+function Header({ accountImg }) {
   const classes = useStyles();
   return (
     <div style={{ lineHeight: '15rem' }}>
       <header className={classes.grid}>
-        <div></div>
+        <div />
         <div className={classes.title}>
           <h3>Crowd Source Solutions</h3>
         </div>
-        <div></div>
-        <div></div>
+        <div />
+        <div />
         <div className={classes.account}>
           <h3>
             <Button
-              variant='contained'
-              color='primary'
-              size='large'
+              variant="contained"
+              color="primary"
+              size="large"
               className={classes.button}
               startIcon={<InboxIcon />}
             >
@@ -81,11 +82,16 @@ function Header({ accountImg, logo }) {
           </h3>
         </div>
         <div>
-          <Avatar alt='Remy Sharp' src={accountImg} className={classes.large} />
+          <Avatar alt="Remy Sharp" src={accountImg} className={classes.large} />
         </div>
-        <div></div>
+        <div />
       </header>
     </div>
   );
 }
+
+Header.propTypes = {
+  accountImg: PropTypes.string.isRequired,
+};
+
 export default Header;

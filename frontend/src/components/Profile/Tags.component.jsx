@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -10,9 +11,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-start',
     '& > *': {
       margin: theme.spacing(0.5),
-      borderRadius: '5px'
-    }
-  }
+      borderRadius: '5px',
+    },
+  },
 }));
 
 export default function Tags({ icon, label }) {
@@ -34,3 +35,8 @@ export default function Tags({ icon, label }) {
     </div>
   );
 }
+
+Tags.propTypes = {
+  icon: PropTypes.node.isRequired,
+  label: PropTypes.string.isRequired,
+};

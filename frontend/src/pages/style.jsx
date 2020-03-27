@@ -56,9 +56,7 @@ function Style() {
             caption Text caption
           </Typography>
           <pre>
-            <code className={classes.code}>
-              {'<Typography variant="h2">h2 Title</Typography>'}
-            </code>
+            <code className={classes.code}>{'<Typography variant="h2">h2 Title</Typography>'}</code>
           </pre>
           <Divider />
         </Grid>
@@ -68,11 +66,9 @@ function Style() {
           <Box m={2}>
             <Typography variant="h2">h2 Title & body1 Variant</Typography>
             <Typography align="left" variant="body1">
-              This is using variant "body1". Muffin jujubes sweet roll. Tiramisu
-              oat cake brownie cupcake donut cake marzipan brownie bear claw.
-              Gingerbread muffin jujubes cookie candy canes chupa chups
-              chocolate bar fruitcake apple pie. Candy canes gingerbread biscuit
-              cupcake lollipop chocolate bar toffee chocolate bar.
+              This is using variant "body1". Muffin jujubes sweet roll. Tiramisu oat cake brownie cupcake donut cake
+              marzipan brownie bear claw. Gingerbread muffin jujubes cookie candy canes chupa chups chocolate bar
+              fruitcake apple pie. Candy canes gingerbread biscuit cupcake lollipop chocolate bar toffee chocolate bar.
             </Typography>
           </Box>
           <pre>
@@ -88,11 +84,9 @@ function Style() {
           <Box m={2}>
             <Typography variant="h2">h2 Title & body2 Variant</Typography>
             <Typography align="left" variant="body2">
-              This is using variant "body2". Muffin jujubes sweet roll. Tiramisu
-              oat cake brownie cupcake donut cake marzipan brownie bear claw.
-              Gingerbread muffin jujubes cookie candy canes chupa chups
-              chocolate bar fruitcake apple pie. Candy canes gingerbread biscuit
-              cupcake lollipop chocolate bar toffee chocolate bar.
+              This is using variant "body2". Muffin jujubes sweet roll. Tiramisu oat cake brownie cupcake donut cake
+              marzipan brownie bear claw. Gingerbread muffin jujubes cookie candy canes chupa chups chocolate bar
+              fruitcake apple pie. Candy canes gingerbread biscuit cupcake lollipop chocolate bar toffee chocolate bar.
             </Typography>
           </Box>
           <pre>
@@ -108,18 +102,10 @@ function Style() {
       <Grid container justify="center">
         <Grid item xs={12} lg={8} xl={8}>
           <Box m={2}>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.buttonMain}
-            >
+            <Button variant="contained" color="primary" className={classes.buttonMain}>
               Primary
             </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.buttonMain}
-            >
+            <Button variant="contained" color="secondary" className={classes.buttonMain}>
               Secondary
             </Button>
           </Box>
@@ -127,9 +113,7 @@ function Style() {
             <code className={classes.code}>
               {'<Button variant="contained" color="primary">Primary</Button>'}
               <br />
-              {
-                '<Button variant="contained" color="secondary">Secondary</Button>'
-              }
+              {'<Button variant="contained" color="secondary">Secondary</Button>'}
             </code>
           </pre>
           <Divider />
@@ -151,19 +135,9 @@ function Style() {
             <FormControl component="fieldset">
               <FormLabel component="legend">Engineering</FormLabel>
               <FormGroup>
-                <FormControlLabel
-                  control={<Checkbox name="cb1" />}
-                  label="Frontend Developer"
-                  color="primary"
-                />
-                <FormControlLabel
-                  control={<Checkbox name="cb2" />}
-                  label="Frontend Developer"
-                />
-                <FormControlLabel
-                  control={<Checkbox name="cb3" />}
-                  label="Frontend Developer"
-                />
+                <FormControlLabel control={<Checkbox name="cb1" />} label="Frontend Developer" color="primary" />
+                <FormControlLabel control={<Checkbox name="cb2" />} label="Frontend Developer" />
+                <FormControlLabel control={<Checkbox name="cb3" />} label="Frontend Developer" />
               </FormGroup>
               <FormHelperText>Form Helper Text</FormHelperText>
             </FormControl>

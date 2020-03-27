@@ -1,12 +1,9 @@
-import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 
 // Filters related to Projects
 
 const ProjectFilters = () => {
-  return (
-    <div />
-  )
-}
+  return <div />;
+};
 
 export default ProjectFilters;
