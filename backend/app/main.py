@@ -41,7 +41,6 @@ async def login(
     Returns:
         The generated OAuth token information
     """
-    # form_data.username will need to be the email the user signed up with. user_email is a str
     user = crud.check_user(db, form_data.username, form_data.password)  # Shadows name user from outer scope
     if not user:
         raise HTTPException(

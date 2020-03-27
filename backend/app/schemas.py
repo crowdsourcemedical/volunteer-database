@@ -29,14 +29,6 @@ class UserCreate(BaseModel):
         orm_mode = True
 
 
-class Login(BaseModel):
-    user_email: str
-    user_password: str
-
-    class Config:
-        orm_mode = True
-
-
 class User(UserBase):
     user_email: str
     user_first: str
