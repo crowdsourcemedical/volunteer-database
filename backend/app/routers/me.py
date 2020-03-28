@@ -1,10 +1,8 @@
-from typing import List
-
 from fastapi import Depends, HTTPException, APIRouter, status
-from fastapi.responses import JSONResponse, Response
+from fastapi.responses import Response
 from sqlalchemy.orm import Session
 
-from .. import auth, crud, models, schemas
+from .. import auth, models, schemas
 from ..database import get_db
 
 
@@ -19,7 +17,7 @@ def get_self(
     """Endpoint to get current user's data. This includes projects, skills, etc"""
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
-    
+
     user_json = user.__dict__
     del user_json["user_hashed_password"]
     skills = user.skills

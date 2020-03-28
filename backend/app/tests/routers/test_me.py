@@ -1,7 +1,7 @@
 from typing import Dict
 
 from ...models import User
-import json
+
 
 def _seed_user_and_login(testclient, db, unsaved_user) -> Dict[str, str]:
     db.add(unsaved_user)
@@ -78,8 +78,6 @@ def test_get_me(testclient, reattach_db, unsaved_user_with_relations):
     headers = _seed_user_and_login(testclient, db, unsaved_user_with_relations)
     db.close()
     response = testclient.get("/me", headers=headers)
-    # print(response.status_code)
-    # print(json.dumps(response.json(), indent=2))
     res = response.json()
     assert response.status_code == 200
     assert len(res["skills"]) == 1
