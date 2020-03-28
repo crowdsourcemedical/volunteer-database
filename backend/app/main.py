@@ -8,7 +8,7 @@ from starlette.status import HTTP_400_BAD_REQUEST
 from . import crud, models
 from .auth import create_access_token, get_current_user
 from .database import engine, get_db
-from .routers import position, project, skill, user
+from .routers import position, project, skill, user, me
 
 
 app = FastAPI()
@@ -23,6 +23,7 @@ app.include_router(position.router, prefix="/positions")
 app.include_router(project.router, prefix="/projects")
 app.include_router(skill.router, prefix="/skills")
 app.include_router(user.router, prefix="/users")
+app.include_router(me.router, prefix="/me")
 
 models.Base.metadata.create_all(bind=engine)
 
