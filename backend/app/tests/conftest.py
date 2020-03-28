@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from ..crud import hash_password
 from ..database import Base, engine, SessionLocal, DB_TEST_FILE_NAME
 from ..main import app
-from ..models import User
+from ..models import User, Skill, Project, Position, VolunteerProject
 
 
 @fixture(scope="function", autouse=True)
@@ -77,3 +77,50 @@ def removed_db_file():
     yield
     if os.path.exists(DB_TEST_FILE_NAME):
         os.remove(DB_TEST_FILE_NAME)
+
+
+@fixture(scope="function")
+def unsaved_project() -> Project:
+    return Project(
+        project_id=1,
+        user_id=1,
+        project_title="Test Project",
+        project_description="Good things",
+        project_location="some place",
+        project_is_active=True,
+        project_created_on=datetime(2020, 3, 24),
+        project_is_complete=False,
+        project_last_active=datetime(2020, 3, 25),
+        project_quantity=10
+    )
+
+
+@fixture(scope="function")
+def unsaved_skill() -> Skill:
+    return Skill(
+        skill_id=1,
+        skill_name="The best skill",
+        category="Good Skills",
+    )
+
+
+@fixture(scope="function")
+def unsaved_position() -> Position:
+    return Position(
+        position_id=1,
+        position_name="manager"
+    )
+
+
+@fixture(scope="function")
+def unsaved_user_with_relations(unsaved_user, unsaved_skill,
+                                unsaved_project, unsaved_position) -> User:
+    user = unsaved_user
+    user.skills.append(unsaved_skill)
+    vp = VolunteerProject(
+        id=1
+    )
+    vp.user = user
+    vp.position = unsaved_position
+    vp.project = unsaved_project
+    return user
