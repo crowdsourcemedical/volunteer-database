@@ -23,9 +23,6 @@ class UserCreate(BaseModel):
     is_medical_professional: bool
     is_volunteer: bool
 
-    class Config:
-        orm_mode = True
-
 
 class User(UserBase):
     user_email: str
@@ -51,6 +48,3 @@ class UpdateUser(BaseModel):
     user_location: Optional[str]
     is_medical_professional: Optional[bool]
     is_volunteer: Optional[bool]
-
-    class Config:
-        orm_mode = True

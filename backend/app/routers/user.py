@@ -1,6 +1,7 @@
 from typing import List
 
-from fastapi import Depends, HTTPException, APIRouter
+from fastapi import Depends, HTTPException, APIRouter, status
+from fastapi.responses import JSONResponse, Response
 from sqlalchemy.orm import Session
 
 from .. import auth, crud, models, schemas
@@ -29,7 +30,7 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
     return db_user
 
 
-@router.post("/", response_model=schemas.UserCreate)
+@router.post("/")
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     """Endpoint to create a new user.
 
@@ -38,7 +39,10 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, user_email=user.user_email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email is already registered")
-    return crud.create_user(db=db, user=user)
+    new_user = crud.create_user(db=db, user=user)
+    return JSONResponse(status_code=status.HTTP_201_CREATED, content={
+        "user_id": new_user.user_id
+    })
 
 
 @router.put("/me")
@@ -46,42 +50,23 @@ def update_self(
     changes: schemas.UpdateUser,
     user: models.User = Depends(auth.get_current_user),
     db: Session = Depends(get_db)
-) -> List[str]:
+):
     """Endpoint to allow a user to update *their own* profile."""
-    fields_changed = []
-    if changes.user_first:
-        user.user_first = changes.user_first
-        fields_changed.append('First name')
-    if changes.user_last:
-        user.user_last = changes.user_last
-        fields_changed.append('Last name')
+    user.user_first = changes.user_first or user.user_first
+    user.user_last = changes.user_last or user.user_last
     if changes.new_password:
         if not changes.old_password:
             return HTTPException(status_code=400, detail="Must also supply current password")
         if not auth.verify_password(user.password, changes.old_password):
             return HTTPException(status_code=400, detail="Current password did not match")
         user.user_hashed_password = auth.hash_password(changes.new_password)
-        fields_changed.append('Password')
-    if changes.user_email:
-        user.user_email = changes.user_email
-        fields_changed.append('Email')
-    if changes.user_skill:
-        user.user_skill = changes.user_skill
-        fields_changed.append('Skill')
-    if changes.user_description:
-        user.user_description = changes.user_description
-        fields_changed.append('Description')
-    if changes.user_profile_picture:
-        user.user_profile_picture = changes.user_profile_picture
-        fields_changed.append('Profile picture')
-    if changes.user_location:
-        user.user_location = changes.user_location
-        fields_changed.append('Location')
-    if changes.is_medical_professional:
-        user.is_medical_professional = changes.is_medical_professional
-        fields_changed.append('Is medical professional')
-    if changes.is_volunteer:
-        user.is_volunteer = changes.is_volunteer
-        fields_changed.append('Is volunteer')
+    user.user_email = changes.user_email or user.user_email
+    user.user_skill = changes.user_skill or user.user_skill
+    user.user_description = changes.user_description or user.user_description
+    user.user_profile_picture = changes.user_profile_picture or user.user_profile_picture
+    user.user_location = changes.user_location or user.user_location
+    user.is_medical_professional = changes.is_medical_professional or user.is_medical_professional
+    user.is_volunteer = changes.is_volunteer or user.is_volunteer
+    db.add(user)
     db.commit()
-    return fields_changed
+    return Response(status_code=status.HTTP_200_OK)
