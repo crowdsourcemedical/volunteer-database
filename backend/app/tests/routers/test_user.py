@@ -34,6 +34,23 @@ def test_create_user(testclient, db, unsaved_user):
     assert response.json() == {"user_id": 1}
 
 
+def test_create_user_password_too_short(testclient, db, unsaved_user):
+    userCreate = {
+        "user_email": unsaved_user.user_email,
+        "user_first": unsaved_user.user_first,
+        "user_last": unsaved_user.user_last,
+        "user_password": "1",
+        "user_is_medical_professional": unsaved_user.user_is_medical_professional,
+        "user_is_volunteer": unsaved_user.user_is_volunteer,
+        "user_is_active": True,
+        "user_is_admin": False,
+        "user_is_verified": False
+    }
+    response = testclient.post("/users/", json=userCreate)
+    assert response.status_code == 400
+    assert response.json() == {"detail": "Password much be at least 8 characters long"}
+
+
 def _seed_user_and_login(testclient, db, unsaved_user) -> Dict[str, str]:
     db.add(unsaved_user)
     db.commit()
@@ -81,7 +98,7 @@ def test_update_self_password(testclient, reattach_db, unsaved_user):
     db.close()
 
 
-def test_update_self_password_invalid(testclient, reattach_db, unsaved_user):
+def test_update_self_password_no_match(testclient, reattach_db, unsaved_user):
     db = reattach_db()
     headers = _seed_user_and_login(testclient, db, unsaved_user)
     db.close()
@@ -102,3 +119,15 @@ def test_update_self_password_no_old(testclient, reattach_db, unsaved_user):
     })
     assert response.status_code == 400
     assert response.text == '''{"detail":"Must also supply current password"}'''
+
+
+def test_update_self_password_too_short(testclient, reattach_db, unsaved_user):
+    db = reattach_db()
+    headers = _seed_user_and_login(testclient, db, unsaved_user)
+    db.close()
+    response = testclient.put("/users/me", headers=headers, json={
+        "old_password": "password",
+        "new_password": "1"
+    })
+    assert response.status_code == 400
+    assert response.text == '''{"detail":"New password much be at least 8 characters long"}'''

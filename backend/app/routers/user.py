@@ -39,6 +39,8 @@ def create_user(data: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, user_email=data.user_email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email is already registered")
+    if len(data.user_password) < auth.MINIMUM_PASSWORD_LENGTH:
+        raise HTTPException(status_code=400, detail=f"Password much be at least {auth.MINIMUM_PASSWORD_LENGTH} characters long")
     new_user = crud.create_user(db, data)
     return JSONResponse(status_code=status.HTTP_201_CREATED, content={
         "user_id": new_user.user_id
@@ -59,6 +61,8 @@ def update_self(
             raise HTTPException(status_code=400, detail="Must also supply current password")
         if not auth.verify_password(user.user_hashed_password, changes.old_password):
             raise HTTPException(status_code=400, detail="Current password did not match")
+        if len(changes.new_password) < auth.MINIMUM_PASSWORD_LENGTH:
+            raise HTTPException(status_code=400, detail=f"New password much be at least {auth.MINIMUM_PASSWORD_LENGTH} characters long")
         user.user_hashed_password = auth.hash_password(changes.new_password)
     user.user_email = changes.user_email or user.user_email
     user.user_skill = changes.user_skill or user.user_skill
