@@ -1,10 +1,10 @@
 from typing import List
 
 from fastapi import Depends, HTTPException, APIRouter, status
-from fastapi.responses import JSONResponse, Response
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
-from .. import auth, crud, models, schemas
+from .. import crud, schemas
 from ..database import get_db
 
 
