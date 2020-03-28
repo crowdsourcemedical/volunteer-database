@@ -14,14 +14,16 @@ class UserCreate(BaseModel):
     user_email: str
     user_first: str
     user_last: str
-    username: str
-    password: str
-    user_skill: Optional[str]
+    user_password: str
+    user_location: Optional[str]
     user_description: Optional[str]
     user_profile_picture: Optional[bytes]
-    user_location: Optional[str]
-    is_medical_professional: bool
-    is_volunteer: bool
+    user_is_active: bool
+    user_is_admin: bool
+    user_skill: Optional[str]
+    user_is_medical_professional: bool
+    user_is_verified: bool
+    user_is_volunteer: bool
 
 
 class User(UserBase):
@@ -32,8 +34,10 @@ class User(UserBase):
     user_description: Optional[str]
     user_profile_picture: Optional[bytes]
     user_location: Optional[str]
-    is_medical_professional: bool
-    is_volunteer: bool
+    user_is_active: bool
+    user_is_medical_professional: bool
+    user_is_verified: bool
+    user_is_volunteer: bool
 
 
 class UpdateUser(BaseModel):
