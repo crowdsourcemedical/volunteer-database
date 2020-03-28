@@ -26,7 +26,9 @@ class User(Base):
     user_is_volunteer = Column(Boolean, default=False)
 
     skills = relationship("Skill", "user_skill")
+    volunteering_projects = relationship("VolunteerProject")
     projects = relationship("Project", secondary="volunteer_project")
+    positions = relationship("Position", secondary="volunteer_project")
 
     def to_dict_for_jwt(self) -> dict:
         """Return a dict of many of this object's values
@@ -49,6 +51,7 @@ class Position(Base):
 
     position_id = Column(Integer, primary_key=True, index=True)
     position_name = Column(String(50))
+    volunteering_projects = relationship("VolunteerProject")
 
 
 class Project(Base):
@@ -69,10 +72,10 @@ class Project(Base):
 
     skills = relationship("Skill", secondary="project_skill")
     users = relationship(User, secondary="volunteer_project")
+    volunteering_projects = relationship("VolunteerProject")
 
 
 class Skill(Base):
-
     __tablename__ = "skill"
 
     skill_id = Column(Integer, primary_key=True, index=True)
@@ -91,6 +94,9 @@ class VolunteerProject(Base):
     user_id = Column(Integer, ForeignKey("user.user_id"), nullable=False)
     position_id = Column(Integer, ForeignKey("position.position_id"), nullable=False)
     project_id = Column(Integer, ForeignKey("project.project_id"), nullable=False)
+    user = relationship("User", back_populates="volunteering_projects")
+    position = relationship("Position", back_populates="volunteering_projects")
+    project = relationship("Project", back_populates="volunteering_projects")
 
 
 class UserSkills(Base):
