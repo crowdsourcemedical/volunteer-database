@@ -1,4 +1,4 @@
-from ...models import Position
+from ...models import Position, VolunteerProject
 
 
 def test_get_positions_empty_db(testclient):
@@ -60,4 +60,29 @@ def test_delete_position(testclient, db, unsaved_position, reattach_db):
     assert response.status_code == 200
     db = reattach_db()
     assert len(db.query(Position).all()) == 0
+    db.close()
+
+
+def test_delete_position_with_deps(
+    testclient,
+    db,
+    unsaved_project,
+    unsaved_user,
+    unsaved_position,
+    reattach_db
+):
+    db.add(unsaved_position)
+    db.add(unsaved_user)
+    db.add(unsaved_project)
+    db.add(VolunteerProject(
+        user_id=1,
+        position_id=1,
+        project_id=1
+    ))
+    db.commit()
+    response = testclient.delete("/positions/1")
+    assert response.status_code == 200
+    db = reattach_db()
+    assert len(db.query(Position).all()) == 0
+    assert len(db.query(VolunteerProject).all()) == 0
     db.close()
