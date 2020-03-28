@@ -31,15 +31,15 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
 
 
 @router.post("/")
-def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+def create_user(data: schemas.UserCreate, db: Session = Depends(get_db)):
     """Endpoint to create a new user.
 
     Warnings:
         Need rate limiting on this endpoint"""
-    db_user = crud.get_user_by_email(db, user_email=user.user_email)
+    db_user = crud.get_user_by_email(db, user_email=data.user_email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email is already registered")
-    new_user = crud.create_user(db=db, user=user)
+    new_user = crud.create_user(db, data)
     return JSONResponse(status_code=status.HTTP_201_CREATED, content={
         "user_id": new_user.user_id
     })
@@ -65,8 +65,8 @@ def update_self(
     user.user_description = changes.user_description or user.user_description
     user.user_profile_picture = changes.user_profile_picture or user.user_profile_picture
     user.user_location = changes.user_location or user.user_location
-    user.is_medical_professional = changes.is_medical_professional or user.is_medical_professional
-    user.is_volunteer = changes.is_volunteer or user.is_volunteer
+    user.user_is_medical_professional = changes.user_is_medical_professional or user.user_is_medical_professional
+    user.user_is_volunteer = changes.user_is_volunteer or user.user_is_volunteer
     db.add(user)
     db.commit()
     return Response(status_code=status.HTTP_200_OK)

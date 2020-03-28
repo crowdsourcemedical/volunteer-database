@@ -21,10 +21,12 @@ def test_create_user(db):
         user_email="some@where",
         user_first="AAA",
         user_last="BBB",
-        username="CCC",
-        password="GGG",
-        is_medical_professional=False,
-        is_volunteer=True,
+        user_password="GGG",
+        user_is_active=True,
+        user_is_admin=False,
+        user_is_medical_professional=False,
+        user_is_verified=False,
+        user_is_volunteer=True
     )
     newUser = crud.create_user(db, userData)
     assert newUser.user_id == 1

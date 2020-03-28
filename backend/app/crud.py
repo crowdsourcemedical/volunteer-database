@@ -31,26 +31,26 @@ def get_users(db: Session, skip: int = 0, limit: int = 100) -> List[models.User]
     return db.query(models.User).offset(skip).limit(limit).all()
 
 
-def create_user(db: Session, user: schemas.UserCreate):
+def create_user(db: Session, data: schemas.UserCreate):
     """Create a new user."""
-    password = user.user_password
+    password = data.user_password
     hashedpass = hash_password(password)
     db_user = models.User(
-        user_email=user.user_email,
-        user_first=user.user_first,
-        user_last=user.user_last,
-        user_hashed_password=str(hashedpass),
-        user_location=user.user_location,
-        user_description=user.user_description,
-        user_profile_picture=user.user_profile_picture,
+        user_email=data.user_email,
+        user_first=data.user_first,
+        user_last=data.user_last,
+        user_hashed_password=hashedpass,
+        user_location=data.user_location,
+        user_description=data.user_description,
+        user_profile_picture=data.user_profile_picture,
         user_is_active=True,
-        user_is_admin=user.user_is_admin,
+        user_is_admin=data.user_is_admin,
         user_last_login=datetime.now(),
-        user_is_medical_professional=user.user_is_medical_professional,
+        user_is_medical_professional=data.user_is_medical_professional,
         user_is_verified=False,
         user_registered_date=datetime.now(),
-        user_skill=user.user_skill,
-        user_is_volunteer=user.user_is_volunteer
+        user_skill=data.user_skill,
+        user_is_volunteer=data.user_is_volunteer
 
 
     )
@@ -74,6 +74,6 @@ def check_user(db: Session, email: str, password: str) -> Optional[models.User]:
     from_db = get_user_by_email(db, email)
     if not from_db:
         return None
-    if verify_password(bytes(from_db.user_hashed_password), password):
+    if verify_password(from_db.user_hashed_password, password):
         return from_db
     return None

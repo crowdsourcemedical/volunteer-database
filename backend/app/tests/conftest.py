@@ -59,16 +59,15 @@ def unsaved_user() -> User:
         user_email="some@where",
         user_first="AAA",
         user_last="BBB",
-        username="CCC",
-        is_active=True,
-        is_verified=False,
+        user_is_active=True,
+        user_is_verified=False,
         user_skill="DDD",
         user_description="EEE",
         user_location="FFF",
         user_hashed_password=hash_password("password"),
         user_last_login=datetime(2020, 3, 24),
-        is_medical_professional=False,
-        is_volunteer=True
+        user_is_medical_professional=False,
+        user_is_volunteer=True
     )
 
 

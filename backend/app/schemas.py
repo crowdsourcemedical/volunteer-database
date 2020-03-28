@@ -50,5 +50,5 @@ class UpdateUser(BaseModel):
     user_description: Optional[str]
     user_profile_picture: Optional[bytes]
     user_location: Optional[str]
-    is_medical_professional: Optional[bool]
-    is_volunteer: Optional[bool]
+    user_is_medical_professional: Optional[bool]
+    user_is_volunteer: Optional[bool]

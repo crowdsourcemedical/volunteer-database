@@ -22,10 +22,12 @@ def test_create_user(testclient, db, unsaved_user):
         "user_email": unsaved_user.user_email,
         "user_first": unsaved_user.user_first,
         "user_last": unsaved_user.user_last,
-        "username": unsaved_user.username,
-        "password": "password",
-        "is_medical_professional": unsaved_user.is_medical_professional,
-        "is_volunteer": unsaved_user.is_volunteer
+        "user_password": "password",
+        "user_is_medical_professional": unsaved_user.user_is_medical_professional,
+        "user_is_volunteer": unsaved_user.user_is_volunteer,
+        "user_is_active": True,
+        "user_is_admin": False,
+        "user_is_verified": False
     }
     response = testclient.post("/users/", json=userCreate)
     assert response.status_code == 201
@@ -36,7 +38,7 @@ def _seed_user_and_login(testclient, db, unsaved_user) -> Dict[str, str]:
     db.add(unsaved_user)
     db.commit()
     auth_response = testclient.post("/token", data={
-        "username": unsaved_user.username,
+        "username": unsaved_user.user_email,
         "password": "password"
     })
     token = auth_response.json()["access_token"]
