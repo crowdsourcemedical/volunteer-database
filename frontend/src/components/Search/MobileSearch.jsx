@@ -58,7 +58,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     left: 0,
     top: 50,
-    transition: theme.transitions.create(['width', 'left', 'opacity'], {
+    visibility: 'hidden',
+    transition: theme.transitions.create(['width', 'left', 'opacity', 'visibility'], {
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -66,7 +67,8 @@ const useStyles = makeStyles((theme) => ({
   show: {
     zIndex: 1,
     opacity: 1,
-    transition: theme.transitions.create(['width', 'left', 'opacity'], {
+    visibility: 'visible',
+    transition: theme.transitions.create(['width', 'left', 'opacity', 'visibility'], {
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.enteringScreen,
     }),
