@@ -56,9 +56,9 @@ def update_self(
     user.user_last = changes.user_last or user.user_last
     if changes.new_password:
         if not changes.old_password:
-            return HTTPException(status_code=400, detail="Must also supply current password")
-        if not auth.verify_password(user.password, changes.old_password):
-            return HTTPException(status_code=400, detail="Current password did not match")
+            raise HTTPException(status_code=400, detail="Must also supply current password")
+        if not auth.verify_password(user.user_hashed_password, changes.old_password):
+            raise HTTPException(status_code=400, detail="Current password did not match")
         user.user_hashed_password = auth.hash_password(changes.new_password)
     user.user_email = changes.user_email or user.user_email
     user.user_skill = changes.user_skill or user.user_skill
