@@ -123,5 +123,4 @@ def unsaved_user_with_relations(unsaved_user, unsaved_skill,
     vp.user = user
     vp.position = unsaved_position
     vp.project = unsaved_project
-    print(user.volunteering_projects[0].project)
     return user
