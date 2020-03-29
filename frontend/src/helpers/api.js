@@ -68,6 +68,20 @@ class Api {
     return response;
   }
 
+  /* ME */
+
+  async getMe() {
+    const response = await this.request({
+      route: '/me',
+      action: 'GET',
+      headers: {
+        Authorization: `Bearer ${this.jwt}`,
+      },
+    });
+
+    return response;
+  }
+
   /* USERS */
 
   async getUsers() {
