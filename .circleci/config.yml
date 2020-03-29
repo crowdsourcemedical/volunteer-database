@@ -1,0 +1,31 @@
+version: 2.1
+
+#
+# Notes:
+#
+#   This only handles testing backend stuff.
+#
+#   If the frontend team is interested in onboarding to CircleCI, then they
+#   should modify this file to include a workflow for building and/or testing
+#   the frontend code.
+#
+
+jobs:
+  backend-test:
+    docker:
+      - image: circleci/python:3.8
+        environment:
+          ENV_NAME: test
+    steps:
+      - checkout
+      - run:
+          command: pip install -r requirements.txt
+          working_directory: ./backend
+      - run:
+          command: pytest
+          working_directory: ./backend
+
+workflows:
+  main:
+    jobs:
+      - backend-test
