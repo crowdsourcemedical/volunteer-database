@@ -1,15 +1,20 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import ChatView from "./ChatView";
-import ChatList from "./ChatList";
-import NoChatView from "./NoChatView";
-import { ChatStore } from "../../stores/ChatStore";
-import { Grid, makeStyles, Container } from "@material-ui/core";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Switch, Route } from 'react-router-dom';
+import { Grid, makeStyles } from '@material-ui/core';
+import ChatView from './ChatView';
+import ChatList from './ChatList';
+import NoChatView from './NoChatView';
+import ChatStore from '../../stores/ChatStore';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
-    marginBottom: theme.spacing(4)
-  }
+    backgroundColor: 'white',
+    paddingBottom: theme.spacing(4),
+  },
+  chatViewWrapper: {
+    padding: '0 48px',
+  },
 }));
 
 function ChatViewSwitch({ routeProps }) {
@@ -20,8 +25,16 @@ function ChatViewSwitch({ routeProps }) {
   );
 }
 
+ChatViewSwitch.defaultProps = {
+  routeProps: {},
+};
+
+ChatViewSwitch.propTypes = {
+  routeProps: PropTypes.object(),
+};
+
 function ChatRoute(routeProps) {
-  const chats = ChatStore.useState(s => s.chats);
+  const chats = ChatStore.useState((s) => s.chats);
   const classes = useStyles();
 
   if (chats.length === 0) {
@@ -33,10 +46,8 @@ function ChatRoute(routeProps) {
       <Grid item lg={2}>
         <ChatList routeProps={routeProps} />
       </Grid>
-      <Grid item lg={10}>
-        <Container>
-          <ChatViewSwitch routeProps={routeProps} />
-        </Container>
+      <Grid className={classes.chatViewWrapper} item lg={10}>
+        <ChatViewSwitch routeProps={routeProps} />
       </Grid>
     </Grid>
   );
