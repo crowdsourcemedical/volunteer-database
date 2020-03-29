@@ -36,6 +36,8 @@ class Api {
       .catch((e) => e);
   }
 
+  /* TOKEN */
+
   // this is a temporary endpoint to verify jwt token
   async verifyToken() {
     const response = await this.request({
@@ -66,6 +68,8 @@ class Api {
     return response;
   }
 
+  /* USERS */
+
   async getUsers() {
     const response = await this.request({
       route: '/users',
@@ -89,6 +93,36 @@ class Api {
       route: '/users',
       action: 'POST',
       payload,
+    });
+
+    return response;
+  }
+
+  /* POSITIONS */
+
+  async getPositions() {
+    const response = await this.request({
+      route: `/positions`,
+      action: 'GET',
+    });
+
+    return response;
+  }
+
+  async createPosition(payload) {
+    const response = await this.request({
+      route: '/positions',
+      action: 'POST',
+      payload,
+    });
+
+    return response;
+  }
+
+  async getPosition(id) {
+    const response = await this.request({
+      route: `/positions/${id}`,
+      action: 'GET',
     });
 
     return response;
