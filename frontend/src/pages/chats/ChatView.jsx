@@ -40,8 +40,8 @@ ChatMessage.defaultProps = {
 };
 
 ChatMessage.propTypes = {
-  message: PropTypes.object(),
-  isSelf: PropTypes.bool(),
+  message: PropTypes.object,
+  isSelf: PropTypes.bool,
 };
 
 function ChatView({ match }) {
@@ -76,7 +76,7 @@ ChatView.defaultProps = {
 };
 
 ChatView.propTypes = {
-  match: PropTypes.object(),
+  match: PropTypes.object,
 };
 
 export default ChatView;

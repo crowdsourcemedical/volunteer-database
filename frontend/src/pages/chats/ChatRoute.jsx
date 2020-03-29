@@ -30,7 +30,7 @@ ChatViewSwitch.defaultProps = {
 };
 
 ChatViewSwitch.propTypes = {
-  routeProps: PropTypes.object(),
+  routeProps: PropTypes.object,
 };
 
 function ChatRoute(routeProps) {
