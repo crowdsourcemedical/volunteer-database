@@ -50,7 +50,7 @@ def test_update_self_password(testclient, reattach_db, unsaved_user):
     db.close()
 
 
-def test_update_self_password_invalid(testclient, reattach_db, unsaved_user):
+def test_update_self_password_no_match(testclient, reattach_db, unsaved_user):
     db = reattach_db()
     headers = _seed_user_and_login(testclient, db, unsaved_user)
     db.close()
@@ -84,3 +84,15 @@ def test_get_me(testclient, reattach_db, unsaved_user_with_relations):
     assert len(res["projects"]) == 1
     assert res["projects"][0]["project"]["project_title"] == "Test Project"
     assert res["projects"][0]["position"]["position_name"] == "manager"
+
+
+def test_update_self_password_too_short(testclient, reattach_db, unsaved_user):
+    db = reattach_db()
+    headers = _seed_user_and_login(testclient, db, unsaved_user)
+    db.close()
+    response = testclient.put("/me", headers=headers, json={
+        "old_password": "password",
+        "new_password": "1"
+    })
+    assert response.status_code == 400
+    assert response.text == '''{"detail":"New password much be at least 8 characters long"}'''

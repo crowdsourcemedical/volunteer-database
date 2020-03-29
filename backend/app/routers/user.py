@@ -40,6 +40,11 @@ def create_user(data: schemas.UserCreate, db: Session = Depends(get_db)):
     if db_user:
         raise HTTPException(
             status_code=400, detail="Email is already registered")
+    if len(data.user_password) < auth.MINIMUM_PASSWORD_LENGTH:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Password much be at least {auth.MINIMUM_PASSWORD_LENGTH} characters long"
+        )
     new_user = crud.create_user(db, data)
     return JSONResponse(status_code=status.HTTP_201_CREATED, content={
         "user_id": new_user.user_id
