@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     backgroundColor: 'white',
-    height: 50,
+    height: 80,
   },
   logo: {
     paddingLeft: 10,
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Footer = () => {
+const Header = () => {
   const classes = useStyles();
   const [loginIsOpen, setLoginIsOpen] = useState(false);
 
@@ -42,6 +42,9 @@ const Footer = () => {
         </Grid>
       </Grid>
       <Grid container xs={6} justify="flex-end" className={classes.login}>
+        <Hidden mdUp>
+          <Searchbar mobile />
+        </Hidden>
         {loginIsOpen ? (
           <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" className={classes.large} />
         ) : (
@@ -70,4 +73,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Header;
