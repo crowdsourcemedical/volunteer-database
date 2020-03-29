@@ -7,7 +7,7 @@ def test_login_and_verify(db, unsaved_user, testclient):
     db.add(unsaved_user)
     db.commit()
     response = testclient.post("/token", data={
-        "username": unsaved_user.username,
+        "username": unsaved_user.user_email,
         "password": "password"
     })
     assert response.status_code == 200
@@ -30,7 +30,7 @@ def test_login_invalid_creds(db, unsaved_user, testclient):
     db.add(unsaved_user)
     db.commit()
     response = testclient.post("/token", data={
-        "username": unsaved_user.username,
+        "username": unsaved_user.user_email,
         "password": "wrong_password"
     })
     assert response.status_code == 400
