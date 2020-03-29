@@ -9,7 +9,7 @@ from ..database import get_db
 router = APIRouter()
 
 
-@router.get("")
+@router.get("", response_model=schemas.UserFull)
 def get_self(
     user: models.User = Depends(auth.get_current_user),
     db: Session = Depends(get_db)
