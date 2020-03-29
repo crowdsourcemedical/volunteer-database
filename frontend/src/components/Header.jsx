@@ -63,7 +63,7 @@ const Header = () => {
           <Button
             variant="contained"
             color="primary"
-            size="small"
+            size="large"
             className={classes.button}
             endIcon={<ExitToAppIcon />}
             onClick={() => setLoginIsOpen(true)}
