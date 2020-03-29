@@ -11,6 +11,6 @@ def test_decode_token(db, unsaved_user):
     db.add(unsaved_user)
     db.commit()
     db.refresh(unsaved_user)
-    token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.64UPPFUArvNwhWvaTHOMuFwBIlWmZr2Bwh8l-5zr9Sg"
+    token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.oSo5RgAQYOgVvpdVk7hpAQEF1_grECTEcKwIcsWvdW8"
     decoded_user = decode_token(token, db)
     assert decoded_user.user_id == unsaved_user.user_id == 1

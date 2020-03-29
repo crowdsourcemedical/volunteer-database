@@ -1,17 +1,40 @@
 from datetime import datetime, timedelta
 
+from fastapi import Depends
 from fastapi.exceptions import HTTPException
+from fastapi.security import OAuth2PasswordBearer
 import jwt
 from jwt import PyJWTError
+from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from starlette.status import HTTP_401_UNAUTHORIZED
 
-from . import crud, models
+from . import crud, models, jwt_secret
+from .database import get_db
 
 
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_MINUTES = 30
-JWT_SECRET = "TEST_VALUE_PLEASE_CHANGE"  # TODO need to load this from somewhere
+JWT_SECRET = jwt_secret.get_jwt_key()  # Added openssl rand 256 | base64
+MINIMUM_PASSWORD_LENGTH = 8
+
+
+oauth2_schema = OAuth2PasswordBearer(tokenUrl="/token")
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+def hash_password(password: str) -> bytes:
+    """Hash a password, making it safe for storage."""
+    return pwd_context.hash(password)
+
+
+def verify_password(stored_password: bytes, password: str) -> bool:
+    """Check if the stored password matches the hash of the password to check."""
+    try:
+        return pwd_context.verify(password, stored_password)
+    except Exception as e:
+        print(f'Exception checking password: {e}')
+        return False
 
 
 def create_access_token(*, data: models.User, expires_delta: timedelta = None) -> bytes:
@@ -25,7 +48,7 @@ def create_access_token(*, data: models.User, expires_delta: timedelta = None) -
     Returns:
         JWT
     """
-    to_encode = data.to_dict()
+    to_encode = data.to_dict_for_jwt()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:
@@ -63,3 +86,25 @@ def decode_token(token: str, db: Session) -> models.User:
     if not user:
         raise credentials_exception
     return user
+
+
+async def get_current_user(
+    token: str = Depends(oauth2_schema),
+    db: Session = Depends(get_db)
+) -> models.User:
+    """Get a user for the token that"s passed in via HTTP headers.
+
+    This method gets the user's token through a `Depends` and processes it
+    into a `models.User` object (if it's valid).
+
+    Args:
+        token: user's session token ('Authorization' header)
+        db: database connection
+
+    Returns:
+        models.User: user for the token
+
+    Raises:
+        Exception if the token couldn't be decoded or didn't match a user
+    """
+    return decode_token(token, db)
