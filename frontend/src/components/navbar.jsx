@@ -5,6 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -14,9 +15,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Link from '@material-ui/core/Link';
 import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import InboxIcon from '@material-ui/icons/Inbox';
+import Avatar from '@material-ui/core/Avatar';
 
 import { PAGE_LINKS_LIST, LOGIN_PAGE_LINK } from '../constants/navigation';
 import LoginForm from './Forms/LoginForm';
+import MobileSearch from './Search/MobileSearch';
 
 const navbarHeight = 64;
 const drawerWidth = 240;
@@ -26,6 +31,9 @@ const ListItemLink = (props) => <ListItem button component="a" {...props} />;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+  },
+  grow: {
+    flexGrow: 1,
   },
   navBar: {
     height: navbarHeight,
@@ -77,6 +85,12 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: drawerWidth,
   },
+  subcontainer: {
+    marginLeft: 'auto',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    alignItems: 'center',
+  },
   backdrop: {
     background: theme.palette.primary.main,
     opacity: '0.5 !important',
@@ -88,6 +102,7 @@ const NavBar = () => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
   const [loginIsOpen, setLoginIsOpen] = useState(false);
+  const avatarURL = 'https://material-ui.com/static/images/avatar/1.jpg';
 
   const toggleDrawer = (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -124,17 +139,41 @@ const NavBar = () => {
           <Typography variant="h6" noWrap className={classes.appTitle}>
             App Title
           </Typography>
-          <Link
-            className={classes.authLink}
-            onClick={(e) => {
-						  e.preventDefault();
-						  toggleLoginDialog();
-            }}
-          >
-            <Typography variant="h6" noWrap>
-              {LOGIN_PAGE_LINK.name}
-            </Typography>
-          </Link>
+          <Grid direction="row" alignItems="center" justify="flex-end" container>
+            <Grid item>
+              <Link>
+                <Avatar alt="Remy Sharp" src={avatarURL} />
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  className={classes.button}
+                  startIcon={<InboxIcon />}
+                >
+                  INBOX
+                </Button>
+              </Link>
+            </Grid>
+          </Grid>
+
+          <div className={classes.subcontainer}>
+            <MobileSearch />
+            <Link
+              className={classes.authLink}
+              onClick={(e) => {
+                e.preventDefault();
+                toggleLoginDialog();
+              }}
+            >
+              <Typography variant="h6" noWrap>
+                {LOGIN_PAGE_LINK.name}
+              </Typography>
+            </Link>
+          </div>
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />
@@ -142,18 +181,19 @@ const NavBar = () => {
         <div className={classes.listSpacer} />
         <Divider />
         <List className={classes.list}>
-          {PAGE_LINKS_LIST && PAGE_LINKS_LIST.map((link) => (
-            <ListItemLink key={link.path} href={link.path}>
-              <ListItemText primary={link.name} />
-            </ListItemLink>
-          ))}
+          {PAGE_LINKS_LIST &&
+            PAGE_LINKS_LIST.map((link) => (
+              <ListItemLink key={link.path} href={link.path}>
+                <ListItemText primary={link.name} />
+              </ListItemLink>
+            ))}
         </List>
       </Drawer>
       <Dialog
         open={loginIsOpen}
         onClose={toggleLoginDialog}
         BackdropProps={{
-				  className: classes.backdrop,
+          className: classes.backdrop,
         }}
       >
         <LoginForm />

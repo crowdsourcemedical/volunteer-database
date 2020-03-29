@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SignupPage from './signup';
+import SignupPage from './signup'; // eslint-disable-line
 
 test('component renders with the correct elements', () => {
   const wrapper = shallow(<SignupPage />);

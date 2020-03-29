@@ -25,7 +25,7 @@ DevOps: https://trello.com/b/ggGTsmr8/csm-devops
 Onboarding and Team Assignments: https://trello.com/b/lcE3lFLO/csm-onboarding-and-team-assignment
 
 ## The Tech Stack
-Backend: Django Rest API, PostgreSQL
+Backend: FastAPI, PostgreSQL
 
 Frontend: React, Material UI, Cypress (for E2E-testing)
 
@@ -56,6 +56,18 @@ docker-compose up -d # The flag -d leaves the process in the background. Feel fr
 The frontend is now be accessible at `localhost:3001`. The backend is now accessible at `localhost:8000`.
 
 The backend might crash the first time, this is because a bug in the db image. Simply run `docker-compose up (-d)` again and it should work.
+
+## Populating the database
+Once the database is setup we will be providing a database dump with some users etc in it. To update the database simply run 
+```sh
+./restore-database base.pgdump
+```
+
+Incase you want to make a snapshot of your db to share run the following
+```sh
+./dump-database
+```
+
 
 ## How to Contribute
 

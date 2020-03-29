@@ -1,7 +1,6 @@
 import React from 'react';
-import {
-  Formik, Form, Field, FieldArray,
-} from 'formik';
+import PropTypes from 'prop-types';
+import { Formik, Form, Field, FieldArray } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
@@ -41,19 +40,23 @@ function StaffCheckbox({ staff, arrayHelpers, disabled }) {
     <FormControlLabel
       key={staff.id}
       label={staff.label}
-      control={(
+      control={
         <Checkbox
           color="primary"
           value={staff.id}
           disabled={disabled}
-          onChange={(e) => (e.target.checked
-            ? arrayHelpers.push(staff.id)
-            : arrayHelpers.remove(staff.id))}
+          onChange={(e) => (e.target.checked ? arrayHelpers.push(staff.id) : arrayHelpers.remove(staff.id))}
         />
-      )}
+      }
     />
   );
 }
+
+StaffCheckbox.propTypes = {
+  staff: PropTypes.object.isRequired,
+  arrayHelpers: PropTypes.array.isRequired,
+  disabled: PropTypes.bool.isRequired,
+};
 
 function ProjectSubmit() {
   const classes = useStyles();
@@ -112,7 +115,7 @@ function ProjectSubmit() {
       }}
       onSubmit={handleFormSubmit}
     >
-      <Form class={classes.form} noValidate autoComplete="off">
+      <Form className={classes.form} noValidate autoComplete="off">
         <Grid justify="center" container>
           <Grid item xs={11} sm={11} md={11} lg={9}>
             <Grid container>
@@ -128,12 +131,9 @@ function ProjectSubmit() {
                   Tell us a little about your project
                 </Typography>
                 <Typography gutterBottom variant="body1">
-                  What's the problem and what are you looking for our volunteers
-                  to help you with?
+                  What's the problem and what are you looking for our volunteers to help you with?
                 </Typography>
-                <Link href="#">
-                  Please read this recommendation from our legal team
-                </Link>
+                <Link href="#">Please read this recommendation from our legal team</Link>
               </Grid>
               <Grid xs={12} sm={12} lg={7} item>
                 <Field name="projectDescription">
@@ -183,10 +183,7 @@ function ProjectSubmit() {
                         disableUnderline: true,
                         startAdornment: (
                           <InputAdornment position="start">
-                            <LocationOnRoundedIcon
-                              color="primary"
-                              fontSize="small"
-                            />
+                            <LocationOnRoundedIcon color="primary" fontSize="small" />
                           </InputAdornment>
                         ),
                       }}
@@ -201,51 +198,36 @@ function ProjectSubmit() {
                   What kind of support staff are you looking for help from?
                 </Typography>
                 <Typography gutterBottom variant="body1">
-                  We'll try to connect you with the kind of talent you need and
-                  are looking for.
+                  We'll try to connect you with the kind of talent you need and are looking for.
                 </Typography>
               </Grid>
               <Grid xs={12} sm={12} lg={7} item>
                 <FieldArray name="soughtStaff">
-                  {(arrayHelpers) => checkboxSections.map((section) => (
-                    <section
-                      className={classes.checkboxSection}
-                      key={section.label}
-                    >
-                      <Typography gutterBottom variant="h5">
-                        {section.label}
-                      </Typography>
-                      <Grid
-                        item
-                        container
-                        justify="flex-start"
-                        xs={12}
-                        sm={10}
-                        md={8}
-                        lg={10}
-                      >
-                        {section.staff.map((s) => (
-                          <Grid item xs={6} key={s.id}>
-                            <StaffCheckbox
-                              staff={s}
-                              arrayHelpers={arrayHelpers}
-                              disabled={disabledStaff.includes(s.id)}
-                            />
-                          </Grid>
-                        ))}
-                      </Grid>
-                    </section>
-                  ))}
+                  {(arrayHelpers) =>
+                    checkboxSections.map((section) => (
+                      <section className={classes.checkboxSection} key={section.label}>
+                        <Typography gutterBottom variant="h5">
+                          {section.label}
+                        </Typography>
+                        <Grid item container justify="flex-start" xs={12} sm={10} md={8} lg={10}>
+                          {section.staff.map((s) => (
+                            <Grid item xs={6} key={s.id}>
+                              <StaffCheckbox
+                                staff={s}
+                                arrayHelpers={arrayHelpers}
+                                disabled={disabledStaff.includes(s.id)}
+                              />
+                            </Grid>
+                          ))}
+                        </Grid>
+                      </section>
+                    ))
+                  }
                 </FieldArray>
               </Grid>
             </Grid>
             <Grid container justify="flex-end">
-              <Button
-                type="submit"
-                color="primary"
-                variant="contained"
-                size="medium"
-              >
+              <Button type="submit" color="primary" variant="contained" size="medium">
                 Submit Project
               </Button>
             </Grid>

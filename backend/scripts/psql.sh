@@ -1,0 +1,1 @@
+docker exec -ti css_db psql -U postgres CSS

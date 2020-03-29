@@ -1,3 +1,4 @@
+/* eslint class-methods-use-this: off */
 import getEnvVars from '../environment';
 
 const { BASE_URL } = getEnvVars();
@@ -7,34 +8,60 @@ const { BASE_URL } = getEnvVars();
 // CURRENT API - http://localhost:8000/redoc
 
 class Api {
-  async request({
-    route, payload, action = 'GET', headers = {},
-  }) {
-    const requestURL = `${BASE_URL}${route}`;
+  jwt = null;
 
-    const requestHeaders = {
-      'Content-Type': 'application/json',
-      ...headers,
-    };
+  createFormData(payload) {
+    return Object.keys(payload)
+      .map((key) => {
+        return `${encodeURIComponent(key)}=${encodeURIComponent(payload[key])}`;
+      })
+      .join('&');
+  }
+
+  async request({ route, payload, action = 'GET', headers = {} }) {
+    const requestURL = `${BASE_URL}${route}`;
 
     const options = {
       method: action,
-      headers: requestHeaders,
+      headers,
     };
 
     if (payload) {
-      options.body = JSON.stringify(payload);
+      // the /token route requires FormData in payload
+      options.body = route === '/token' ? this.createFormData(payload) : JSON.stringify(payload);
     }
 
-    return this.fetch(requestURL, options).then((res) => res.json()).catch((e) => e);
+    return fetch(requestURL, options)
+      .then((res) => res.json())
+      .catch((e) => e);
+  }
+
+  // this is a temporary endpoint to verify jwt token
+  async verifyToken() {
+    const response = await this.request({
+      route: '/token/verify',
+      action: 'GET',
+      headers: {
+        Authorization: `Bearer ${this.jwt}`,
+      },
+    });
+
+    return response;
   }
 
   async login(payload) {
     const response = await this.request({
-      route: '/users/login',
+      route: '/token',
       action: 'POST',
       payload,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      },
     });
+
+    if (response && response.access_token) {
+      this.jwt = response.access_token;
+    }
 
     return response;
   }

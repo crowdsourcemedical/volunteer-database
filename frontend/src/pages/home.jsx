@@ -1,81 +1,120 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-// import API from "../../api";
-import {
-  Menu, MenuItem, Box, Typography, Grid, Paper,
-} from '@material-ui/core';
-import { IconButton, Button, Fab } from '@material-ui/core';
+import React from 'react';
+import { Typography, Grid, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import shadows from '@material-ui/core/styles/shadows';
-import { Hero } from '../components/Hero/Hero';
+import HeroImg from '../images/hero-edit-opacity.png';
 import AboutImg from '../images/about.png';
 
-// import ProjectSmallCard from "../ProjectComponents/ProjectSmallCard";
-
-import HeroImg from '../images/hero.png';
-
-const useStyles = makeStyles((theme) => ({
-  image: {
-    boxShadow: '-9px 10px 0px 1px #006772',
-    width: '100%',
+const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1,
+  },
+  topHalf: {
+    flexGrow: 1,
+    backgroundImage: `url(${HeroImg})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+  },
+  topTextContainer: {
+    paddingTop: '10%',
+    paddingLeft: '15%',
+    paddingRight: '30%',
+    paddingBottom: '5%',
+  },
+  bottomHalf: {
+    flexGrow: 1,
+  },
+  bottomTextContainer: {
+    flexGrow: 1,
+    paddingTop: '10%',
+    paddingLeft: '15%',
+    paddingRight: '5%',
+  },
+  bottomHalfImageContainer: {
+    paddingTop: '15%',
+    paddingLeft: '15%',
+    paddingRight: '5%',
+  },
+  bottomHalfImage: {
+    width: '20%',
+    height: '20%',
   },
 }));
 
-const HomePage = (props) => {
+const HomePage = () => {
   const classes = useStyles();
+
   return (
-    <Grid container spacing={2}>
-      <Grid container>
-        <Hero image={HeroImg} primaryButton={{ link: '/projects/submit', text: 'Submit a Project' }} secondaryButton={{ link: 'signup/volunteer', text: 'Become a Volunteer' }}>
-          <Typography component="h1" variant="h2" align="left" color="textPrimary" gutterBottom>
-            DO SOMETHING GREAT
-          </Typography>
-          <Typography variant="h5" align="left" color="textSecondary" paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.
-            <br />
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Typography>
-        </Hero>
-      </Grid>
-      <Container>
-        <Grid container align="left">
-          <Grid item lg={5}>
-            <Typography align="left" variant="h3">Project Information</Typography>
+    <Box className={classes.root}>
+      <Grid container direction="column" spacing={0}>
+        <Grid item className={classes.topHalf}>
+          <Grid container direction="column" className={classes.topTextContainer} spacing={2}>
+            <Grid item>
+              <Typography variant="h2" color="textPrimary">
+                Do Something Great
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body1">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
+              </Typography>
+              <Box m={2} />
+              <Typography variant="body1">
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              </Typography>
+            </Grid>
             <Box m={2} />
-            <Typography align="left" variant="p">
-              Regulated medical devices are the purview of the Food and Drug Administration. Any designer or
-              manufacturer producing items claiming to prevent, diagnose, treat, or cure a medical condition
-              are under their jurisdiction and subject to premarket approval. Punishments are wide-ranging,
-              but our recommendation is to avoid them altogether.
-            </Typography>
-            <Box m={4} />
-            <Typography align="left" variant="p">
-              Words like "medical", "prevent", "protect", and "hospital" are going to put you at risk.
-              Indicating your mask is for a non-medical purpose is not recommended, because the intent of this
-              effort is clear to authorities. When packaging, distributing, or discussing these produced
-              materials, we recommend using plain boxes wherever possible, including no claims or disclaimers.
-            </Typography>
-          </Grid>
-          <Grid item lg={2} />
-          <Grid item lg={5}>
-            <div>
-              <img className={classes.image} src={AboutImg} />
-            </div>
+            <Grid item>
+              <Grid container direction="row" spacing={2}>
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    Submit a Project
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="contained" color="secondary">
+                    Become a Volunteer
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-      </Container>
-      {/* Footer */}
-      <Grid item xs={12} />
-      {/* End Main Page Content */}
-    </Grid>
+        <Grid item className={classes.bottomHalf}>
+          <Grid container direction="row">
+            <Grid item xs={7}>
+              <Grid container direction="column" className={classes.bottomTextContainer} spacing={2}>
+                <Grid item>
+                  <Typography variant="h3">Project Information</Typography>
+                </Grid>
+                <Grid item>
+                  <Typography variant="body1">
+                    Regulated medical devices are the purview of the Food and Drug Administration. Any designer or
+                    manufacturer producing items claiming to prevent, diagnose, treat, or cure a medical condition are
+                    under their jurisdiction and subject to premarket approval. Punishments are wide-ranging but our
+                    recommendation is to avoid them altogether.
+                  </Typography>
+                  <Box m={2} />
+                  <Typography variant="body1">
+                    Words like “medical”, “protect”, and “hostpital” are going to put you at risk. Indicating your mask
+                    is for a non-medical purpose is not recommended, because the intent of this effort is clear to
+                    authorities. When packaging, distrubting, or discussing these produced materials, we recommend using
+                    plain boxes wherever possible, including no claims or disclaimers.
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={5}>
+              <Grid item className={classes.bottomHalfImageContainer}>
+                <Box src={AboutImg} component="img" style={{ width: '80%' }} />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Box>
   );
-};
-
-HomePage.propTypes = {
-  userID: PropTypes.string,
-  // TODO: Add More PropTypes
 };
 
 export default HomePage;
