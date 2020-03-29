@@ -4,19 +4,27 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../images/crowd-source-logo.svg';
 import LoginForm from './Forms/LoginForm';
-import Searchbar from './Search/MobileSearch';
+import SearchBar from './Search/SearchBar';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: 'white',
     height: 80,
   },
-  logo: {
-    paddingLeft: 10,
+  rightNav: {
+    paddingRight: theme.spacing(2),
+    flexFlow: 'row nowrap',
   },
-  login: {
-    paddingRight: 10,
+  leftNav: {
+    flexFlow: 'row nowrap',
+  },
+  logoContainer: {
+    paddingLeft: theme.spacing(2),
+    flexFlow: 'row nowrap',
+  },
+  searchBarContainer: {
+    paddingLeft: theme.spacing(3),
   },
 }));
 
@@ -26,24 +34,28 @@ const Header = () => {
 
   return (
     <Grid container className={classes.root} justify="center" alignItems="center">
-      <Grid container xs={6}>
-        <Grid item sm={12} md={6}>
-          <Grid container className={classes.logo}>
-            <img src={Logo} alt="crowd source medical logo" />
-            <Typography variant="h5" className={classes.logoText}>
-              Crowd Source Solutions
-            </Typography>
+      <Grid container xs={6} md={8}>
+        <Grid container className={classes.leftNav}>
+          <Grid item>
+            <Grid container className={classes.logoContainer} alignItems="center">
+              <img src={Logo} alt="crowd source medical logo" />
+              <Typography variant="h5" className={classes.logoText}>
+                Crowd Source Solutions
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <div className={classes.searchBarContainer}>
+              <Hidden smDown>
+                <SearchBar />
+              </Hidden>
+            </div>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Hidden smDown>
-            <Searchbar />
-          </Hidden>
-        </Grid>
       </Grid>
-      <Grid container xs={6} justify="flex-end" className={classes.login}>
+      <Grid container xs={6} md={4} justify="flex-end" className={classes.rightNav}>
         <Hidden mdUp>
-          <Searchbar mobile />
+          <SearchBar mobile />
         </Hidden>
         {loginIsOpen ? (
           <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" className={classes.large} />
