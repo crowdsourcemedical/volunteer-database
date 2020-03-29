@@ -5,10 +5,10 @@ from fastapi.testclient import TestClient
 from pytest import fixture
 from sqlalchemy.orm import Session
 
-from ..crud import hash_password
-from ..database import Base, engine, SessionLocal, DB_TEST_FILE_NAME
-from ..main import app
-from ..models import User, Skill, Project, Position, VolunteerProject
+from app.crud.user import hash_password
+from app.database import Base, engine, SessionLocal, DB_TEST_FILE_NAME
+from app.main import app
+from app.models import User, Skill, Project, Position, VolunteerProject
 
 
 @fixture(scope="function", autouse=True)
@@ -46,7 +46,7 @@ def reattach_db() -> Session:
 
 
 @fixture(scope="module")
-def testclient() -> TestClient:
+def test_client() -> TestClient:
     """Return a client for testing endpoints."""
     return TestClient(app)
 

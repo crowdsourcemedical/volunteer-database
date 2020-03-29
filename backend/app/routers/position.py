@@ -4,22 +4,21 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import Response
 from sqlalchemy.orm import Session
 
-from .. import schemas
-from ..database import get_db
-from ..models import Position, VolunteerProject
-
+from app.database import get_db
+from app.models import Position, VolunteerProject
+from app.schemas.position import Position, PositionBase, PositionCreate, PositionUpdate
 
 router = APIRouter()
 
 
-@router.get("/", response_model=List[schemas.PositionBase])
+@router.get("/", response_model=List[PositionBase])
 def get_positions(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     """Endpoint to get a list of position ids."""
     return db.query(Position).offset(skip).limit(limit).all()
 
 
-@router.post("/", response_model=schemas.Position)
-def create_position(data: schemas.PositionCreate, db: Session = Depends(get_db)):
+@router.post("/", response_model=Position)
+def create_position(data: PositionCreate, db: Session = Depends(get_db)):
     """Endpoint to create a position."""
     p = Position(**data.dict())
     db.add(p)
@@ -28,7 +27,7 @@ def create_position(data: schemas.PositionCreate, db: Session = Depends(get_db))
     return p
 
 
-@router.get("/{position_id}", response_model=schemas.Position)
+@router.get("/{position_id}", response_model=Position)
 def get_position(position_id: int, db: Session = Depends(get_db)):
     """Endpoint to get information on a single position."""
     p = db.query(Position).filter(Position.position_id == position_id).first()
@@ -38,7 +37,7 @@ def get_position(position_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/{position_id}")
-def update_position(position_id: int, data: schemas.PositionUpdate, db: Session = Depends(get_db)):
+def update_position(position_id: int, data: PositionUpdate, db: Session = Depends(get_db)):
     """Endpoint to update an existing position."""
     p = db.query(Position).filter(Position.position_id == position_id).first()
     if not p:

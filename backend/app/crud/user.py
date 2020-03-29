@@ -3,21 +3,22 @@ from typing import List, Optional
 
 from sqlalchemy.orm import Session
 
-from . import models, schemas
-from .auth import hash_password, verify_password
+from app.auth import hash_password, verify_password
+from app.models import User
+from app.schemas.user import UserCreate
 
 
-def get_user(db: Session, user_id: int) -> models.User:
+def get_user(db: Session, user_id: int) -> User:
     """Return the first user that has the matching id."""
-    return db.query(models.User).filter(models.User.user_id == user_id).first()
+    return db.query(User).filter(User.user_id == user_id).first()
 
 
-def get_user_by_email(db: Session, user_email: str) -> models.User:
+def get_user_by_email(db: Session, user_email: str) -> User:
     """Return the first user that has the matching email."""
-    return db.query(models.User).filter(models.User.user_email == user_email).first()
+    return db.query(User).filter(User.user_email == user_email).first()
 
 
-def get_users(db: Session, skip: int = 0, limit: int = 100) -> List[models.User]:
+def get_users(db: Session, skip: int = 0, limit: int = 100) -> List[User]:
     """Return all users, making use of batching.
 
     Args:
@@ -28,14 +29,14 @@ def get_users(db: Session, skip: int = 0, limit: int = 100) -> List[models.User]
     Returns:
         List of users
     """
-    return db.query(models.User).offset(skip).limit(limit).all()
+    return db.query(User).offset(skip).limit(limit).all()
 
 
-def create_user(db: Session, data: schemas.UserCreate):
+def create_user(db: Session, data: UserCreate):
     """Create a new user."""
     password = data.user_password
     hashedpass = hash_password(password)
-    db_user = models.User(
+    db_user = User(
         user_email=data.user_email,
         user_first=data.user_first,
         user_last=data.user_last,
@@ -51,8 +52,6 @@ def create_user(db: Session, data: schemas.UserCreate):
         user_registered_date=datetime.now(),
         user_skill=data.user_skill,
         user_is_volunteer=data.user_is_volunteer
-
-
     )
     db.add(db_user)
     db.commit()
@@ -60,7 +59,7 @@ def create_user(db: Session, data: schemas.UserCreate):
     return db_user
 
 
-def check_user(db: Session, email: str, password: str) -> Optional[models.User]:
+def check_user(db: Session, email: str, password: str) -> Optional[User]:
     """Check if the email and password match what's in the database.
 
     Args:

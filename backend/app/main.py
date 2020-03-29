@@ -5,11 +5,11 @@ from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
 from starlette.status import HTTP_400_BAD_REQUEST
 
-from . import crud, models
-from .auth import create_access_token, get_current_user
-from .database import engine, get_db
-from .routers import position, project, skill, user, me
-
+from app.auth import create_access_token, get_current_user
+from app.crud import user as crud_user
+from app.database import engine, get_db
+from app.models import Base, User
+from app.routers import position, project, skill, user, me
 
 app = FastAPI()
 app.add_middleware(
@@ -25,7 +25,7 @@ app.include_router(skill.router, prefix="/skills")
 app.include_router(user.router, prefix="/users")
 app.include_router(me.router, prefix="/me")
 
-models.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 
 @app.post("/token")
@@ -45,7 +45,7 @@ async def login(
     Warnings:
         Need rate limiting on this endpoint.
     """
-    user = crud.check_user(db, form_data.username, form_data.password)
+    user = crud_user.check_user(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
             status_code=HTTP_400_BAD_REQUEST,
@@ -58,7 +58,7 @@ async def login(
 
 
 @app.get("/token/verify")
-async def token_verify(user: models.User = Depends(get_current_user)) -> dict:
+async def token_verify(user: User = Depends(get_current_user)) -> dict:
     """Return the user's information to them."""
     return user.to_dict_for_jwt()
 

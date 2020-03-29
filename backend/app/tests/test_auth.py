@@ -1,4 +1,4 @@
-from ..auth import create_access_token, decode_token
+from app.auth import create_access_token, decode_token
 
 
 def test_create_access_token(unsaved_user):

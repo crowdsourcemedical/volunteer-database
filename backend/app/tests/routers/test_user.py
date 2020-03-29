@@ -1,18 +1,18 @@
-def test_get_users_empty(testclient):
-    response = testclient.get("/users/")
+def test_get_users_empty(test_client):
+    response = test_client.get("/users/")
     assert response.status_code == 200
     assert response.json() == []
 
 
-def test_get_users_data(testclient, db, unsaved_user):
+def test_get_users_data(test_client, db, unsaved_user):
     db.add(unsaved_user)
     db.commit()
-    response = testclient.get("/users/")
+    response = test_client.get("/users/")
     assert response.status_code == 200
     assert len(response.json()) == 1
 
 
-def test_create_user(testclient, db, unsaved_user):
+def test_create_user(test_client, db, unsaved_user):
     userCreate = {
         "user_email": unsaved_user.user_email,
         "user_first": unsaved_user.user_first,
@@ -24,12 +24,12 @@ def test_create_user(testclient, db, unsaved_user):
         "user_is_admin": False,
         "user_is_verified": False
     }
-    response = testclient.post("/users/", json=userCreate)
+    response = test_client.post("/users/", json=userCreate)
     assert response.status_code == 201
     assert response.json() == {"user_id": 1}
 
 
-def test_create_user_password_too_short(testclient, db, unsaved_user):
+def test_create_user_password_too_short(test_client, db, unsaved_user):
     userCreate = {
         "user_email": unsaved_user.user_email,
         "user_first": unsaved_user.user_first,
@@ -41,6 +41,6 @@ def test_create_user_password_too_short(testclient, db, unsaved_user):
         "user_is_admin": False,
         "user_is_verified": False
     }
-    response = testclient.post("/users/", json=userCreate)
+    response = test_client.post("/users/", json=userCreate)
     assert response.status_code == 400
     assert response.json() == {"detail": "Password much be at least 8 characters long"}

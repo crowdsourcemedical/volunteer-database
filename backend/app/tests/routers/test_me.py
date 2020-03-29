@@ -14,11 +14,11 @@ def _seed_user_and_login(testclient, db, unsaved_user) -> Dict[str, str]:
     return {"Authorization": f"Bearer {token}"}
 
 
-def test_update_self_not_password(testclient, reattach_db, unsaved_user):
+def test_update_self_not_password(test_client, reattach_db, unsaved_user):
     db = reattach_db()
-    headers = _seed_user_and_login(testclient, db, unsaved_user)
+    headers = _seed_user_and_login(test_client, db, unsaved_user)
     db.close()
-    response = testclient.put("/me", headers=headers, json={
+    response = test_client.put("/me", headers=headers, json={
         "user_first": "new_first_name",
         "user_location": "new location"
     })
@@ -32,12 +32,12 @@ def test_update_self_not_password(testclient, reattach_db, unsaved_user):
     db.close()
 
 
-def test_update_self_password(testclient, reattach_db, unsaved_user):
+def test_update_self_password(test_client, reattach_db, unsaved_user):
     db = reattach_db()
-    headers = _seed_user_and_login(testclient, db, unsaved_user)
+    headers = _seed_user_and_login(test_client, db, unsaved_user)
     orig_password = db.query(User).first().user_hashed_password
     db.close()
-    response = testclient.put("/me", headers=headers, json={
+    response = test_client.put("/me", headers=headers, json={
         "old_password": "password",
         "new_password": "password 2"
     })
@@ -50,11 +50,11 @@ def test_update_self_password(testclient, reattach_db, unsaved_user):
     db.close()
 
 
-def test_update_self_password_no_match(testclient, reattach_db, unsaved_user):
+def test_update_self_password_no_match(test_client, reattach_db, unsaved_user):
     db = reattach_db()
-    headers = _seed_user_and_login(testclient, db, unsaved_user)
+    headers = _seed_user_and_login(test_client, db, unsaved_user)
     db.close()
-    response = testclient.put("/me", headers=headers, json={
+    response = test_client.put("/me", headers=headers, json={
         "old_password": "wrong password",
         "new_password": "doesn't matter"
     })
@@ -62,22 +62,22 @@ def test_update_self_password_no_match(testclient, reattach_db, unsaved_user):
     assert response.text == '''{"detail":"Current password did not match"}'''
 
 
-def test_update_self_password_no_old(testclient, reattach_db, unsaved_user):
+def test_update_self_password_no_old(test_client, reattach_db, unsaved_user):
     db = reattach_db()
-    headers = _seed_user_and_login(testclient, db, unsaved_user)
+    headers = _seed_user_and_login(test_client, db, unsaved_user)
     db.close()
-    response = testclient.put("/me", headers=headers, json={
+    response = test_client.put("/me", headers=headers, json={
         "new_password": "new password",
     })
     assert response.status_code == 400
     assert response.text == '''{"detail":"Must also supply current password"}'''
 
 
-def test_get_me(testclient, reattach_db, unsaved_user_with_relations):
+def test_get_me(test_client, reattach_db, unsaved_user_with_relations):
     db = reattach_db()
-    headers = _seed_user_and_login(testclient, db, unsaved_user_with_relations)
+    headers = _seed_user_and_login(test_client, db, unsaved_user_with_relations)
     db.close()
-    response = testclient.get("/me", headers=headers)
+    response = test_client.get("/me", headers=headers)
     res = response.json()
     assert response.status_code == 200
     assert len(res["skills"]) == 1

@@ -1,4 +1,5 @@
-from .. import crud, schemas
+from app.crud import user as crud
+from app.schemas import user as schemas
 
 
 def test_get_user_empty_db(db):

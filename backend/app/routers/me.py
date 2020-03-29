@@ -2,17 +2,18 @@ from fastapi import Depends, HTTPException, APIRouter, status
 from fastapi.responses import Response
 from sqlalchemy.orm import Session
 
-from .. import auth, models, schemas
-from ..database import get_db
-
+from app import auth
+from app.database import get_db
+from app.models import User
+from app.schemas.user import UpdateUser
 
 router = APIRouter()
 
 
 @router.get("")
 def get_self(
-    user: models.User = Depends(auth.get_current_user),
-    db: Session = Depends(get_db)
+        user: User = Depends(auth.get_current_user),
+        db: Session = Depends(get_db)
 ):
     """Endpoint to get current user's data. This includes projects, skills, etc"""
     if user is None:
@@ -35,9 +36,9 @@ def get_self(
 
 @router.put("")
 def update_self(
-    changes: schemas.UpdateUser,
-    user: models.User = Depends(auth.get_current_user),
-    db: Session = Depends(get_db)
+        changes: UpdateUser,
+        user: User = Depends(auth.get_current_user),
+        db: Session = Depends(get_db)
 ):
     """Endpoint to allow a user to update *their own* profile."""
     user.user_first = changes.user_first or user.user_first
