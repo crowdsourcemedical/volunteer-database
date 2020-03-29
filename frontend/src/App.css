@@ -5,3 +5,6 @@
 #legal_recomendations:hover {
   cursor: pointer;
 }
+.App {
+  min-height: 100vh;
+}

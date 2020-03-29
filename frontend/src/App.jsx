@@ -11,6 +11,7 @@ import SignupVolunteerPage from './pages/signup_volunteer';
 import Style from './pages/style';
 import ProjectSubmit from './pages/ProjectSubmit';
 import Project from './pages/project';
+import ChatRoute from './pages/chats/ChatRoute';
 import UserProfile from './components/UserProfile/Profile.component';
 import Profile from './components/Profile/Profile.component';
 import './App.css';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/profile" exact component={Profile} />
           <Route path="/style" exact component={Style} />
           <Route path="/project" exact component={Project} />
+          <Route path="/chats" component={ChatRoute} />
         </Switch>
       </div>
     </Router>
