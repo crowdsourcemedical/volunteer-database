@@ -43,4 +43,17 @@ def test_create_user_password_too_short(testclient, db, unsaved_user):
     }
     response = testclient.post("/users/", json=userCreate)
     assert response.status_code == 400
-    assert response.json() == {"detail": "Password much be at least 8 characters long"}
+    assert response.json() == {
+        "detail": "Password much be at least 8 characters long"}
+
+
+def test_get_user_by_id(testclient, db, unsaved_user_with_relations):
+    db.add(unsaved_user_with_relations)
+    db.commit()
+    response = testclient.get("/users/1")
+    res = response.json()
+    assert response.status_code == 200
+    assert len(res["skills"]) == 1
+    assert len(res["projects"]) == 1
+    assert res["projects"][0]["project"]["project_title"] == "Test Project"
+    assert res["projects"][0]["position"]["position_name"] == "manager"
