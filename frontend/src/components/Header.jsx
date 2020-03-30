@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Grid, Typography, Button, Hidden, Dialog, Avatar } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,9 +29,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = (props) => {
   const classes = useStyles();
   const [loginIsOpen, setLoginIsOpen] = useState(false);
+
+  const closeLogin = () => setLoginIsOpen(false);
 
   return (
     <Grid container className={classes.root} justify="center" alignItems="center">
@@ -78,11 +81,11 @@ const Header = () => {
             className: classes.backdrop,
           }}
         >
-          <LoginForm />
+          <LoginForm {...props} closeLogin={closeLogin} />
         </Dialog>
       </Grid>
     </Grid>
   );
 };
 
-export default Header;
+export default withRouter(Header);
