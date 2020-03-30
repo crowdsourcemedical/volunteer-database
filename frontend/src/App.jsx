@@ -9,8 +9,10 @@ import AccountCreationPage from './pages/account_creation';
 import Style from './pages/style';
 import ProjectSubmit from './pages/ProjectSubmit';
 import Project from './pages/project';
+import ChatRoute from './pages/chats/ChatRoute';
 import Profile from './components/Profile/Profile.component';
 import Footer from './components/footer';
+import Form from './components/LoginSignupForm/Form.component';
 import './App.css';
 
 function App() {
@@ -28,6 +30,9 @@ function App() {
           <Route path="/profile" exact component={Profile} />
           <Route path="/style" exact component={Style} />
           <Route path="/project" exact component={Project} />
+          <Route path="/form" exact component={Form} />
+          <Route path="/chats" component={ChatRoute} />
+
         </Switch>
         <Footer />
       </main>
