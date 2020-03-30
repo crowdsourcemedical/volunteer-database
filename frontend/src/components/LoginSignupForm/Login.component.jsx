@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -6,6 +8,10 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+
+// None Material UI Components
+import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom';
+import SignUp from './Sign-up.component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,22 +69,28 @@ export default function Login() {
             <CardContent>
               <Grid container direction="column" justify="center" alignItems="center">
                 <Grid container direction="row" justify="center" alignItems="center">
-                  <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                    <h2 style={{ textAlign: 'center' }}>Login</h2>
-                  </Grid>
+                  <Router>
+                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                      <h2 style={{ textAlign: 'center' }}>Login</h2>
+                    </Grid>
+                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                      <Switch>
+                        <Route path="/form/signup" exact component={SignUp} />
+                        <Link to="/form/signup" style={{ textDecoration: 'none' }}>
+                          <h2 style={{ textAlign: 'right' }}>Signup</h2>
+                        </Link>
+                      </Switch>
+                    </Grid>
 
-                  <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                    <h2 style={{ textAlign: 'right' }}>Signup</h2>
-                  </Grid>
-
-                  <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                    <h2 style={{ textAlign: 'right' }}>X</h2>
-                  </Grid>
+                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                      <h2 style={{ textAlign: 'right' }}>X</h2>
+                    </Grid>
+                  </Router>
 
                   {/* OAuth Button Section */}
                   <ul>
                     <li className={classes.li}>
-                      <Button variant="outlined" fullWidth fullWidth className={classes.button}>
+                      <Button variant="outlined" fullWidth className={classes.button}>
                         <FacebookIcon className={classes.normalIcon} style={{ color: '#485A96' }} /> CONTINUE WITH
                         GOOGLE
                       </Button>

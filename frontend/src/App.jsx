@@ -12,6 +12,7 @@ import Project from './pages/project';
 import Profile from './components/Profile/Profile.component';
 import Footer from './components/footer';
 import Form from './components/LoginSignupForm/Form.component';
+
 import './App.css';
 
 function App() {
