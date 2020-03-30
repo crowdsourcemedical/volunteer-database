@@ -47,7 +47,7 @@ const HomePage = () => {
     <Box className={classes.root}>
       <Grid container direction="column" spacing={0}>
         <Grid item className={classes.topHalf}>
-          <Grid container direction="column" className={classes.topTextContainer} spacing={2}>
+          <Grid container direction="column" className={classes.topTextContainer} spacing={0}>
             <Grid item>
               <Typography variant="h2" color="textPrimary">
                 Do Something Great
