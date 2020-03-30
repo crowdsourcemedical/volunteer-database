@@ -173,7 +173,6 @@ const LoginForm = (props) => {
 
 LoginForm.propTypes = {
   closeLogin: PropTypes.func.isRequired,
-  // history: PropTypes.object.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
