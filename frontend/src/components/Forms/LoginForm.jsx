@@ -82,9 +82,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
   },
+  error: {
+    marginBottom: theme.spacing(2),
+    color: '#F44336',
+  },
 }));
-
-// TODO - simple validation (email, password) not empty
 
 const LoginForm = (props) => {
   const { closeLogin, history } = props;
@@ -93,13 +95,30 @@ const LoginForm = (props) => {
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [emailError, setEmailError] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState('');
+  const [loginError, setLoginError] = React.useState('');
 
   const handleSubmit = async () => {
+    setEmailError('');
+    setPasswordError('');
+    setLoginError('');
+
+    if (email.length <= 0) {
+      setEmailError('Email is required');
+      return;
+    }
+
+    if (password.length <= 0) {
+      setPasswordError('Password is required');
+      return;
+    }
+
     const response = await api.login({ username: email, password });
 
-    // TODO - handle error response
-
-    if (!response) {
+    const error = response && response.detail;
+    if (error) {
+      setLoginError('Email or password are incorrect');
       return;
     }
 
@@ -135,6 +154,8 @@ const LoginForm = (props) => {
           <Divider className={classes.divider} />
           <div className={classes.or}>OR</div>
 
+          <div className={classes.error}>{loginError}</div>
+
           <TextField
             label="Email"
             type="email"
@@ -142,6 +163,8 @@ const LoginForm = (props) => {
             className={classes.input}
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            error={emailError !== ''}
+            helperText={emailError}
           />
           <TextField
             label="Password"
@@ -150,6 +173,8 @@ const LoginForm = (props) => {
             className={classes.input}
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            error={passwordError !== ''}
+            helperText={passwordError}
           />
 
           <a href="localhost:3000" className={classes.forgotPassword}>
