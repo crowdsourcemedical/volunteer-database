@@ -1,5 +1,4 @@
-from datetime import datetime
-from typing import List, Optional
+from typing import List
 from sqlalchemy.orm import Session
 from . import models, schemas
 

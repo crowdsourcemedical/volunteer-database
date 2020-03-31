@@ -66,7 +66,7 @@ def test_update_skill_error(db):
 def test_delete_skill(db):
     test_create_skill(db)
     response = skill_crud.delete_skill(db, 1)
-    assert response is 1
+    assert response == 1
 
 
 def test_delete_skill_error(db):

@@ -130,6 +130,6 @@ class SkillBase(BaseModel):
     skill_id: int
     skill_name: str
     category: str
-    
+
     class Config:
         orm_mode = True

@@ -1,4 +1,3 @@
-from fastapi import APIRouter
 from fastapi import Depends, HTTPException, APIRouter
 from sqlalchemy.orm import Session
 from .. import skill_crud, schemas
@@ -48,5 +47,3 @@ def delete_skill(skill_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail=constants.SKILL_ID_NOT_FOUND)
     else:
         return db_skill
-
-
