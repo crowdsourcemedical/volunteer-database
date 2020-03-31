@@ -114,8 +114,6 @@ class UpdateUser(BaseModel):
     user_location: Optional[str]
     user_is_medical_professional: Optional[bool]
     user_is_volunteer: Optional[bool]
-    is_medical_professional: bool
-    is_volunteer: bool
 
 
 class Skill(BaseModel):

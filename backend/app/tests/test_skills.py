@@ -59,7 +59,6 @@ def test_update_skill_error(db):
         "skill_name": "Java",
         "category": "Development"
     })
-    print(response)
     assert response is None
 
 
