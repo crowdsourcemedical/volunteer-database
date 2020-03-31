@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, InputBase } from '@material-ui/core/';
@@ -20,6 +21,24 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexFlow: 'column nowrap',
   },
+  mobileContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: theme.spacing(0, 2),
+    opacity: 0,
+    position: 'absolute',
+    left: '0%',
+    width: '100%',
+    visibility: 'hidden',
+    height: 80,
+    transition: theme.transitions.create(['left', 'opacity', 'visibility'], {
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  mobileSearchButton: {
+    padding: theme.spacing(0, 2),
+  },
   searchHead: {
     display: 'flex',
     flexFlow: 'row nowrap',
@@ -30,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.overrides.MuiFilledInput.root.backgroundColor,
     marginRight: theme.spacing(2),
     maxWidth: '100%',
+  },
+  mobileInputContainer: {
+    height: 40,
   },
   input: {
     borderRadius: 4,
@@ -54,11 +76,13 @@ const useStyles = makeStyles((theme) => ({
   searchOutput: {
     width: '100%',
     backgroundColor: 'white',
+    paddingTop: theme.spacing(0.5),
     opacity: 0,
     position: 'absolute',
     left: 0,
-    top: 50,
-    transition: theme.transitions.create(['width', 'left', 'opacity'], {
+    top: 75,
+    visibility: 'hidden',
+    transition: theme.transitions.create(['left', 'opacity', 'visibility'], {
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -66,7 +90,9 @@ const useStyles = makeStyles((theme) => ({
   show: {
     zIndex: 1,
     opacity: 1,
-    transition: theme.transitions.create(['width', 'left', 'opacity'], {
+    left: 0,
+    visibility: 'visible',
+    transition: theme.transitions.create(['left', 'opacity', 'visibility'], {
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -84,7 +110,7 @@ fakeSearchData.people.fill({
   location: 'New York, USA',
 });
 
-const MobileSearch = () => {
+const SearchBar = ({ mobile }) => {
   const classes = useStyles();
   const [isSearching, setIsSearching] = useState(false);
   const [inputText, setInputText] = useState('');
@@ -116,7 +142,12 @@ const MobileSearch = () => {
 
   return (
     <div className={classes.root}>
-      <div className={clsx(classes.container, classes.show)}>
+      {mobile && (
+        <div className={classes.mobileSearchButton} onClick={() => onSelect()}>
+          <Search size={18} />
+        </div>
+      )}
+      <div className={clsx(classes.container, mobile && classes.mobileContainer, isSearching && classes.show)}>
         <div className={classes.searchHead}>
           <Grid
             container
@@ -124,7 +155,7 @@ const MobileSearch = () => {
             alignContent="center"
             justify="space-evenly"
             variant="fill"
-            className={clsx(classes.inputContainer)}
+            className={clsx(classes.inputContainer, mobile && classes.mobileInputContainer)}
           >
             <Grid item className={classes.searchIcon}>
               <Search size={18} />
@@ -145,9 +176,11 @@ const MobileSearch = () => {
               <Sliders size={18} />
             </Grid>
           </Grid>
-          <div className={classes.cancelSearchIcon} onClick={onCancel}>
-            {isSearching && <X size={24} />}
-          </div>
+          {isSearching && mobile && (
+            <div className={classes.cancelSearchIcon} onClick={onCancel}>
+              <X size={24} />
+            </div>
+          )}
         </div>
         <div className={clsx(classes.searchOutput, showOutput && classes.show)}>
           <Filters />
@@ -158,4 +191,12 @@ const MobileSearch = () => {
   );
 };
 
-export default MobileSearch;
+SearchBar.propTypes = {
+  mobile: PropTypes.bool,
+};
+
+SearchBar.defaultProps = {
+  mobile: false,
+};
+
+export default SearchBar;

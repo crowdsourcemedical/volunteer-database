@@ -7,7 +7,7 @@ import PersonResult from './PersonResult';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginLeft: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(4),
     width: '100%',
     height: 'auto',

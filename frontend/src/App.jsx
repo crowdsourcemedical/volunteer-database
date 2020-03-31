@@ -2,9 +2,7 @@ import React from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/home';
-import HomePage2 from './pages/home2';
 import SearchPage from './pages/search';
-import AboutPage from './pages/about';
 import SignupPage from './pages/signup_volunteer';
 import SignupVolunteerPage from './pages/signup_volunteer_mb';
 import AccountCreationPage from './pages/account_creation';
@@ -22,9 +20,7 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={HomePage} />
-          <Route path="/home2" exact component={HomePage2} />
           <Route path="/profile/new" exact component={AccountCreationPage} />
-          <Route path="/about" exact component={AboutPage} />
           <Route path="/search" exact component={SearchPage} />
           <Route path="/signup" exact component={SignupPage} />
           <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
