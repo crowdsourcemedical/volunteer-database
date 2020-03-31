@@ -28,9 +28,15 @@ def get_skill_by_id(db: Session, skill_id: int) -> models.Skill:
 
 
 def update_skill(db: Session, old_skill_id: int, patch_object: schemas.Skill) -> models.Skill:
-    db.query(models.Skill).filter(models.Skill.skill_id == old_skill_id).update(patch_object, synchronize_session='fetch')
-    db.commit()
-    return patch_object
+    data = db.query(models.Skill).get(old_skill_id)
+    if data:
+        data.skill_name = patch_object['skill_name']
+        data.category = patch_object['category']
+        db.add(data)
+        db.commit()
+        return patch_object
+    else:
+        return None
 
 
 def delete_skill(db: Session, del_skill_id: int) -> int:
@@ -40,4 +46,4 @@ def delete_skill(db: Session, del_skill_id: int) -> int:
         db.commit()
         return del_skill_id
     else:
-        return 0
+        return None
