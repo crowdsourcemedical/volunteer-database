@@ -32,19 +32,25 @@ const useStyles = makeStyles((theme) => ({
   form: {
     marginBottom: theme.spacing(10),
   },
+  error: {
+    marginBottom: theme.spacing(2),
+    color: '#F44336',
+  },
 }));
 
-async function handleFormSubmit(fields, form, history) {
-  console.log(fields);
+async function handleFormSubmit(fields, form, history, setSignupError) {
+  console.log('fields', fields);
   form.setSubmitting(false);
 
   // TODO - check for errors
 
+  setSignupError('Signup failed');
+
   const payload = {
-    user_email: `test${Math.random()}@test.com`,
-    user_first: 'first',
-    user_last: 'last',
-    user_password: 'password',
+    user_email: fields.email,
+    user_first: fields.userFirst,
+    user_last: fields.userLast,
+    user_password: fields.password,
     user_is_active: true,
     user_is_admin: false,
     user_is_medical_professional: false,
@@ -89,6 +95,8 @@ function SignUpPage(props) {
   const { history } = props;
   const classes = useStyles();
 
+  const [signupError, setSignupError] = React.useState('');
+
   return (
     <Formik
       initialValues={{
@@ -97,7 +105,7 @@ function SignUpPage(props) {
         selectedField: 'medical',
         soughtStaff: [],
       }}
-      onSubmit={(fields, form) => handleFormSubmit(fields, form, history)}
+      onSubmit={(fields, form) => handleFormSubmit(fields, form, history, setSignupError)}
     >
       <Form className={classes.form} noValidate autoComplete="off">
         <Grid justify="center" container>
@@ -109,6 +117,113 @@ function SignUpPage(props) {
                 </Typography>
               </Grid>
             </Grid>
+
+            <Grid className={classes.formSection} container spacing={3}>
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  First Name
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="userFirst">
+                  {({ field, form }) => (
+                    <TextField
+                      name="userFirst"
+                      disabled={!form.isValidating && form.isSubmitting}
+                      fullWidth
+                      size="medium"
+                      hiddenLabel
+                      placeholder=""
+                      variant="filled"
+                      value={field.value}
+                      onChange={field.onChange}
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
+                  )}
+                </Field>
+              </Grid>
+
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  Last Name
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="userLast">
+                  {({ field, form }) => (
+                    <TextField
+                      name="userLast"
+                      disabled={!form.isValidating && form.isSubmitting}
+                      fullWidth
+                      size="medium"
+                      hiddenLabel
+                      placeholder=""
+                      variant="filled"
+                      value={field.value}
+                      onChange={field.onChange}
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
+                  )}
+                </Field>
+              </Grid>
+
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  Email
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="email">
+                  {({ field, form }) => (
+                    <TextField
+                      name="email"
+                      disabled={!form.isValidating && form.isSubmitting}
+                      fullWidth
+                      size="medium"
+                      hiddenLabel
+                      placeholder=""
+                      variant="filled"
+                      value={field.value}
+                      onChange={field.onChange}
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
+                  )}
+                </Field>
+              </Grid>
+
+              <Grid xs={12} sm={12} lg={5} item>
+                <Typography gutterBottom variant="h3">
+                  Password
+                </Typography>
+              </Grid>
+              <Grid xs={12} sm={12} lg={7} item>
+                <Field name="password">
+                  {({ field, form }) => (
+                    <TextField
+                      name="password"
+                      disabled={!form.isValidating && form.isSubmitting}
+                      fullWidth
+                      size="medium"
+                      hiddenLabel
+                      placeholder=""
+                      variant="filled"
+                      value={field.value}
+                      onChange={field.onChange}
+                      InputProps={{
+                        disableUnderline: true,
+                      }}
+                    />
+                  )}
+                </Field>
+              </Grid>
+            </Grid>
+
             <Grid className={classes.formSection} container spacing={3}>
               <Grid xs={12} sm={12} lg={5} item>
                 <Typography gutterBottom variant="h3">
@@ -135,6 +250,7 @@ function SignUpPage(props) {
                 </Field>
               </Grid>
             </Grid>
+
             <Grid className={classes.formSection} container spacing={3}>
               <Grid xs={12} sm={12} lg={5} item>
                 <Typography gutterBottom variant="h3">
@@ -167,6 +283,7 @@ function SignUpPage(props) {
                 </Field>
               </Grid>
             </Grid>
+
             <Grid className={classes.formSection} container spacing={3}>
               <Grid xs={12} sm={12} lg={5} item>
                 <Typography gutterBottom variant="h3">
@@ -201,6 +318,7 @@ function SignUpPage(props) {
                 </Field>
               </Grid>
             </Grid>
+
             <Grid className={classes.formSection} container spacing={3}>
               <Grid xs={12} sm={12} lg={5} item>
                 <Typography gutterBottom variant="h3">
@@ -235,6 +353,11 @@ function SignUpPage(props) {
                 </FieldArray>
               </Grid>
             </Grid>
+
+            <Grid xs={12} sm={12} lg={12} item>
+              <div className={classes.error}>{signupError}</div>
+            </Grid>
+
             <Grid container justify="flex-end">
               <Button type="submit" color="primary" variant="contained" size="medium">
                 Submit Application
