@@ -78,6 +78,11 @@ class SkillBase(BaseModel):
         orm_mode = True
 
 
+class SkillUpdateCreate(BaseModel):
+    skill_name: str
+    category: str
+
+
 class Skill(SkillBase):
     skill_name: str
     category: str
