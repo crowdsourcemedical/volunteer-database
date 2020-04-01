@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends
 from fastapi.exceptions import HTTPException
+from fastapi.responses import RedirectResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
@@ -66,4 +67,4 @@ async def token_verify(user: models.User = Depends(get_current_user)) -> dict:
 @app.get("/")
 async def root():
     """Return a simple welcome message."""
-    return {"message": "This is the root of the API. Please go to /docs to see the documentation"}
+    return RedirectResponse(url='/docs')

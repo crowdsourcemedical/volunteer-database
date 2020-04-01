@@ -1,6 +1,12 @@
 def test_root(testclient):
+    response = testclient.get("/", allow_redirects=False)
+    assert response.status_code == 307
+    assert not response.text
+
     response = testclient.get("/")
     assert response.status_code == 200
+    assert response.text
+    assert response.url.endswith("/docs")
 
 
 def test_login_and_verify(db, unsaved_user, testclient):
