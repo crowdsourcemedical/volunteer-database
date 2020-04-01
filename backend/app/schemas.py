@@ -78,6 +78,11 @@ class SkillBase(BaseModel):
         orm_mode = True
 
 
+class SkillUpdateCreate(BaseModel):
+    skill_name: str
+    category: str
+
+
 class Skill(SkillBase):
     skill_name: str
     category: str
@@ -114,20 +119,3 @@ class UpdateUser(BaseModel):
     user_location: Optional[str]
     user_is_medical_professional: Optional[bool]
     user_is_volunteer: Optional[bool]
-
-
-class Skill(BaseModel):
-    skill_name: str
-    category: str
-
-    class Config:
-        orm_mode = True
-
-
-class SkillBase(BaseModel):
-    skill_id: int
-    skill_name: str
-    category: str
-
-    class Config:
-        orm_mode = True

@@ -9,21 +9,21 @@ from .. import constants
 router = APIRouter()
 
 
-@router.post("/skills/", response_model=schemas.Skill)
-def create_skill(skill_input: schemas.Skill, db: Session = Depends(get_db)):
+@router.post("/", response_model=schemas.Skill)
+def create_skill(skill_input: schemas.SkillUpdateCreate, db: Session = Depends(get_db)):
     db_skill = skill_crud.get_skill_by_name(db, skill_name=skill_input.skill_name)
     if db_skill:
         raise HTTPException(status_code=400, detail=constants.ALREADY_EXISTS_ERROR)
     return skill_crud.create_skill(db=db, skill=skill_input)
 
 
-@router.get("/skills/", response_model=List[schemas.SkillBase])
+@router.get("/", response_model=List[schemas.SkillBase])
 def read_skills(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     skills = skill_crud.get_skills(db, skip=skip, limit=limit)
     return skills
 
 
-@router.get("/skills/{skill_id}", response_model=schemas.Skill)
+@router.get("/{skill_id}", response_model=schemas.Skill)
 def read_skill(skill_id: int, db: Session = Depends(get_db)):
     db_skill = skill_crud.get_skill_by_id(db, skill_id=skill_id)
     if db_skill is None:
@@ -31,8 +31,8 @@ def read_skill(skill_id: int, db: Session = Depends(get_db)):
     return db_skill
 
 
-@router.put("/skills/{skill_id}", response_model=schemas.Skill)
-def update_skill(skill_id: int, skill_input: schemas.Skill, db: Session = Depends(get_db)):
+@router.put("/{skill_id}", response_model=schemas.Skill)
+def update_skill(skill_id: int, skill_input: schemas.SkillUpdateCreate, db: Session = Depends(get_db)):
     db_skill = skill_crud.update_skill(db, old_skill_id=skill_id, patch_object=skill_input)
     if db_skill is None:
         raise HTTPException(status_code=404, detail=constants.SKILL_ID_NOT_FOUND)
@@ -40,7 +40,7 @@ def update_skill(skill_id: int, skill_input: schemas.Skill, db: Session = Depend
         return db_skill
 
 
-@router.delete("/skills/{skill_id}", response_model=int)
+@router.delete("/{skill_id}", response_model=int)
 def delete_skill(skill_id: int, db: Session = Depends(get_db)):
     db_skill = skill_crud.delete_skill(db, del_skill_id=skill_id)
     if db_skill is None:

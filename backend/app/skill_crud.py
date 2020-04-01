@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from . import models, schemas
 
 
-def create_skill(db: Session, skill: schemas.Skill):
+def create_skill(db: Session, skill: schemas.SkillUpdateCreate):
     db_skill = models.Skill(
         skill_name=skill.skill_name,
         category=skill.category
@@ -26,14 +26,14 @@ def get_skill_by_id(db: Session, skill_id: int) -> models.Skill:
     return db.query(models.Skill).filter(models.Skill.skill_id == skill_id).first()
 
 
-def update_skill(db: Session, old_skill_id: int, patch_object: schemas.Skill) -> models.Skill:
+def update_skill(db: Session, old_skill_id: int, patch_object: schemas.SkillUpdateCreate) -> models.Skill:
     data = db.query(models.Skill).get(old_skill_id)
     if data:
-        data.skill_name = patch_object['skill_name']
-        data.category = patch_object['category']
+        data.skill_name = patch_object.skill_name
+        data.category = patch_object.category
         db.add(data)
         db.commit()
-        return patch_object
+        return data
     else:
         return None
 
