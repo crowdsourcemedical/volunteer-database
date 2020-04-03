@@ -12,7 +12,7 @@ from ..models import Position, VolunteerProject
 router = APIRouter()
 
 
-@router.get("/", response_model=List[schemas.PositionBase])
+@router.get("/", response_model=List[schemas.Position])
 def get_positions(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     """Endpoint to get a list of position ids."""
     return db.query(Position).offset(skip).limit(limit).all()
