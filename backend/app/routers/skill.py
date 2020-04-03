@@ -17,7 +17,7 @@ def create_skill(skill_input: schemas.SkillUpdateCreate, db: Session = Depends(g
     return skill_crud.create_skill(db=db, skill=skill_input)
 
 
-@router.get("/", response_model=List[schemas.SkillBase])
+@router.get("/", response_model=List[schemas.Skill])
 def read_skills(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     skills = skill_crud.get_skills(db, skip=skip, limit=limit)
     return skills
