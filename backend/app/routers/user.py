@@ -14,7 +14,7 @@ router = APIRouter()
 @router.get("/", response_model=List[schemas.UserFull])
 def get_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     """Endpoint to get a list of user ids."""
-    return [user for user in crud.get_users(db, skip=skip, limit=limit)]
+    return crud.get_users(db, skip=skip, limit=limit)
 
 
 @router.get("/{user_id}", response_model=schemas.UserFull)
