@@ -44,8 +44,7 @@ async function handleFormSubmit(fields, form, history, setSignupError) {
 
   // TODO - check for errors
 
-  setSignupError('Signup failed');
-
+  // TODO - set payload based on fields
   const payload = {
     user_email: fields.email,
     user_first: fields.userFirst,
@@ -58,10 +57,13 @@ async function handleFormSubmit(fields, form, history, setSignupError) {
     user_is_volunteer: true,
   };
 
-  // TODO - handle error response; handle success response
-
   const response = await api.createUser(payload);
-  console.log('signup response', response);
+
+  const error = response && response.detail;
+  if (error) {
+    setSignupError('Signup failed');
+    return;
+  }
 
   if (response.user_id) {
     history.push('profile');
