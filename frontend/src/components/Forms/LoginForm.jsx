@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, Divider, Grid, Typography, CardContent, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -134,9 +135,9 @@ const LoginForm = (props) => {
         <Typography variant="h4" component="h2" className={classes.headerLogin}>
           Login
         </Typography>
-        <a href="localhost:3000" className={classes.signUpLink}>
+        <Link className={classes.signUpLink} to="/signup" onClick={() => closeLogin()}>
           Don't have an account? Sign up here
-        </a>
+        </Link>
       </Grid>
 
       <CardContent className={classes.content}>

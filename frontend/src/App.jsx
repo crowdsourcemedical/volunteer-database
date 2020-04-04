@@ -26,6 +26,7 @@ function App() {
           <Route path="/profile/new" exact component={AccountCreationPage} />
           <Route path="/search" exact component={SearchPage} />
           <Route path="/signup" exact component={SignupPage} />
+          {/* TODO - delete SignupVolunteerPage */}
           <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
           <Route path="/projects/submit" exact component={ProjectSubmit} />
           <Route path="/profile" exact component={Profile} />
@@ -33,7 +34,6 @@ function App() {
           <Route path="/project" exact component={Project} />
           <Route path="/form" exact component={Form} />
           <Route path="/chats" component={ChatRoute} />
-
         </Switch>
         <Footer />
       </main>
