@@ -226,3 +226,4 @@ venv
 # Pytest
 .pytest_cache
 backend/.coverage
+backend/test.db

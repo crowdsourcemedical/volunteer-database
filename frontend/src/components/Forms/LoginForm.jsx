@@ -1,9 +1,11 @@
 import React from 'react';
 import { Card, Divider, Grid, Typography, CardContent, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import PropTypes from 'prop-types';
 import FacebookIcon from '../../images/facebook-icon.svg';
 import GoogleIcon from '../../images/google-icon.svg';
+
+import api from '../../helpers/api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,17 +82,51 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
   },
+  error: {
+    marginBottom: theme.spacing(2),
+    color: '#F44336',
+  },
 }));
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const { closeLogin, history } = props;
+
   const classes = useStyles();
-  // const [email, setEmail] = React.useState("");
-  // const [password, setPassword] = React.useState("");
-  //
-  // const handleSubmit = (e) => {
-  // /* Send a api call in order to recieve a token. Store this token */
-  //
-  // }
+
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [emailError, setEmailError] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState('');
+  const [loginError, setLoginError] = React.useState('');
+
+  const handleSubmit = async () => {
+    setEmailError('');
+    setPasswordError('');
+    setLoginError('');
+
+    if (email.length <= 0) {
+      setEmailError('Email is required');
+      return;
+    }
+
+    if (password.length <= 0) {
+      setPasswordError('Password is required');
+      return;
+    }
+
+    const response = await api.login({ username: email, password });
+
+    const error = response && response.detail;
+    if (error) {
+      setLoginError('Email or password are incorrect');
+      return;
+    }
+
+    if (response.access_token) {
+      closeLogin();
+      history.push('profile');
+    }
+  };
 
   return (
     <Card className={classes.root} elevation={4}>
@@ -118,20 +154,57 @@ const LoginForm = () => {
           <Divider className={classes.divider} />
           <div className={classes.or}>OR</div>
 
-          <TextField label="Email" type="email" variant="filled" className={classes.input} />
-          <TextField label="Password" type="password" variant="filled" className={classes.input} />
+          <div className={classes.error}>{loginError}</div>
+
+          <TextField
+            label="Email"
+            type="email"
+            variant="filled"
+            className={classes.input}
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            error={emailError !== ''}
+            helperText={emailError}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            variant="filled"
+            className={classes.input}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            error={passwordError !== ''}
+            helperText={passwordError}
+          />
 
           <a href="localhost:3000" className={classes.forgotPassword}>
             Forgot password?
           </a>
 
-          <Button color="primary" size="large" variant="contained" className={classes.loginButton}>
+          <Button
+            color="primary"
+            size="large"
+            variant="contained"
+            className={classes.loginButton}
+            onClick={handleSubmit}
+          >
             Login
           </Button>
         </Grid>
       </CardContent>
     </Card>
   );
+};
+
+LoginForm.propTypes = {
+  closeLogin: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }),
+};
+
+LoginForm.defaultProps = {
+  history: {},
 };
 
 export default LoginForm;
