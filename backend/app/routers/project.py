@@ -3,20 +3,20 @@ from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from .. import crud, schemas
+from .. import project_crud, schemas
 from ..database import get_db
 
 
 router = APIRouter()
 
 
+@router.post("/")
+def create_project(project_input: schemas.ProjectCreate, db: Session = Depends(get_db)):
+    return project_crud.create_project(db=db, project=project_input)
+
+
 @router.get("/", response_model=List[int])
 def get_projects(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    pass
-
-
-@router.post("/")
-def create_project(data: schemas.ProjectCreate, db: Session = Depends(get_db)):
     pass
 
 
