@@ -21,14 +21,12 @@ def create_project(db: Session, project: schemas.ProjectCreate):
     db.refresh(db_project)
     return db_project
 
+def get_projects(db: Session, skip: int = 0, limit: int = 100) -> List[models.Skill]:
+    return db.query(models.Skill).offset(skip).limit(limit).all()
+
 
 # def get_project_by_name(db: Session, skill_name: str) -> models.Skill:
 #     return db.query(models.Skill).filter(models.Skill.skill_name == skill_name).first()
-
-
-# def get_projects(db: Session, skip: int = 0, limit: int = 100) -> List[models.Skill]:
-#     return db.query(models.Skill).offset(skip).limit(limit).all()
-
 
 # def get_project_by_id(db: Session, skill_id: int) -> models.Skill:
 #     return db.query(models.Skill).filter(models.Skill.skill_id == skill_id).first()
