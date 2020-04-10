@@ -32,17 +32,21 @@ def test_get_all_project(db):
     assert len(response) == 1
 
 
-# def test_get_project_by_id(db):
-#     test_create_project(db)
-#     response = project_crud.get_project_by_id(db, 1)
-#     assert response is not None
+def test_get_project_by_id(db):
+    test_create_project(db)
+    response = project_crud.get_project_by_id(db, 1)
+    assert response is not None
 
 
-# def test_update_project(db):
-#     test_create_project(db)
-#     project_crud.update_project(db, 1, get_mock_payload("Mask Project", "Creating Masks"))
-#     project = project_crud.get_project_by_name(db, "Java")
-#     assert project is not None
+def test_update_project(db):
+    name = "Mask Project"
+    desc = "Creating Masks"
+    test_create_project(db)
+    project_crud.update_project(db, 1, get_mock_payload(name, desc))
+    project = project_crud.get_project_by_id(db, 1)
+    assert project is not None
+    assert project.project_title == name
+    assert project.project_description == desc
 
 
 # def test_update_project_error(db):
@@ -51,13 +55,13 @@ def test_get_all_project(db):
 #     assert response is None
 
 
-# def test_delete_project(db):
-#     test_create_project(db)
-#     response = project_crud.delete_project(db, 1)
-#     assert response == 1
+def test_delete_project(db):
+    test_create_project(db)
+    response = project_crud.delete_project(db, 1)
+    assert response == 1
 
 
-# def test_delete_project_error(db):
-#     test_create_project(db)
-#     response = project_crud.delete_project(db, 2)
-#     assert response is None
+def test_delete_project_error(db):
+    test_create_project(db)
+    response = project_crud.delete_project(db, 2)
+    assert response is None

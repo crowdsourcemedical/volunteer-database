@@ -21,34 +21,32 @@ def create_project(db: Session, project: schemas.ProjectCreate):
     db.refresh(db_project)
     return db_project
 
-def get_projects(db: Session, skip: int = 0, limit: int = 100) -> List[models.Skill]:
-    return db.query(models.Skill).offset(skip).limit(limit).all()
+
+def get_projects(db: Session, skip: int = 0, limit: int = 100) -> List[models.Project]:
+    return db.query(models.Project).offset(skip).limit(limit).all()
 
 
-# def get_project_by_name(db: Session, skill_name: str) -> models.Skill:
-#     return db.query(models.Skill).filter(models.Skill.skill_name == skill_name).first()
-
-# def get_project_by_id(db: Session, skill_id: int) -> models.Skill:
-#     return db.query(models.Skill).filter(models.Skill.skill_id == skill_id).first()
+def get_project_by_id(db: Session, project_id: int) -> models.Project:
+    return db.query(models.Project).filter(models.Project.project_id == project_id).first()
 
 
-# def update_project(db: Session, old_skill_id: int, patch_object: schemas.SkillUpdateCreate) -> models.Skill:
-#     data = db.query(models.Skill).get(old_skill_id)
-#     if data:
-#         data.skill_name = patch_object.skill_name
-#         data.category = patch_object.category
-#         db.add(data)
-#         db.commit()
-#         return data
-#     else:
-#         return None
+def update_project(db: Session, old_project_id: int, patch_object: schemas.ProjectUpdate) -> models.Project:
+    data = db.query(models.Project).get(old_project_id)
+    if data:
+        data.project_title = patch_object.project_title
+        data.project_description = patch_object.project_description
+        db.add(data)
+        db.commit()
+        return data
+    else:
+        return None
 
 
-# def delete_project(db: Session, del_skill_id: int) -> int:
-#     data = db.query(models.Skill).get(del_skill_id)
-#     if data:
-#         db.delete(data)
-#         db.commit()
-#         return del_skill_id
-#     else:
-#         return None
+def delete_project(db: Session, del_project_id: int) -> int:
+    data = db.query(models.Project).get(del_project_id)
+    if data:
+        db.delete(data)
+        db.commit()
+        return del_project_id
+    else:
+        return None
