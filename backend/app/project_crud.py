@@ -2,6 +2,10 @@ from typing import List
 from sqlalchemy.orm import Session
 from . import models, schemas
 
+import ptvsd
+ptvsd.enable_attach(address=('0.0.0.0', 5678), log_dir='.')
+ptvsd.wait_for_attach()
+
 
 def create_project(db: Session, project: schemas.ProjectCreate):
     db_project = models.Project(
@@ -35,8 +39,10 @@ def update_project(db: Session, old_project_id: int, patch_object: schemas.Proje
     if data:
         data.project_title = patch_object.project_title
         data.project_description = patch_object.project_description
-        db.add(data)
-        db.commit()
+        # db.add(data)
+        breakpoint()
+        print(data)
+        # db.commit()
         return data
     else:
         return None
