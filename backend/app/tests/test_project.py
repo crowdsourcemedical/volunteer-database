@@ -49,10 +49,10 @@ def test_update_project(db):
     assert project.project_description == desc
 
 
-# def test_update_project_error(db):
-#     test_create_project(db)
-#     response = project_crud.update_project(db, 2, get_mock_payload("Test kit project", "Creating test kits"))
-#     assert response is None
+def test_update_project_error(db):
+    test_create_project(db)
+    response = project_crud.update_project(db, 2, get_mock_payload("Test kit project", "Creating test kits"))
+    assert response is None
 
 
 def test_delete_project(db):
