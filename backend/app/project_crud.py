@@ -2,10 +2,6 @@ from typing import List
 from sqlalchemy.orm import Session
 from . import models, schemas
 
-# import ptvsd
-# ptvsd.enable_attach(address=('0.0.0.0', 5678), log_dir='.')
-# ptvsd.wait_for_attach()
-
 
 def create_project(db: Session, project: schemas.ProjectCreate):
     db_project = models.Project(
