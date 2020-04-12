@@ -2,9 +2,9 @@ from typing import List
 from sqlalchemy.orm import Session
 from . import models, schemas
 
-import ptvsd
-ptvsd.enable_attach(address=('0.0.0.0', 5678), log_dir='.')
-ptvsd.wait_for_attach()
+# import ptvsd
+# ptvsd.enable_attach(address=('0.0.0.0', 5678), log_dir='.')
+# ptvsd.wait_for_attach()
 
 
 def create_project(db: Session, project: schemas.ProjectCreate):
@@ -37,13 +37,11 @@ def get_project_by_id(db: Session, project_id: int) -> models.Project:
 def update_project(db: Session, old_project_id: int, patch_object: schemas.ProjectUpdate) -> models.Project:
     data = db.query(models.Project).get(old_project_id)
     if data:
-        data.project_title = patch_object.project_title
-        data.project_description = patch_object.project_description
-        # db.add(data)
-        breakpoint()
-        print(data)
-        # db.commit()
-        return data
+        patched_data = patch_helper(data, patch_object)
+        db.add(patched_data)
+        db.commit()
+        db.refresh(patched_data)
+        return patched_data
     else:
         return None
 
@@ -56,3 +54,12 @@ def delete_project(db: Session, del_project_id: int) -> int:
         return del_project_id
     else:
         return None
+
+
+def patch_helper(data, patch_object):
+    for key_value in patch_object:
+        key = key_value[0]
+        value = key_value[1]
+        if value is not None:
+            setattr(data, key, value)
+    return data

@@ -33,6 +33,7 @@ def update_skill(db: Session, old_skill_id: int, patch_object: schemas.SkillUpda
         data.category = patch_object.category
         db.add(data)
         db.commit()
+        db.refresh(data)
         return data
     else:
         return None
