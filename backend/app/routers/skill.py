@@ -13,7 +13,7 @@ router = APIRouter()
 def create_skill(skill_input: schemas.SkillUpdateCreate, db: Session = Depends(get_db)):
     db_skill = skill_crud.get_skill_by_name(db, skill_name=skill_input.skill_name)
     if db_skill:
-        raise HTTPException(status_code=400, detail=constants.ALREADY_EXISTS_ERROR)
+        raise HTTPException(status_code=400, detail=constants.SKILL_ALREADY_EXISTS_ERROR)
     return skill_crud.create_skill(db=db, skill=skill_input)
 
 

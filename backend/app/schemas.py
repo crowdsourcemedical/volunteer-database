@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Any
 
 from pydantic import BaseModel
 from datetime import datetime
@@ -119,3 +119,42 @@ class UpdateUser(BaseModel):
     user_location: Optional[str]
     user_is_medical_professional: Optional[bool]
     user_is_volunteer: Optional[bool]
+
+
+class ProjectBase(BaseModel):
+    project_id: int
+
+    class Config:
+        orm_mode = True
+
+
+class ProjectCreate(BaseModel):
+    user_id: str
+    project_title: str
+    project_description: str
+    project_location: str
+    project_is_active: bool
+    project_created_on: datetime
+    project_is_complete: bool
+    project_last_active: datetime
+    project_last_modified: datetime
+    project_quantity: int
+
+
+class Project(ProjectBase, ProjectCreate):
+    skills: List[Any]
+    users: List[User]
+    volunteering_projects: List[Any]
+
+
+class ProjectUpdate(BaseModel):
+    user_id: Optional[str]
+    project_title: Optional[str]
+    project_description: Optional[str]
+    project_location: Optional[str]
+    project_is_active: Optional[bool]
+    project_created_on: Optional[datetime]
+    project_is_complete: Optional[bool]
+    project_last_active: Optional[datetime]
+    project_last_modified: Optional[datetime]
+    project_quantity: Optional[int]
