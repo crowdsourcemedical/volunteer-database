@@ -54,4 +54,4 @@ uvicorn==0.11.3
 uvloop==0.14.0
 wcwidth==0.1.8
 websockets==8.1
-ptvsd==4.3.2
+# ptvsd==4.3.2
