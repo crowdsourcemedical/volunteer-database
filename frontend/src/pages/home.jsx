@@ -3,6 +3,7 @@ import { Typography, Grid, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import HeroImg from '../images/hero-edit-opacity.png';
 import AboutImg from '../images/about.png';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -68,14 +69,18 @@ const HomePage = () => {
             <Grid item>
               <Grid container direction="row" spacing={2}>
                 <Grid item>
-                  <Button variant="contained" color="primary">
-                    Submit a Project
-                  </Button>
+                  <Link to='/signup'>
+                    <Button variant="contained" color="primary">
+                      Submit a Project
+                    </Button>
+                  </Link>
                 </Grid>
                 <Grid item>
-                  <Button variant="contained" color="secondary">
-                    Become a Volunteer
-                  </Button>
+                  <Link to='/signup/volunteer'>
+                    <Button variant="contained" color="secondary">
+                      Become a Volunteer
+                    </Button>
+                  </Link>
                 </Grid>
               </Grid>
             </Grid>

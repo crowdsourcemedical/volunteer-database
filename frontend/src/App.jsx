@@ -33,7 +33,6 @@ function App() {
           <Route path="/project" exact component={Project} />
           <Route path="/form" exact component={Form} />
           <Route path="/chats" component={ChatRoute} />
-
         </Switch>
         <Footer />
       </main>

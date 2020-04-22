@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Card, Divider, Grid, Typography, CardContent, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -89,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginForm = (props) => {
+const SignupForm = (props) => {
   const { closeLogin, history } = props;
 
   const classes = useStyles();
@@ -135,12 +134,10 @@ const LoginForm = (props) => {
         <Typography variant="h4" component="h2" className={classes.headerLogin}>
           Login
         </Typography>
-        <Link to='/signup/volunteer' className={classes.signUpLink}>
+        <a href="localhost:3000" className={classes.signUpLink}>
           Don't have an account? Sign up here
-        </Link>
+        </a>
       </Grid>
-
-
 
       <CardContent className={classes.content}>
         <Grid container direction="column" alignItems="center" justify="center">
@@ -180,10 +177,6 @@ const LoginForm = (props) => {
             helperText={passwordError}
           />
 
-          <Link to="/" className={classes.forgotPassword}>
-            Forgot password?
-          </Link>
-
           <Button
             color="primary"
             size="large"
@@ -191,7 +184,7 @@ const LoginForm = (props) => {
             className={classes.loginButton}
             onClick={handleSubmit}
           >
-            Login
+            Signup
           </Button>
         </Grid>
       </CardContent>
@@ -199,15 +192,15 @@ const LoginForm = (props) => {
   );
 };
 
-LoginForm.propTypes = {
+SignupForm.propTypes = {
   closeLogin: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
 };
 
-LoginForm.defaultProps = {
+SignupForm.defaultProps = {
   history: {},
 };
 
-export default LoginForm;
+export default SignupForm;
