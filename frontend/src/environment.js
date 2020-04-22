@@ -3,7 +3,7 @@ const STAGING = {
 };
 
 const PRODUCTION = {
-  BASE_URL: '',
+  BASE_URL: 'https://app.dnsharbor.com',
 };
 
 function getEnvVars() {

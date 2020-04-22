@@ -135,7 +135,7 @@ const LoginForm = (props) => {
         <Typography variant="h4" component="h2" className={classes.headerLogin}>
           Login
         </Typography>
-        <Link to='/signup/volunteer' className={classes.signUpLink}>
+        <Link className={classes.signUpLink} to="/signup" onClick={() => closeLogin()}>
           Don't have an account? Sign up here
         </Link>
       </Grid>
