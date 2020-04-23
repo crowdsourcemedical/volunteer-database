@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { Typography, Grid, Button, Box, Hidden } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import HeroImg from '../images/hero-edit-opacity.png';
 import AboutImg from '../images/about.png';
@@ -168,14 +169,18 @@ const HomePage = () => {
               <Grid item>
                 <Grid container direction="row" spacing={2} className={classes.topButtonsContainer}>
                   <Grid item xs={12} sm="auto">
-                    <Button variant="contained" color="primary" fullWidth>
-                      Submit a Project
-                    </Button>
+                    <Link to="/projects/submit">
+                      <Button variant="contained" color="primary" fullWidth>
+                        Submit a Project
+                      </Button>
+                    </Link>
                   </Grid>
                   <Grid item xs={12} sm="auto">
-                    <Button variant="contained" color="secondary" fullWidth>
-                      Become a Volunteer
-                    </Button>
+                    <Link to="/signup">
+                      <Button variant="contained" color="secondary" fullWidth>
+                        Become a Volunteer
+                      </Button>
+                    </Link>
                   </Grid>
                 </Grid>
               </Grid>
