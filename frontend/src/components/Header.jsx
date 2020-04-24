@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Grid, Typography, Button, Hidden, Dialog, Avatar } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,9 +27,13 @@ const useStyles = makeStyles((theme) => ({
   searchBarContainer: {
     paddingLeft: theme.spacing(3),
   },
+  logoText: {
+    color: '#000000',
+  },
 }));
 
 const Header = (props) => {
+  const isUserLoggedIn = false; // TODO: verify session status
   const classes = useStyles();
   const [loginIsOpen, setLoginIsOpen] = useState(false);
 
@@ -40,12 +44,14 @@ const Header = (props) => {
       <Grid container xs={6} md={8}>
         <Grid container className={classes.leftNav}>
           <Grid item>
-            <Grid container className={classes.logoContainer} alignItems="center">
-              <img src={Logo} alt="crowd source medical logo" />
-              <Typography variant="h5" className={classes.logoText}>
-                Crowd Source Solutions
-              </Typography>
-            </Grid>
+            <Link to="/">
+              <Grid container className={classes.logoContainer} alignItems="center">
+                <img src={Logo} alt="crowd source medical logo" />
+                <Typography variant="h5" className={classes.logoText}>
+                  Crowd Source Solutions
+                </Typography>
+              </Grid>
+            </Link>
           </Grid>
           <Grid item>
             <div className={classes.searchBarContainer}>
@@ -60,7 +66,7 @@ const Header = (props) => {
         <Hidden mdUp>
           <SearchBar mobile />
         </Hidden>
-        {loginIsOpen ? (
+        {isUserLoggedIn ? (
           <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" className={classes.large} />
         ) : (
           <Button
