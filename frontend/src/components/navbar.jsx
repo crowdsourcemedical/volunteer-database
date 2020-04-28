@@ -22,6 +22,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { PAGE_LINKS_LIST, LOGIN_PAGE_LINK } from '../constants/navigation';
 import LoginForm from './Forms/LoginForm';
 import MobileSearch from './Search/MobileSearch';
+import SignupForm from "./Forms/SignupForm";
 
 const navbarHeight = 64;
 const drawerWidth = 240;
@@ -102,6 +103,7 @@ const NavBar = () => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
   const [loginIsOpen, setLoginIsOpen] = useState(false);
+  const [signupIsOpen, setSignupIsOpen] = useState(false);
   const avatarURL = 'https://material-ui.com/static/images/avatar/1.jpg';
 
   const toggleDrawer = (event) => {
@@ -114,6 +116,12 @@ const NavBar = () => {
 
   const toggleLoginDialog = () => {
     setLoginIsOpen(!loginIsOpen);
+    setSignupIsOpen(false);
+  };
+
+  const toggleSignupDialog = () => {
+    setSignupIsOpen(!signupIsOpen);
+    setLoginIsOpen(false);
   };
 
   return (
@@ -192,11 +200,22 @@ const NavBar = () => {
       <Dialog
         open={loginIsOpen}
         onClose={toggleLoginDialog}
+        toggle={toggleSignupDialog}
         BackdropProps={{
           className: classes.backdrop,
         }}
       >
-        <LoginForm />
+        <LoginForm/>
+      </Dialog>
+      <Dialog
+        open={loginIsOpen}
+        onClose={toggleSignupDialog}
+        toggle={toggleLoginDialog}
+        BackdropProps={{
+          className: classes.backdrop,
+        }}
+      >
+        <SignupForm/>
       </Dialog>
     </div>
   );

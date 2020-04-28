@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Logo from '../images/crowd-source-logo.svg';
 import LoginForm from './Forms/LoginForm';
 import SearchBar from './Search/SearchBar';
+import SignupForm from "./Forms/SignupForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,8 +37,19 @@ const Header = (props) => {
   const isUserLoggedIn = false; // TODO: verify session status
   const classes = useStyles();
   const [loginIsOpen, setLoginIsOpen] = useState(false);
+  const [signupIsOpen, setSignupIsOpen] = useState(false);
 
-  const closeLogin = () => setLoginIsOpen(false);
+  // const closeLogin = () => setLoginIsOpen(false);
+
+  const toggleLoginDialog = () => {
+    setLoginIsOpen(!loginIsOpen);
+    setSignupIsOpen(false);
+  };
+
+  const toggleSignupDialog = () => {
+    setSignupIsOpen(!signupIsOpen);
+    setLoginIsOpen(false);
+  };
 
   return (
     <Grid container className={classes.root} justify="center" alignItems="center">
@@ -75,11 +87,12 @@ const Header = (props) => {
             size="large"
             className={classes.button}
             endIcon={<ExitToAppIcon />}
-            onClick={() => setLoginIsOpen(true)}
+            onClick={toggleLoginDialog}
           >
             Login
           </Button>
         )}
+
         <Dialog
           open={loginIsOpen}
           onClose={() => setLoginIsOpen(false)}
@@ -87,8 +100,19 @@ const Header = (props) => {
             className: classes.backdrop,
           }}
         >
-          <LoginForm {...props} closeLogin={closeLogin} />
+          <LoginForm {...props} closeLogin={toggleLoginDialog} toggle={toggleSignupDialog} />
         </Dialog>
+
+        <Dialog
+        open={signupIsOpen}
+        onClose={() => setSignupIsOpen(false)}
+        BackdropProps={{
+          className: classes.backdrop,
+        }}
+        >
+          <SignupForm closeSignup={toggleSignupDialog} toggle={toggleLoginDialog}/>
+        </Dialog>
+
       </Grid>
     </Grid>
   );
