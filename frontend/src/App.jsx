@@ -10,7 +10,6 @@ import Style from './pages/style';
 import ProjectSubmit from './pages/ProjectSubmit';
 import ProjectPage from './pages/project';
 import ChatRoute from './pages/chats/ChatRoute';
-// import UserProfilePage from './components/ProfileOld/Profile.component';
 import UserProfilePage from './pages/userProfile';
 import Footer from './components/footer';
 import Form from './components/LoginSignupForm/Form.component';
