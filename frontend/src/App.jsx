@@ -8,9 +8,9 @@ import SignupVolunteerPage from './pages/signup_volunteer_mb';
 import AccountCreationPage from './pages/account_creation';
 import Style from './pages/style';
 import ProjectSubmit from './pages/ProjectSubmit';
-import Project from './pages/project';
+import ProjectPage from './pages/project';
 import ChatRoute from './pages/chats/ChatRoute';
-import Profile from './components/Profile/Profile.component';
+import UserProfilePage from './pages/userProfile';
 import Footer from './components/footer';
 import Form from './components/LoginSignupForm/Form.component';
 
@@ -29,9 +29,9 @@ function App() {
           {/* TODO - delete SignupVolunteerPage */}
           <Route path="/signup/volunteer" exact component={SignupVolunteerPage} />
           <Route path="/projects/submit" exact component={ProjectSubmit} />
-          <Route path="/profile" exact component={Profile} />
+          <Route path="/profile" exact component={UserProfilePage} />
           <Route path="/style" exact component={Style} />
-          <Route path="/project" exact component={Project} />
+          <Route path="/project" exact component={ProjectPage} />
           <Route path="/form" exact component={Form} />
           <Route path="/chats" component={ChatRoute} />
         </Switch>
