@@ -31,7 +31,7 @@ passlib==1.7.2
 pluggy==0.13.1
 promise==2.3
 psycopg2==2.8.4
-py==1.8.1
+py==1.10.0
 pycodestyle==2.5.0
 pycparser==2.20
 pydantic==1.6.2
